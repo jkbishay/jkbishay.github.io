@@ -6,7 +6,7 @@
     "email": "jkbishay@hawaii.edu",
     "phone": "808-782-7438",
     "website": "https://jkbishay.github.io",
-    "summary": "I am studying for a B.S. in Computer Science in the Department of Information and Computer Sciences at the University of Hawaii. I expect to graduate in Spring, 2020.",
+    "summary": "I am studying for a B.S. in Computer Science in the Department of Information and Computer Sciences at the University of Hawaii. I expect to graduate in Spring, 2019.",
     "location": {
       "address": "1146 Leilipoa Way",
       "postalCode": "96825",
@@ -18,22 +18,17 @@
       {
         "network": "github",
         "username": "jkbishay",
-        "url": "http://jkbishay.github.io"
+        "url": "http://github.com/jkbishay"
       },
       {
         "network": "linkedin",
-        "username": "mollymaluhia",
-        "url": "http://linkedin.com/in/changeme"
+        "username": "justinbishay",
+        "url": "https://www.linkedin.com/in/justin-bishay-022890156/"
       },
       {
         "network": "twitter",
-        "username": "mollymal",
-        "url": "http://twitter.com/changeme"
-      },
-      {
-        "network": "instagram",
-        "username": "molly",
-        "url": "http://instagram.com/changeme"
+        "username": "Justin B [TP]",
+        "url": "https://twitter.com/imapyramid_LOL"
       }
     ]
   },
