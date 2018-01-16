@@ -2,7 +2,7 @@
   "basics": {
     "name": "Justin Bishay",
     "label": "Student",
-    "picture": "https://techfolios.github.io/template/images/molly.png",
+    "picture": "https://techfolios.github.io/images/justin.jpg",
     "email": "jkbishay@hawaii.edu",
     "phone": "808-782-7438",
     "website": "https://mmaluhia.github.io",
@@ -17,8 +17,8 @@
     "profiles": [
       {
         "network": "github",
-        "username": "mmaluhia",
-        "url": "http://github.com/changeme"
+        "username": "jkbishay",
+        "url": "http://jkbishay.github.io"
       },
       {
         "network": "linkedin",
@@ -39,14 +39,14 @@
   },
   "interests": [
     {
-      "name": "internet of things",
+      "name": "game design",
       "keywords": [
         "Arduino",
         "TI MSP430"
       ]
     },
     {
-      "name": "data mining",
+      "name": "data visualization",
       "keywords": [
       ]
     },
@@ -62,11 +62,9 @@
       "level": "",
       "keywords": [
         "C",
-        "C++",
+        "C#",
         "Java",
-        "Javascript",
-        "Assembly",
-        "Common Lisp"
+        "Javascript"
       ]
     },
     {
@@ -86,7 +84,7 @@
       "institution": "University of Hawaii, Honolulu, HI",
       "area": "Computer Science (expected Spring, 2018)",
       "studyType": "B.S.",
-      "startDate": "2013-09-01",
+      "startDate": "2015-08-24",
       "endDate": "Present",
       "gpa": "",
       "courses": [
