@@ -34,18 +34,18 @@
   },
   "interests": [
     {
-      "name": "game design",
+      "name": "Game Design",
       "keywords": [
         "Unity"
       ]
     },
     {
-      "name": "data visualization",
+      "name": "Data Visualization",
       "keywords": [
       ]
     },
     {
-      "name": "artificial intelligence",
+      "name": "Artificial Intelligence",
       "keywords": [
       ]
     }
@@ -84,15 +84,14 @@
   ],
   "work": [
     {
-      "company": "UH Manoa Board of Publications",
-      "position": "Web Developer",
+      "company": "PACXA",
+      "position": "Intern",
       "website": "",
-      "startDate": "2015-08-01",
-      "endDate": "Present",
-      "summary": "Head of online presence for Ka Leo",
+      "startDate": "2014-06-01",
+      "endDate": "2014-08-10",
+      "summary": "Installed and setup modified iPads in hotel rooms at the Sheraton Waikiki and Royal Hawaiian hotels",
       "highlights": [
-        "Maintain, update, and oversee official college newspaper website",
-        "Drive, design and build student-community projects for UH Manoa"
+        "Worked with a team 7-10 technicians to troubleshoot and resolve issues"
       ]
     },
     {
