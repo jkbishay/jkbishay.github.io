@@ -2,7 +2,7 @@
   "basics": {
     "name": "Justin Bishay",
     "label": "Student",
-    "picture": "https://techfolios.github.io/template/images/justin.jpg",
+    "picture": "https://techfolios.github.io/images/justin.jpg",
     "email": "jkbishay@hawaii.edu",
     "phone": "808-782-7438",
     "website": "https://jkbishay.github.io",
@@ -36,8 +36,7 @@
     {
       "name": "game design",
       "keywords": [
-        "Arduino",
-        "TI MSP430"
+        "Unity"
       ]
     },
     {
@@ -67,21 +66,18 @@
       "level": "",
       "keywords": [
         "MacOS",
-        "Ubuntu",
-        "Git/GitHub",
-        "g++",
-        "TI LaunchPad"
+        "Git/GitHub"
       ]
     }
   ],
   "education": [
     {
       "institution": "University of Hawaii, Honolulu, HI",
-      "area": "Computer Science (expected Spring, 2018)",
+      "area": "Computer Science (expected Spring, 2019)",
       "studyType": "B.S.",
       "startDate": "2015-08-24",
       "endDate": "Present",
-      "gpa": "",
+      "gpa": "3.66",
       "courses": [
       ]
     }
