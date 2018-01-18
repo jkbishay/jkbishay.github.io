@@ -10,7 +10,7 @@ labels:
 
 *The Ugly Beauty of Javascript*
 
-If economics ever taught us anything, it's that people always face trade-offs. You want to make something better? Then you have to let something else worsen.  You have to give something up in order to get something else. To me, Javascript models this economic principle quite well - maybe not in a simple way. 
+If economics ever taught us anything, it's that people always face trade-offs. It's the principle that you must give something up in order to get something else. You want to make something better? Then you have to let something else worsen. To me, Javascript models this economic principle quite well, but maybe not in an obvious way. 
 
 ## The Gains 
 
@@ -18,4 +18,6 @@ Sometimes the most innovative and progressive ideas are the result of a bold dec
 
 ## The Trade-off
 
-Despite how great Javascript can be, it unfortunately is not the perfect programming language - otherwise everyone would be using it. As I mentioned before, we always face trade-offs. With Javascript we gain a language that allows for more efficient coding, but at the same time you could end up with code that looks more complicated and messier than usual. Shorter functions and code are a breeze in Javascript, but once you start coding something that's more than a hundred lines you could have quite the mess of symbols on your computer. 
+Despite how great Javascript can be, it unfortunately is not the perfect programming language - otherwise everyone would be using it. As I mentioned before, we always face trade-offs. With Javascript we gain a language that allows for more efficient coding, but at the same time you could end up with code that looks more complicated and messier than usual. Shorter functions and code are a breeze in Javascript, but once you start coding something that's more than a hundred lines you could have quite the mess of symbols on your computer. If you are not using a Javascript Integrated Development Environment (IDE) it could take a while to find a small syntax error whether it's an undeclared variable, a missing comma, an incorrect bracket or brace, etc. 
+
+There seems to be plenty of potential in utilizing Javascript in programming, but if a person were to use it without the proper amount fo expertise then things could go wrong rather quickly. Perhaps this makes Javascript a less efficient language for higher level programming for general users. At the hands of a skilled veteran however, Javascript could be a dream come true. 
