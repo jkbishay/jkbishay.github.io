@@ -26,7 +26,7 @@ For this project, I programmed and designed many of the puzzles that were featur
 
 Check out a short trailer for the game [here!](https://youtu.be/3oDPTKcFKlY)
 
-You can learn more about our game at [](https://dreamingbento.github.io/)
+You can learn more about our game at its [website.](https://dreamingbento.github.io/)
 
 
 
