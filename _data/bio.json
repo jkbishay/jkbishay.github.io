@@ -110,28 +110,16 @@
   ],
   "volunteer": [
     {
-      "organization": "Center for Renewable Energy and Island Sustainability",
-      "website": "http://manoa.hawaii.edu/reis",
-      "position": "Software Developer",
-      "startDate": "2016-01-01",
-      "endDate": "Present",
-      "summary": "Lead developer for weather sensing project",
-      "highlights": [
-        "Design firmware for distributed weather sensor network",
-        "Maintain custom data collection and storage infrastructure"
-      ]
-    },
-    {
       "organization": "",
       "website": "",
-      "position": "Professional organization involvement",
-      "startDate": "",
-      "endDate": "",
-      "summary": "",
+      "position": "Assistant eSports Tournament Organizer and Streamer",
+      "startDate": "2017-03-01",
+      "endDate": "Present",
+      "summary": "Assist in running double-elimination tournament brackets for competitive Super Smash Bros. Wii U",
       "highlights": [
-        "Chair, ACM Manoa, 2016-Present",
-        "Member, IEEE Student Branch, 2014-Present",
-        "Webmaster/IT Officer, IEEE Student Branch, UH Manoa, 2012-2013"
+        "Maintain and edit Twitch live stream of tournament matches",
+        "Set up and take apart streaming equipment and tournament match stations",
+        "Have also casted/commentated tournament matches for two years"
       ]
     }
   ],
