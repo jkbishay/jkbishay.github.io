@@ -42,6 +42,43 @@ Despite how great Javascript can be, it unfortunately is not the perfect program
 
 If you have a syntax error in this code, it might almost be quicker to retype everything instead of searching for the error.
 ```
+work": [
+    {
+      "company": "A",
+      "position": "Research Assistant",
+      "website": "site.com",
+      "startDate": "2017-11-01",
+      "endDate": "Present",
+      "summary": "",
+      "highlights": [
+        "highlight1",
+        "highlight2"
+      ]
+    },
+    {
+      "company": "B",
+      "position": "Curriculum Editor",
+      "website": "",
+      "startDate": "2017-06-01",
+      "endDate": "2017-10-01",
+      "summary": "Edited and updated curriculum",
+      "highlights": [
+        "highlight1"
+      ]
+    },
+    {
+      "company": "C",
+      "position": "Host",
+      "website": "",
+      "startDate": "2015-08-24",
+      "endDate": "2016-08-10",
+      "summary": "sit people",
+      "highlights": [
+        "highlight1",
+        "highlight2"
+      ]
+    }
+  ]
 ```
 
 There seems to be plenty of potential in utilizing Javascript in programming, but if a person were to use it without the proper amount fo expertise then things could go wrong rather quickly. Perhaps this makes Javascript a less efficient language for higher level programming for general users. At the hands of a skilled veteran however, Javascript could be a dream come true. 
