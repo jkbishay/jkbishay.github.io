@@ -13,7 +13,7 @@ labels:
 summary: My team developed a 2D puzzle platformer game as part of ICS 485 Game Design.
 ---
 
-<div class="ui small rounded images">
+<div class="ui medium rounded images">
   <img class="ui image" src="../images/Playto_DialoguePic.png">
   <img class="ui image" src="../images/Playto_pencil.png">
   <img class="ui image" src="../images/Playto_UnicornPic.png">
