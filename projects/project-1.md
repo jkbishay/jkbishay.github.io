@@ -14,10 +14,9 @@ summary: My team developed a 2D puzzle platformer game.
 ---
 
 <div class="ui small rounded images">
-  <img class="ui image" src="../images/micromouse-robot.png">
-  <img class="ui image" src="../images/micromouse-robot-2.jpg">
-  <img class="ui image" src="../images/micromouse.jpg">
-  <img class="ui image" src="../images/micromouse-circuit.png">
+  <img class="ui image" src="../images/Playto_DialoguePic.png">
+  <img class="ui image" src="../images/Playto_pencil.jpg">
+  <img class="ui image" src="../images/Playto_UnicornPic.jpg">
 </div>
 
 "Playto" is a 2D puzzle platformer where the player is a piece of playdough and they can morph into different shapes to navigate levels and solve puzzles. The game was developed in Unity and coded in C#.
