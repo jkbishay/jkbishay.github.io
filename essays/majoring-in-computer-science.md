@@ -5,7 +5,8 @@ title: The not so simple decision of majoring in computer science
 # All dates must be YYYY-MM-DD format!
 date: 2018-01-18
 labels:
-  - Engineering
+  - Game Design
+  - Software Engineering
 ---
 
 *The not so simple decision of majoring in computer science.*
