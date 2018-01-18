@@ -96,15 +96,15 @@
       ]
     },
     {
-      "company": "UH Information Technology Services",
-      "position": "Help Desk Consultant",
-      "website": "http://www.hawaii.edu/its/",
-      "startDate": "2015-01-01",
-      "endDate": "2016-03-15",
+      "company": "Laboratory for Advanced Visualization Applications (LAVA)",
+      "position": "Research Assistant",
+      "website": "http://lava.manoa.hawaii.edu/",
+      "startDate": "2017-11-01",
+      "endDate": "Present",
       "summary": "",
       "highlights": [
-        "Troubleshoot software, hardware and networking issues over the phone",
-        "Answer phone and email responses to the ITS Help Desk"
+        "Developing augmented reality software for Hololens",
+        "Assist with other lab installations and projects"
       ]
     }
   ],
