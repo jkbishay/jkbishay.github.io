@@ -1,14 +1,14 @@
 ---
 layout: essay
 type: essay
-title: How did I end up in software engineering?
+title: The not so simple decision of majoring in computer science
 # All dates must be YYYY-MM-DD format!
 date: 2018-01-18
 labels:
   - Engineering
 ---
 
-<img class="ui tiny right spaced image" src="../images/degree_difficulty.jpg">*Difficulty: a thing that is hard to accomplish, deal with, or understand.*
+*The not so simple decision of majoring in computer science.*
 
 I graduated high school as a straight-A student with a GPA of 4.16, advanced classes, and a $5,000 per year scholarship. I was going to go to college to become an engineer, graduate in four years, and land a job with a fairly high salary immediately afterwards. I was a motivated and hard working youg adult, and I knew exactly what I was going to do with my future. Unitl I didn't.
 
