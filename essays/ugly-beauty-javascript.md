@@ -8,19 +8,9 @@ labels:
   - Javascript
 ---
 
-*The Ugly Beauty of Javascript*
-
 <img class="ui small floated rounded image" src="../images/Javascript_meme.jpeg">
 
-If economics ever taught us anything, it's that people always face trade-offs. It's the principle that you must give something up in order to get something else. You want to make something better? Then you have to let something else worsen. To me, Javascript models this economic principle quite well, but maybe not in an obvious way. 
-
-
-
-
-
-
-
-
+If economics ever taught us anything, it's that people always face trade-offs. It's the principle that you must give something up in order to get something else. You want to make something better? Then you have to let something else worsen. To me, Javascript models this economic principle quite well, but maybe not in an obvious way.
 
 ## The Gains 
 
