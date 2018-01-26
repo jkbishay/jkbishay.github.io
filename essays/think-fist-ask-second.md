@@ -13,6 +13,7 @@ In school, most teachers will tell you that there is no such thing as a dumb or 
 
 Take [this question](https://stackoverflow.com/questions/48293427/select-only-one-checkbox-in-section-recylerview) from StackOverflow for example: 
 
+<img class="ui large rounded image" src="../images/BadQuestion.png">
 
 The user is asking about a legitimate issue that he or she is does not know how to handle or solve. His or her main problem is that he or she cannot properly select the desired items with the functions being used. So naturally the question they have is, "how do I do this?" The main problem with this question is that it is quite vague. Even though the problem is described, it is hard to understand exactly what is not working. There is no context to help other users come up with an answer aside from the provided code. The language used in the question is rough, and the user very bluntly requests for someone to "give me the solution." The provided code appears to be the entire code that the user used for his or her project, and it is not clearly specified where in the code the problem could be. 
 
