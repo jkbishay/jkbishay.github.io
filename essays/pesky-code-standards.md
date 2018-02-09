@@ -24,4 +24,6 @@ function yourFunc() {
   return -1;
 }
 ```
+This particular example is specific to Javascript, though this rule holds true in many programming languages. Now let's be honest, the second one does not look that bad. I could present a sample of more complicated code where the functions are written in the "incorrect" way, and it would look fine. Despite this, it would still go against the standards and be declared as wrong. One may think that it is crazy to expect people to remember so many formatting nuances such as this. Fortunately, there are many integrated development environments (IDE) that can check for formatting errors. One such IDE for Javascript is IntelliJ IDEA which can be set up to integrate ESLint to help with code style and formatting. 
 
+Working with some sort of style checker is great, especially for those who are still learning. It helps to develop good coding habits, shows how and where to properly define variables, and it demonstrates ways to condense code. Even if the user does not remember the style rule, many IDEs have some sort of method that can automatically fix or format the code for the user. 
