@@ -11,3 +11,4 @@ labels:
   - Software Engineering
 ---
 
+Developing a website from scratch can be quite the laborious task. Envisioning the ideal look for a website may not be too difficult for some, but realizing this look is not easy. There are seemingly an infinite amount of customizations that can be done with HTML and CSS. The perfect style that a developer is looking for can be achieved with enough trial and error. However, more complex implementations require more rigorous and chaotic code. 
