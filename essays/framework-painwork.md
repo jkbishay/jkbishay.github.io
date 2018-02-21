@@ -1,11 +1,12 @@
 ---
 layout: essay
 type: essay
-title: UI Frameworks, or UI Painworks?
+title: The Simplicity of UI Frameworks
 # All dates must be YYYY-MM-DD format!
 date: 2018-02-22
 labels:
   - HTML
+  - CSS
   - Semantic UI
   - Web Development
   - Software Engineering
