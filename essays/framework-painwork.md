@@ -12,3 +12,5 @@ labels:
 ---
 
 Developing a website from scratch can be quite the laborious task. Envisioning the ideal look for a website may not be too difficult for some, but realizing this look is not easy. There are seemingly an infinite amount of customizations that can be done with HTML and CSS. The perfect style that a developer is looking for can be achieved with enough trial and error. However, more complex implementations require more rigorous and chaotic code. 
+
+This is where UI frameworks, such as Semantic UI, are incredibly helpful in web development. These interfaces can be used to swiftly apply some of the more complicated stylizations to web pages with their provided classes. One of the best examples of the profficency of Sematic UI is the creation of navigation bars. 
