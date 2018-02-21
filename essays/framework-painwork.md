@@ -41,3 +41,19 @@ Then, to properly format these items, you need to include CSS stylizations such 
   display: inline;
 }
 ```
+
+In the end, this code just creates a single row of hyperlinks. It is possible to further customize this to create a more refined menu bar, but the additional customizations would start to pile up the code and make it a little tough to read. Additionally, if someone wanted to create multiple menus with slight adjustments or reuse some of these customizations, he or she may have to create multiple classes in the CSS stylesheet for each individual customization that is desired. This may be sufficient for a solo developer doing a one-time project. However, this is not ideal for a group of developers who manage a professional website daily. A single minor change could catastrophically break the website, and the problem may be untraceable if any code was deleted or lost. 
+
+This is where Sematic UI can be a developer's saving grace. The implentation of a much more refined menu bar with Semantic UI would instead be:
+
+```
+<div class="ui menu">
+  <div class="ui container">  <!--this is good for formatting the items but not necessary for creating a menu-->
+    <a class="fitted item">Home</a>
+    <a class="fitted item">Page 1</a>
+    <a class="fitted item">Page 2</a>
+    <a class="fitted item">Etc.</a>
+  </div>
+</div>
+```
+There is no additional CSS code needed to generate this menu.  
