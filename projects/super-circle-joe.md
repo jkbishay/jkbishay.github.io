@@ -2,6 +2,7 @@
 layout: project
 type: project
 image: images/SCJ_menu.png
+backgroundImage: image/SCJ_gameplay.png
 title: Super Circle Joe
 permalink: projects/supercirclejoe
 # All dates must be YYYY-MM-DD format!

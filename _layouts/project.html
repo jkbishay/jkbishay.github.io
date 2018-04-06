@@ -3,14 +3,18 @@ layout: projects
 ---
 <style>
   .project-background {
-    background: url('../{{ page.image }}') no-repeat center center fixed;
+    background: url('../{{ page.backgroundImage }}') no-repeat center center fixed;
     background-size: cover;
     height: 700px;
   }
 </style>
 <div class="project-background">
-  <div style="padding-top: 20px; padding-bottom: 20px; background-color: lightcyan" class="ui text container">
-   <h1 class="ui center aligned header">{{ page.title }}</h1>
-   {{ content }}
+  <div class="ui one column centered grid container">
+    <div class="column" style="width: 880px; background-color: lightcyan; padding-left: 40px; padding-right: 40px">
+      <div style="padding-top: 20px; padding-bottom: 20px; background-color: lightcyan" class="ui text container">
+        <h1 class="ui center aligned header">{{ page.title }}</h1>
+          {{ content }}
+      </div>
+    </div>
   </div>
 </div>

@@ -2,6 +2,7 @@
 layout: project
 type: project
 image: images/Playto_Menu.png
+backgroundImage: images/Playto_pencil.png
 title: Playto
 permalink: projects/playto
 # All dates must be YYYY-MM-DD format!
