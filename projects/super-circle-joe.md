@@ -22,10 +22,10 @@ I created this project as a means to further my knowledge and understanding of J
 <div class="ui two column grid">
   <div class="column">
     <img class="ui large bordered image" src="../images/scj/SCJ_gameplay.png">
-    <img class="ui large bordered image" src="../images/scj/Playto_Instructions.png">
+    <img class="ui large bordered image" src="../images/scj/SCJ_Instructions.png">
   </div>
   <div class="column">
-    <img class="ui large bordered image" src="../images/scj/Playto_boss.png">
-    <img class="ui large bordered image" src="../images/scj/Playto_death.png">
+    <img class="ui large bordered image" src="../images/scj/SCJ_boss.png">
+    <img class="ui large bordered image" src="../images/scj/SCJ_death.png">
   </div>
 </div>
