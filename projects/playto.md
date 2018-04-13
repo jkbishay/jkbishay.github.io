@@ -14,11 +14,7 @@ labels:
 summary: My team developed a 2D puzzle platformer game as part of ICS 485 Game Design.
 ---
 
-<div class="ui medium rounded images">
-  <img class="ui image" src="../images/Playto_DialoguePic.png">
-  <img class="ui image" src="../images/Playto_pencil.png">
-  <img class="ui image" src="../images/Playto_UnicornPic.png">
-</div>
+<img class="ui huge centered bordered image" src="../images/Playto_Menu.png">
 
 "Playto" is a 2D puzzle platformer where the player is a piece of playdough and they can morph into different shapes to navigate levels and solve puzzles. The game was developed in Unity and coded in C#.
 This game is a collaborative game design project between Computer Science and Animation undergraduate students: Justin Bishay, Neil Teves, Michael Mangrobang, Kayla Abalos, and Kaeli Giron.
@@ -31,5 +27,14 @@ Check out a short trailer for the game [here!](https://youtu.be/3oDPTKcFKlY)
 
 You can learn more about our game at its [website.](https://dreamingbento.github.io/)
 
-
+<div class="ui two column grid">
+  <div class="column">
+    <img class="ui large bordered image" src="../images/Playto_DialoguePic.png">
+    <img class="ui large bordered image" src="../images/Playto_spiders.png">
+  </div>
+  <div class="column">
+    <img class="ui large bordered image" src="../images/Playto_pencil.png">
+    <img class="ui large bordered image" src="../images/Playto_UnicornPic.png">
+  </div>
+</div>
 
