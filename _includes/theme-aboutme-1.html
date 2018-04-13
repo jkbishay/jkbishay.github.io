@@ -8,7 +8,6 @@
 
   .text-style {
     font-size: 17px;
-    text-align: left;
     color: whitesmoke;
   }
 </style>
@@ -18,7 +17,7 @@
   <div class="ui one column middle aligned centered container grid" style="margin-top: 50px">
     <div class="column" style="width: 800px; background-color: #248946; padding-left: 100px; padding-right: 100px">
       <img class="ui rounded medium centered image" src="../images/justin2.jpg" style="margin-bottom: 20px">
-      <div class="ui center aligned container text-style">
+      <div class="ui left aligned container text-style">
 I'm Justin Bishay! I am currently pursuing a BS in Computer Science at the University of Hawaii at Manoa, and I expect to graduate in Spring of 2019.
 
 I am a passionate gamer and have enjoyed playing various titles and genres of video games ever since I was a child. Now, I am aspiring to become a game developer so that I may create games that are entertaining and memorable for all types of gamers.
@@ -29,7 +28,9 @@ Outside of the world of technology, I work as a coach for cross-country and trac
 
 Please refer to my resume for more about my professional experience and contact information.
       </div>
-    <a href="../Resume.pdf"><button class="ui big black button">Resume</button></a>
+      <div class="row">
+        <a href="{{ site.baseurl}}/Resume.pdf"><button class="ui big black button">Resume</button></a>
+      </div>
     </div>
   </div>
 </div>
