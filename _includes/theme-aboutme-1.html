@@ -1,9 +1,4 @@
 
-{% assign essay_pages = site.pages | where: "type", "essay"  | where_exp: "page", "page.draft != true" %}
-{% assign project_pages = site.pages | where: "type", "project" | where_exp: "page", "page.draft != true" %}
-{% assign num_essays = essay_pages.size %}
-{% assign num_projects = project_pages.size %}
-
 <style>
   .sunset-background {
     background: url('../images/Sunset.jpg') no-repeat center center fixed;
@@ -17,27 +12,28 @@
   }
 </style>
 
-<body class="sunset-background" style="background-color: black">
+<div class="sunset-background" style="background-color: black">
 
-<h1 style="text-align: center; font-size: 45px; color: #2015ff; margin-bottom: 20px">About Me</h1>
-<div class="ui one column middle aligned centered container grid" style="margin-top: 120px">
-  <div class="column" style="width: 800px; background-color: #248946; padding-left: 100px; padding-right: 100px">
-    <img class="ui rounded medium centered image" src="../images/justin2.jpg" style="margin-bottom: 20px">
-    <p class="projecttext" style="color: whitesmoke; font-size: 17px">
-      I'm Justin Bishay! I am currently pursuing a BS in Computer Science at the University of Hawaii at Manoa, and I expect to graduate in Spring of 2019.
-    </p>
-    <p class="projecttext" style="color: whitesmoke; font-size: 17px">
-      I am a passionate gamer and have enjoyed playing various titles and genres of video games ever since I was a child. Now, I am aspiring to become a game developer so that I may create games that are entertaining and memorable for all types of gamers.
-    </p>
-    <p class="projecttext" style="color: whitesmoke; font-size: 17px">
-      During my studies, I have worked on game design and gaming-related projects. I am also a part of the Laboratory of Advanced Visualization and Applications (LAVA) where I work on other data visualization projects as well.
-    </p>
-    <p class="projecttext" style="color: whitesmoke; font-size: 17px">
-      Outside of the world of technology, I work as a coach for cross-country and track and field at my former high school, Mid-Pacific Institute. I play the guitar as a hobby as well.
-    </p>
-    <p class="projecttext" style="color: whitesmoke; font-size: 17px">
-      Please refer to my resume for more about my professional experience and contact information.
-    </p>
-    <a href="../Resume.pdf"><button class="ui big black button">Resume</button></a>
+  <h1 style="text-align: center; font-size: 45px; color: #2015ff; margin-bottom: 20px">About Me</h1>
+  <div class="ui one column middle aligned centered container grid" style="margin-top: 120px">
+    <div class="column" style="width: 800px; background-color: #248946; padding-left: 100px; padding-right: 100px">
+      <img class="ui rounded medium centered image" src="../images/justin2.jpg" style="margin-bottom: 20px">
+      <header class="projecttext" style="color: whitesmoke; font-size: 17px">
+        I'm Justin Bishay! I am currently pursuing a BS in Computer Science at the University of Hawaii at Manoa, and I expect to graduate in Spring of 2019.
+      </header>
+      <header class="projecttext" style="color: whitesmoke; font-size: 17px">
+        I am a passionate gamer and have enjoyed playing various titles and genres of video games ever since I was a child. Now, I am aspiring to become a game developer so that I may create games that are entertaining and memorable for all types of gamers.
+      </header>
+      <header class="projecttext" style="color: whitesmoke; font-size: 17px">
+        During my studies, I have worked on game design and gaming-related projects. I am also a part of the Laboratory of Advanced Visualization and Applications (LAVA) where I work on other data visualization projects as well.
+      </header>
+      <header class="projecttext" style="color: whitesmoke; font-size: 17px">
+        Outside of the world of technology, I work as a coach for cross-country and track and field at my former high school, Mid-Pacific Institute. I play the guitar as a hobby as well.
+      </header>
+      <header class="projecttext" style="color: whitesmoke; font-size: 17px">
+        Please refer to my resume for more about my professional experience and contact information.
+      </header>
+      <a href="../Resume.pdf"><button class="ui big black button">Resume</button></a>
+    </div>
   </div>
 </div>
