@@ -5,18 +5,16 @@ layout: projects
   .project-background {
     background: url('../{{ page.backgroundImage }}') no-repeat center center fixed;
     background-size: cover;
-    height: 1000px;
   }
 
-  .projecttext {
-    font-size: 20px;
-    text-align: left;
+  .max-height {
+    height: 1600px;
   }
 </style>
 
-<div class="project-background">
+<div class="project-background max-height">
   <div class="ui one column centered grid container">
-    <div class="column" style="width: 880px; height: 100%; background-color: lightcyan; padding-left: 40px; padding-right: 40px">
+    <div class="column max-height" style="width: 880px; background-color: lightcyan; padding-left: 40px; padding-right: 40px">
       <div style="background-color: lightcyan" class="ui text container">
         <h1 class="ui center aligned header" style="font-size: 40px">{{ page.title }}</h1>
           {{ content }}
