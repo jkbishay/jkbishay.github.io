@@ -15,7 +15,8 @@ layout: projects
 <div class="project-background max-height" style="padding-top: 14px">
   <div class="ui one column centered grid container">
     <div class="column max-height" style="width: 880px; background-color: lightcyan; padding-left: 40px; padding-right: 40px">
-      <div style="background-color: lightcyan" class="ui text container">
+      <div style="background-color: {% if page.color %} {{ page.color }} {% else %} lightcyan {% endif %}"
+           class="ui text container">
         <h1 class="ui center aligned header" style="font-size: 40px">{{ page.title }}</h1>
           {{ content }}
       </div>
