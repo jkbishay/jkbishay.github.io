@@ -11,7 +11,7 @@ labels:
   - Game Design
   - Unity
   - C#
-summary: My team developed a 2D puzzle platformer game as part of ICS 485 Game Design.
+summary: A short 2D puzzle demo game my team and I created
 ---
 
 <img class="ui huge centered bordered image" src="../images/playto/Playto_Menu.png">
