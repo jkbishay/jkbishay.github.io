@@ -2,7 +2,7 @@
 layout: project
 type: project
 image: images/runbarush/runbarush_menu.png
-backgroundImage: images/playto/Playto_pencil.png
+backgroundImage: images/runbarush/runbarush_gameplay.png
 color: lightsalmon
 title: RUNba Rush
 permalink: projects/runbarush
@@ -28,11 +28,11 @@ You can check out the game jam site for our game [here!](https://globalgamejam.o
 
 <div class="ui two column grid">
   <div class="column">
-    <img class="ui large bordered image" src="../images/playto/Playto_DialoguePic.png">
-    <img class="ui large bordered image" src="../images/playto/Playto_spiders.png">
+    <img class="ui large bordered image" src="../images/runbarush/runbarush_instructions.png">
+    <img class="ui large bordered image" src="../images/runbarush/runbarush_death.png">
   </div>
   <div class="column">
-    <img class="ui large bordered image" src="../images/playto/Playto_pencil.png">
-    <img class="ui large bordered image" src="../images/playto/Playto_UnicornPic.png">
+    <img class="ui large bordered image" src="../images/runbarush/runbarush_gameplay.png">
+    <img class="ui large bordered image" src="../images/runbarush/runbarush_secret.png">
   </div>
 </div>
