@@ -1,0 +1,9 @@
+{
+"TOTAL_MEMORY": 268435456,
+"dataUrl": "RunbaRush.data.unityweb",
+"asmCodeUrl": "RunbaRush.asm.code.unityweb",
+"asmMemoryUrl": "RunbaRush.asm.memory.unityweb",
+"asmFrameworkUrl": "RunbaRush.asm.framework.unityweb",
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20"
+}
