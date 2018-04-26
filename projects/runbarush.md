@@ -26,8 +26,6 @@ This was my first time participating at a coding challenge. I got to experience 
 
 You can check out the game jam site for our game [here!](https://globalgamejam.org/2018/games/runba-rush)
 
-Click [here!](./RunbaRush/index.html) to play the game!
-
 <div class="ui two column grid">
   <div class="column">
     <img class="ui large bordered image" src="../images/runbarush/runbarush_instructions.png">
