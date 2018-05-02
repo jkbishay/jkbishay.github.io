@@ -22,9 +22,9 @@ I created this project as a means to further my knowledge and understanding of J
 
 <div class="ui one column centered grid">
   <div class="column">
-    <img class="ui large bordered image" src="../images/scj/SCJ_gameplay.png">
-    <img class="ui large bordered image" src="../images/scj/SCJ_Instructions.png">
-    <img class="ui large bordered image" src="../images/scj/SCJ_boss.png">
-    <img class="ui large bordered image" src="../images/scj/SCJ_death.png">
+    <img class="ui large centered bordered image" src="../images/scj/SCJ_gameplay.png">
+    <img class="ui large centered bordered image" src="../images/scj/SCJ_Instructions.png">
+    <img class="ui large centered bordered image" src="../images/scj/SCJ_boss.png">
+    <img class="ui large centered bordered image" src="../images/scj/SCJ_death.png">
   </div>
 </div>
