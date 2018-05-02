@@ -20,11 +20,11 @@ summary: A 2D arcade bullet-hell style shooter I made in Java
 
 I created this project as a means to further my knowledge and understanding of Java. This project helped me to learn how to better code more rigorous algorithms and solve more complex problems. This was also my first experience in designing a video game. While the game was simple, I still had to tackle issues such as finding an optimal control scheme, properly setting the difficulty, and making the game's mechanics creative and fresh. I got a lot of practice in coding by doing this project, and I learned how to various find bugs and fix them efficiently. 
 
-<div class="ui one column grid">
+<div class="ui one column centered grid">
   <div class="column">
-    <img class="ui big bordered image" src="../images/scj/SCJ_gameplay.png">
-    <img class="ui big bordered image" src="../images/scj/SCJ_Instructions.png">
-    <img class="ui big bordered image" src="../images/scj/SCJ_boss.png">
-    <img class="ui big bordered image" src="../images/scj/SCJ_death.png">
+    <img class="ui large bordered image" src="../images/scj/SCJ_gameplay.png">
+    <img class="ui large bordered image" src="../images/scj/SCJ_Instructions.png">
+    <img class="ui large bordered image" src="../images/scj/SCJ_boss.png">
+    <img class="ui large bordered image" src="../images/scj/SCJ_death.png">
   </div>
 </div>
