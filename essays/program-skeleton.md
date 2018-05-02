@@ -12,13 +12,13 @@ labels:
 
 The most difficult part about creating something is the beginning. It is not so hard to visualize the desired end result, but knowing where to begin is often a grueling task. However, if there is a general pattern in how it is made, then this early stage of construction can be simplified by referencing this pattern as a template. 
 
-##The Design Pattern of a Car
+## The Design Pattern of a Car
 
 Take a car for example. A typical car has four wheels, a driver's seat, a steering wheel, and an engine amongst other items. Any person looking to create some sort of new innovative car design will likely start with this as a template. The uniqueness of the build will be in how these pieces of the car are designed indivdually. The creator may look to adjust the way in which the steering wheel interacts with the tires to make piloting the vehicle better for the user. Regardless of what changes are made here, the steering wheel is still turning the tires. It's not to say that simply slapping on each of the aforementioned parts will give you a complete or decent car, but these are critical components that are included in just about every car model. After these key pieces are added into the car, the developer is free to customize and improve them in any way he or she sees fit. 
 
 This concept is applicable to a wide variety of disciplines and is quite useful in coding. Programmers constantly use design patterns to simplify the problems they work with. Design patterns in coding are excellent for helpiing coders think of a more concrete way to design their programs and algorithms by providing unique ways for different parts of the code to interact with others. 
 
-##The Design Pattern of Video Games
+## The Design Pattern of Video Games
 
 Design patterns are surprisingly useful in video game development. The general pattern for game development centers around an object oriented implementation. A scene is the place where all of the graphical exchanges occur; everything being used in a particular level of the game is held in there. All items are added to a scene as a game object. Every game object can have certain components attached to it to give it unique properties. Attaching a script to a game object allows it to perform actions. And that is the basic design pattern of video game development–of course the terminology may differ depending on what program is being used. 
 
