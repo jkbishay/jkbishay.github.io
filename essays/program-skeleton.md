@@ -1,7 +1,7 @@
 ---
 layout: essay
 type: essay
-title: The skeleton of a program
+title: The Skeleton of a Program
 # All dates must be YYYY-MM-DD format!
 date: 2018-05-01
 labels:
