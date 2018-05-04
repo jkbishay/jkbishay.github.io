@@ -12,12 +12,11 @@
   }
 </style>
 
-<div class="sunset-background" style="padding-top: 14px">
-  <div class="ui one column middle aligned centered container grid">
-    <div class="column" style="width: 800px; background-color: #248946; padding-left: 100px; padding-right: 100px">
-      <h1 style="text-align: center; font-size: 45px; color: yellow; margin-bottom: 0px">About Me</h1>
-      <img class="ui rounded medium centered image" src="../images/justin2.jpg" style="margin-bottom: 20px">
-      <div class="ui left aligned container text-style">
+<div class="ui one column middle aligned centered container grid" style="padding-top: 14px">
+  <div class="column" style="width: 800px; background-color: #248946; padding-left: 100px; padding-right: 100px">
+    <h1 style="text-align: center; font-size: 45px; color: yellow; margin-bottom: 0px">About Me</h1>
+    <img class="ui rounded medium centered image" src="../images/justin2.jpg" style="margin-bottom: 20px">
+    <div class="ui left aligned container text-style">
 I'm Justin Bishay! I am currently pursuing a BS in Computer Science at the University of Hawaii at Manoa, and I expect to graduate in Spring of 2019. <br/><br/>
 
 I am a passionate gamer and have enjoyed playing various titles and genres of video games ever since I was a child. Now, I am aspiring to become a game developer so that I may create games that are entertaining and memorable for all types of gamers. <br/><br/>
@@ -27,10 +26,21 @@ During my studies, I have worked on game design and gaming-related projects. I a
 Outside of the world of technology, I work as a coach for cross-country and track and field at my former high school, Mid-Pacific Institute. I play the guitar as a hobby as well.<br/><br/>
 
 Please refer to my resume for more about my professional experience and contact information.<br/><br/>
-      </div>
-      <div class="ui center aligned container">
-        <a href="{{ site.baseurl}}/Resume.pdf"><button class="ui big black button">Resume</button></a>
-      </div>
+    </div>
+    <div class="ui center aligned container">
+      <a href="{{ site.baseurl}}/Resume.pdf"><button class="ui big black button">Resume</button></a>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  /* Terrible ugly hack to get nice background image on main page without changing other templates */
+  document.addEventListener("DOMContentLoaded", function() {
+    var body = document.getElementsByTagName("body")[0];
+    body.style.cssText =
+        'background: url("../images/Sunset.jpg") center center fixed;' +
+        'background-size: cover;' +
+        'background-color: black;' +
+        'background-repeat: no-repeat;';
+  });
+</script>

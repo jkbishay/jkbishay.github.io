@@ -3,7 +3,7 @@ layout: project
 type: project
 image: images/playto/Playto_Menu.png
 backgroundImage: images/playto/Playto_pencil.png
-color: lightcyan
+color: deepskyblue
 title: Playto
 permalink: projects/playto
 # All dates must be YYYY-MM-DD format!
