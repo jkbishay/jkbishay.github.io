@@ -14,15 +14,18 @@
   }
 </style>
 
-  <div class="ui middle aligned centered stackable container grid" style="height: 100%">
-    <div class="row">
-      <div class="column">
-        <img src="{{ site.data.bio.basics.picture }}" class="ui circular small centered image">
-        <h1 style="font-size: 60px; color: white" class="ui center aligned header">Justin Bishay</h1>
-        <h3 style="margin-top: 0px; color: lightsteelblue" class="ui center aligned header">University of Hawaii at Manoa Computer Science undergraduate | Honolulu, Hawaii</h3>
-      </div>
+<div class="ui stackable middle aligned grid" style="height: 100%">
+  <div class="column">
+    <div class="centered aligned content">
+      <img src="{{ site.data.bio.basics.picture }}" class="ui circular small centered image">
     </div>
-    <div class="one column centered row" style="margin-top: -75px">
+    <div class="centered aligned content">
+      <h1 style="font-size: 60px; color: white" class="ui center aligned header">Justin Bishay</h1>
+    </div>
+    <div class="centered aligned content">
+      <h3 style="margin-top: 0px; color: lightsteelblue" class="ui center aligned header">University of Hawaii at Manoa Computer Science undergraduate | Honolulu, Hawaii</h3>
+    </div>
+    <div class="centered aligned content">
       <a href="http://github.com/jkbishay">
         <i class="github icon huge orange"></i>
       </a>
@@ -36,13 +39,14 @@
         <i class="mail square icon huge orange"></i>
       </a>
     </div>
-    <div class="one column centered row" style="margin-top: -150px">
+    <div class="centered aligned content">
       <a href="{{ site.baseurl}}/aboutme/"><button class="ui inverted red button">About Me</button></a>
       <a href="{{ site.baseurl}}/essays/"><button class="ui inverted yellow button">Essays</button></a>
       <a href="{{ site.baseurl}}/projects/"><button class="ui inverted green button">Projects</button></a>
       <a href="{{ site.baseurl}}/Resume.pdf"><button class="ui inverted teal button">Resume</button></a>
     </div>
   </div>
+</div>
 
 <script type="text/javascript">
   /* Terrible ugly hack to get nice background image on main page without changing other templates */
@@ -50,7 +54,7 @@
     var body = document.getElementsByTagName("body")[0];
     body.style.cssText =
         'background: url("../images/twilightsky.jpg");' +
-        'background-size: 100%;' +
+        'background-size: cover;' +
         'background-color: black;' +
         'background-position: top;' +
         'background-repeat: no-repeat;';
