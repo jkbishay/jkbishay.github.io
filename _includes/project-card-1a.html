@@ -3,7 +3,14 @@
 <a class="card" style="background-color: {% if include.page.color %} {{ include.page.color }} {% endif %}"
    href="{% if page.projecturl %}{{ page.projecturl }}{% else %}{{ site.baseurl}}{{ include.page.url }}{% endif %}">
   {% if include.page.image %}
-  <div class="image">
+  <div class="blurring dimmable image">
+    <div class="ui dimmer">
+      <div class="content">
+        <div class="center">
+          <h5>{{ include.page.summary }}</h5>
+        </div>
+      </div>
+    </div>
     <img src="{{ site.baseurl }}/{{ include.page.image }}">
   </div>
   {% endif %}
@@ -11,3 +18,9 @@
     <span class="center aligned header">{{ include.page.title }}</span>
   </div>
 </a>
+
+<script>
+  $('.special.cards .image').dimmer({
+    on: 'hover'
+  });
+</script>
