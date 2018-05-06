@@ -6,9 +6,7 @@
   <div class="blurring dimmable image">
     <div class="ui dimmer">
       <div class="content">
-        <div class="ui center">
-          <h5>{{ include.page.summary }}</h5>
-        </div>
+       <a class="ui center" href="{{ site.baseurl}}{{ include.page.url }}"><h4>{{include.page.title}}</h4></a>
       </div>
     </div>
     <img src="{{ site.baseurl }}/{{ include.page.image }}">
