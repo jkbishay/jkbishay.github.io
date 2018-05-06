@@ -17,6 +17,12 @@ summary: Augmented Reality training and annotation program
 
 <img class="ui huge centered bordered image" src="../images/holosage/holosage_banner.png">
 
+<div style="display: flex; justify-content: center" class="ui large labels">
+  <div class="ui basic label">Augmented Reality</div>
+  <div class="ui basic label">Unity</div>
+  <div class="ui basic label">C#</div>
+</div>
+
 ### What is HoloSage?
 
 HoloSage is an augmented reality training program designed to allow users to create annotations in real world space. This was my first project as part of the Laboratory for Advanced Visualization Applications (LAVA) which we were contracted by the Navy to create. The user can save these notes as recordings with audio to provide more detailed step-by-step training remotely. Users are able to draw lines, place arrows, record microphone audio, and make video recordings. This program was developed for the Microsoft HoloLens and was programmed in Unity with C#. It was created by undergraduate students Justin Bishay and Andrew Kurano.

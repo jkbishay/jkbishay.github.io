@@ -17,10 +17,10 @@ summary: A short 2D puzzle demo game my team and I created
 
 <img class="ui huge centered bordered image" src="../images/playto/Playto_Menu.png">
 
-<div class="center aligned ui big labels">
-  <div class="ui label">Game Design</div>
-  <div class="ui label">Unity</div>
-  <div class="ui label">C#</div>
+<div style="display: flex; justify-content: center" class="ui large labels">
+  <div class="ui basic label">Game Design</div>
+  <div class="ui basic label">Unity</div>
+  <div class="ui basic label">C#</div>
 </div>
 
 "Playto" is a 2D puzzle platformer where the player is a piece of playdough and they can morph into different shapes to navigate levels and solve puzzles. The game was developed in Unity and coded in C#.
