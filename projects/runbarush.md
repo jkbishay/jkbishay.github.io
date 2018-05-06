@@ -24,6 +24,7 @@ summary: A short puzzle indie game made for Global Game Jam 2018
   <div class="ui basic label">C#</div>
   <div class="ui basic label">Global Game Jam</div>
 </div>
+<br/>
 
 "RUNba Rush" is a brief puzzle strategy game where the player assumes the role of a babysitter who must utilize a few dysfunctional Roo- err, RUNbas to clear the house of hazardous objects before the toddler eats them. The game was made in Unity 3D and coded in C#. It was created by a team of five people for Global Game Jam 2018. It was chosen by the local Honolulu community as the most 'Dramatically Diverse' game for the best use of Game Jam's diversifiers. 
 

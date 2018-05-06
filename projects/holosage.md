@@ -22,6 +22,7 @@ summary: Augmented Reality training and annotation program
   <div class="ui basic label">Unity</div>
   <div class="ui basic label">C#</div>
 </div>
+<br/>
 
 ### What is HoloSage?
 

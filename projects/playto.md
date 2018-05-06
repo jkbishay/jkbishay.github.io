@@ -22,6 +22,7 @@ summary: A short 2D puzzle demo game my team and I created
   <div class="ui basic label">Unity</div>
   <div class="ui basic label">C#</div>
 </div>
+<br/>
 
 "Playto" is a 2D puzzle platformer where the player is a piece of playdough and they can morph into different shapes to navigate levels and solve puzzles. The game was developed in Unity and coded in C#.
 This game is a collaborative game design project between Computer Science and Animation undergraduate students: Justin Bishay, Neil Teves, Michael Mangrobang, Kayla Abalos, and Kaeli Giron.
