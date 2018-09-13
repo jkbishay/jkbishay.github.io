@@ -3,22 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <title>Cholera Visualization</title>
-  <script src="plotly-latest.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 
 <body>
-<div>Test</div>
-<div id="tester" style="width:600px;height:250px;"></div>
+<div class="ui centered container">
+     <div id="DeathTable" style=""></div>
+</div>
 
-<script>
-  TESTER = document.getElementById('tester');
-  Plotly.plot( TESTER, [{
-    x: [1, 2, 3, 4, 5],
-    y: [1, 2, 4, 8, 16] }], {
-    margin: { t: 0 } } );
-</script>
 </body>
 
+<script>
+  Plotly.d3.tsv("./choleraDeaths.tsv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    }
+
+    var headerNames = Plotly.d3.keys(rows[0]);
+
+    // cell values
+    var cellValues = [];
+    var headerValues = [];
+    for (i = 0; i < headerNames.length; i++) {
+      headerValue = [headerNames[i]];
+      headerValues[i] = headerValue;
+      cellValue = unpack(rows, headerNames[i]);
+      cellValues[i] = cellValue;
+    }
+
+    var data = [{
+      type: 'table',
+      header: {
+        values: headerValues,
+        align: "center",
+        line: { width: 1, color: 'black' },
+        fill: { color: "grey" },
+        font: { family: "Arial", size: 12, color: "white" }
+      },
+      cells: {
+        values: cellValues,
+        align: "center",
+        line: { color: "black", width: 1 },
+        font: { family: "Arial", size: 11, color: ["black"] }
+      }
+    }]
+
+    DeathTable = document.getElementById('DeathTable');
+    Plotly.plot(DeathTable, data, {
+      margin: { t: 0 }
+    });
+
+  });
+</script>
 
 </html>
