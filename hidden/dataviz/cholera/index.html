@@ -9,7 +9,8 @@
 
 <body>
 <div class="ui centered container">
-     <div id="DeathTable" style=""></div>
+  <div id="DeathTable" style=""></div>
+  <div id="deathLines"></div>
 </div>
 
 </body>
@@ -31,11 +32,7 @@
       headerValues[i] = headerValue;
       cellValue = unpack(rows, headerNames[i]);
       cellValues[i] = cellValue;
-      console.log(cellValue);
     }
-
-    console.log(cellValues[0][0]);
-    console.log(cellValues[0][1]);
 
     // add totals
     headerValues[headerNames.length] = ["Total"];
@@ -43,12 +40,9 @@
     for (i = 0; i < cellValues[0].length; i++) {
       totalCount[i] = parseInt(cellValues[1][i], 10) + parseInt(cellValues[2][i], 10);
     }
-    console.log(totalCount);
     cellValues[headerNames.length] = totalCount;
 
-    console.log(headerValues);
-
-    var data = [{
+    var table = [{
       type: 'table',
       header: {
         values: headerValues,
@@ -65,6 +59,15 @@
       }
     }];
 
+    var lineattacks = [{
+      type: 'scatter',
+      x: unpack(rows, 'Date'),
+      y: unpack(rows, 'Attack'),
+    }];
+
+
+    var data = [table, lineattacks];
+
     var layout = {
       title: "Cholera Attacks and Deaths by Date",
       height: 600,
@@ -72,8 +75,9 @@
     }
 
     DeathTable = document.getElementById('DeathTable');
-    Plotly.plot(DeathTable, data, layout);
-
+    LineChart = document.getElementById('deathLines');
+    Plotly.plot(DeathTable, table, layout);
+    Plotly.plot(LineChart, lineattacks, layout);
   });
 </script>
 
