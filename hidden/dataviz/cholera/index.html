@@ -31,7 +31,22 @@
       headerValues[i] = headerValue;
       cellValue = unpack(rows, headerNames[i]);
       cellValues[i] = cellValue;
+      console.log(cellValue);
     }
+
+    console.log(cellValues[0][0]);
+    console.log(cellValues[0][1]);
+
+    // add totals
+    headerValues[headerNames.length] = ["Total"];
+    var totalCount = [];
+    for (i = 0; i < cellValues[0].length; i++) {
+      totalCount[i] = parseInt(cellValues[1][i], 10) + parseInt(cellValues[2][i], 10);
+    }
+    console.log(totalCount);
+    cellValues[headerNames.length] = totalCount;
+
+    console.log(headerValues);
 
     var data = [{
       type: 'table',
@@ -44,16 +59,20 @@
       },
       cells: {
         values: cellValues,
-        align: "center",
+        align: ["center", "right", "right", "right"],
         line: { color: "black", width: 1 },
         font: { family: "Arial", size: 11, color: ["black"] }
       }
-    }]
+    }];
+
+    var layout = {
+      title: "Cholera Attacks and Deaths by Date",
+      height: 600,
+      width: 550
+    }
 
     DeathTable = document.getElementById('DeathTable');
-    Plotly.plot(DeathTable, data, {
-      margin: { t: 0 }
-    });
+    Plotly.plot(DeathTable, data, layout);
 
   });
 </script>
