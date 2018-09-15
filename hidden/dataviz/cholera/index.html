@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<h2 style="font-size: 40px; padding-top: 25px" class="ui center aligned header">Naples Deaths by Age and Sex</h2>
+<h2 style="font-size: 40px; padding-top: 50px" class="ui center aligned header">Naples Deaths by Age and Sex</h2>
 <div class="ui two column grid">
   <div class="column" style="width: 40%;">
     <div id="naplestable"></div>
@@ -28,6 +28,18 @@
     <div id="sextable"></div>
   </div>
 </div>
+
+<h2 style="font-size: 40px; padding-top: 50px" class="ui center aligned header">UK Census Data</h2>
+<div class="ui two column grid">
+  <div class="column" style="width: 35%;">
+    <div id="censustable"></div>
+  </div>
+  <div class="column" style="width: 65%;">
+    <div id="censusbar"></div>
+  </div>
+</div>
+<div id="censuspie"></div>
+
 
 </body>
 
@@ -188,7 +200,10 @@
       type: 'bar',
       name: 'Male',
       x: unpack(rows, 'Age'),
-      y: unpack(rows, 'Male')
+      y: unpack(rows, 'Male'),
+      marker: {
+        color: 'rgb(44, 160, 44)'
+      }
     };
 
     var femaledata = {
@@ -219,6 +234,164 @@
     Bar = document.getElementById('sextable');
     Plotly.plot(Table, table, layout1);
     Plotly.plot(Bar, bardata, layout2);
+  });
+
+  Plotly.d3.csv("./UKcensus1851.csv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function (row) {
+        return row[key];
+      });
+    }
+
+    // get the header names
+    var headerNames = Plotly.d3.keys(rows[0]);
+
+    // cell values
+    var cellValues = [];
+    var headerValues = [];
+    for (i = 0; i < headerNames.length; i++) {
+      headerValue = [headerNames[i]];
+      headerValues[i] = headerValue;
+      cellValue = unpack(rows, headerNames[i]);
+      cellValues[i] = cellValue;
+    }
+
+    // add totals
+    headerValues[headerNames.length] = ["Total"];
+    var totalCount = [];
+    for (i = 0; i < cellValues[0].length; i++) {
+      totalCount[i] = parseInt(cellValues[1][i], 10) + parseInt(cellValues[2][i], 10);
+    }
+    cellValues[headerNames.length] = totalCount;
+
+    // create table
+    var table = [{
+      type: 'table',
+      header: {
+        values: headerValues,
+        align: "center",
+        line: { width: 1, color: 'black' },
+        fill: { color: "grey" },
+        font: { family: "Arial", size: 12, color: "white" }
+      },
+      cells: {
+        values: cellValues,
+        align: ["center", "right", "right", "right"],
+        line: { color: "black", width: 1 },
+        font: { family: "Arial", size: 11, color: ["black"] }
+      }
+    }];
+
+    // organize data for census pie charts
+    var malecen = unpack(rows, 'Male');
+    var femalecen = unpack(rows, 'Female');
+    var mansum = 0;
+    var womansum = 0;
+
+    for (i = 0; i < malecen.length; i++) {
+      mansum += parseInt(malecen[i], 10);
+    }
+
+    for (i = 0; i < femalecen.length; i++) {
+      womansum += parseInt(femalecen[i], 10);
+    }
+
+    var piedata = [{
+      type: 'pie',
+      values: unpack(rows, 'Male'),
+      labels: unpack(rows, 'Age'),
+      domain: {
+        x: [0, 0.33]
+      },
+      name: 'Men',
+      hoverinfo: 'label+percent+name',
+      textposition: 'outside'
+    },
+    {
+      type: 'pie',
+      values: unpack(rows, 'Female'),
+      labels: unpack(rows, 'Age'),
+      domain: {
+        x: [.34, .67]
+      },
+      name: 'Women',
+      hoverinfo: 'label+percent+name',
+      textposition: 'outside'
+    },
+    {
+      type: 'pie',
+      values: [mansum, womansum],
+      labels: ["Men", "Women"],
+      domain: {
+        x: [.68, 1]
+      },
+      name: 'Women',
+      hoverinfo: 'label+percent',
+      textposition: 'outside',
+      marker: {
+        colors: ['rgb(44, 160, 44)', 'rgb(255, 127, 14)']
+      }
+    }];
+
+    // data for bar chart
+    var bardata = [{
+      type: 'bar',
+      name: 'Male',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Male'),
+      marker: {
+        color: 'rgb(44, 160, 44)'
+      }
+    },{
+      type: 'bar',
+      name: 'Female',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Female')
+    }];
+
+    var pielayout = {
+      title: 'Age Breakdown',
+      titlefont: { size: 26 },
+      annotations: [
+        {
+          text: 'Men',
+          showarrow: false,
+          x: .15,
+          y: 1.125,
+          font: { size: 16 }
+        },{
+          text: 'Women',
+          showarrow: false,
+          x: .5,
+          y: 1.125,
+          font: { size: 16 }
+        },{
+          text: 'Total Men vs Women',
+          showarrow: false,
+          x: .91,
+          y: 1.125,
+          font: { size: 16 }
+        }
+      ]
+    };
+
+    Table = document.getElementById('censustable');
+    CensusPie = document.getElementById('censuspie');
+    CensusBar = document.getElementById('censusbar');
+
+    Plotly.plot(Table, table);
+    Plotly.plot(CensusPie, piedata, pielayout);
+    Plotly.plot(CensusBar, bardata, {
+      barmode: 'grouped',
+      xaxis: {
+        title: 'Age Range'
+      },
+      yaxis: {
+        title: 'Number of People'
+      }
+    });
+
   });
 </script>
 
