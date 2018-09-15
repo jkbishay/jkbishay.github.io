@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Cholera Visualization</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"/>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-        crossorigin="">
+        crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
           integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
           crossorigin=""></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../Leaflet.heat/dist/leaflet-heat.js"></script>
 </head>
+
+<style>
+  #choleramap {
+    height: 500px;
+  }
+</style>
 
 
 <body>
@@ -46,11 +53,15 @@
 </div>
 <div id="censuspie"></div>
 
-<div id="choleramap" style=" height: 50%;"></div>
+<div class="ui container" style="padding-bottom: 50px">
+  <div id="choleramap"></div>
+</div>
 
 </body>
 
 <script>
+
+
   Plotly.d3.tsv("./choleraDeaths.tsv", function(err, rows) {
 
     // function to organize data properly
@@ -401,7 +412,47 @@
 
   });
 
-  var mymap = L.map('choleramap').setView([51.505, -0.09], 13);
+  // initialize geo map
+  var mymap = L.map('choleramap').setView([51.513418,-0.13793], 16);
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'sk.eyJ1IjoiamtiaXNoYXkiLCJhIjoiY2ptM3N5ZGJkMThqaTNrcWd4dTZnNzIzdyJ9._3R0Q92lPQ1YdRwrkbdS_g'
+  }).addTo(mymap);
+
+  // get data for heat map
+  Plotly.d3.csv("./choleraDeathLocations.csv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    };
+
+    var lats = unpack(rows, 'Latitude');
+    var long = unpack(rows, 'Longitude');
+    var deaths = unpack(rows, 'Deaths');
+    var datapoints = [];
+    var maxdeath = 0;
+
+    for (i = 0; i < deaths.length; i++) {
+      datapoints[i] = [parseFloat(lats[i]), parseFloat(long[i]), parseFloat(deaths[i])];
+      if (parseInt(deaths[i], 10) > maxdeath) {
+        maxdeath = deaths[i];
+      }
+    }
+
+    var heatoptions = {
+      radius: 15,
+      minOpacity: 0.5,
+      gradient: {0.4: 'rgb(255, 220, 70)', 0.7: 'rgb(255, 137, 0)', 1: 'rgb(255, 0, 0)'},
+      max: maxdeath,
+      maxZoom: 16
+    }
+    var heat = L.heatLayer(datapoints, heatoptions).addTo(mymap);
+
+
+  });
+
 </script>
 
 </html>
