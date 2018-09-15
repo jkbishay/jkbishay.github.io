@@ -9,12 +9,23 @@
 
 
 <body>
+<h2 style="font-size: 40px; padding-top: 25px" class="ui center aligned header">Attacks and Deaths By Date</h2>
 <div class="ui two column grid">
   <div class="column" style="width: 40%;">
     <div id="DeathTable" style="height: 100%; width: 100%;"></div>
   </div>
   <div class="column" style="width: 60%;">
     <div id="deathline" style="height: 100%; width: 100%;"></div>
+  </div>
+</div>
+
+<h2 style="font-size: 40px; padding-top: 25px" class="ui center aligned header">Naples Deaths by Age and Sex</h2>
+<div class="ui two column grid">
+  <div class="column" style="width: 40%;">
+    <div id="naplestable"></div>
+  </div>
+  <div class="column" style="width: 60%;">
+    <div id="sextable"></div>
   </div>
 </div>
 
@@ -133,6 +144,81 @@
     LineChart = document.getElementById('deathline');
     Plotly.plot(DeathTable, table, layout1);
     Plotly.plot(LineChart, linedata, layout2);
+  });
+
+  Plotly.d3.tsv("./naplesCholeraAgeSexData.tsv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    }
+
+    // get the header names
+    var headerNames = Plotly.d3.keys(rows[0]);
+
+    // cell values
+    var cellValues = [];
+    var headerValues = [];
+    for (i = 0; i < headerNames.length; i++) {
+      headerValue = [headerNames[i]];
+      headerValues[i] = headerValue;
+      cellValue = unpack(rows, headerNames[i]);
+      cellValues[i] = cellValue;
+    }
+
+    // create table
+    var table = [{
+      type: 'table',
+      header: {
+        values: headerValues,
+        align: "center",
+        line: { width: 1, color: 'black' },
+        fill: { color: "grey" },
+        font: { family: "Arial", size: 12, color: "white" }
+      },
+      cells: {
+        values: cellValues,
+        align: ["center", "right", "right", "right"],
+        line: { color: "black", width: 1 },
+        font: { family: "Arial", size: 11, color: ["black"] }
+      }
+    }];
+
+    // collect data for bar charts
+    var maledata = {
+      type: 'bar',
+      name: 'Male',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Male')
+    };
+
+    var femaledata = {
+      type: 'bar',
+      name: 'Female',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Female')
+    };
+
+    var bardata = [maledata, femaledata];
+
+    var layout1 = {
+      title: 'Naples Age and Sex Data'
+    }
+
+    var layout2 = {
+      title: 'Naples Male and Female Data',
+      barmode: 'grouped',
+      xaxis: {
+        title: 'Age Range',
+      },
+      yaxis: {
+        title: 'Deaths per 10,000 Inhabatants '
+      }
+    }
+
+    Table = document.getElementById('naplestable');
+    Bar = document.getElementById('sextable');
+    Plotly.plot(Table, table, layout1);
+    Plotly.plot(Bar, bardata, layout2);
   });
 </script>
 
