@@ -3,14 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <title>Cholera Visualization</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css">
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 
 
 <body>
-<div class="ui centered container">
-  <div id="DeathTable" style=""></div>
-  <div id="deathLines"></div>
+<div class="ui two column grid">
+  <div class="column" style="width: 40%;">
+    <div id="DeathTable" style="height: 100%; width: 100%;"></div>
+  </div>
+  <div class="column" style="width: 60%;">
+    <div id="deathline" style="height: 100%; width: 100%;"></div>
+  </div>
 </div>
 
 </body>
@@ -18,10 +23,12 @@
 <script>
   Plotly.d3.tsv("./choleraDeaths.tsv", function(err, rows) {
 
+    // function to organize data properly
     function unpack(rows, key) {
       return rows.map(function(row) { return row[key]; });
     }
 
+    // get the header names
     var headerNames = Plotly.d3.keys(rows[0]);
 
     // cell values
@@ -42,6 +49,7 @@
     }
     cellValues[headerNames.length] = totalCount;
 
+    // create table
     var table = [{
       type: 'table',
       header: {
@@ -59,25 +67,72 @@
       }
     }];
 
-    var lineattacks = [{
-      type: 'scatter',
-      x: unpack(rows, 'Date'),
-      y: unpack(rows, 'Attack'),
-    }];
+    // setup data for scatter plots
+    var dateVal = unpack(rows, 'Date');
+    var attackData = unpack(rows, 'Attack');
+    var deathData = unpack(rows, 'Death');
+    var totalAttacks = [];
+    var totalDeaths = [];
+    var sum = 0;
 
-
-    var data = [table, lineattacks];
-
-    var layout = {
-      title: "Cholera Attacks and Deaths by Date",
-      height: 600,
-      width: 550
+    for (i = 0; i < attackData.length; i++) {
+      sum += parseInt(attackData[i], 10);
+      totalAttacks[i] = sum;
     }
 
+    sum = 0;
+
+    for (i = 0; i < deathData.length; i++) {
+      sum += parseInt(deathData[i], 10);
+      totalDeaths[i] = sum;
+    }
+
+    // scatter plots
+    var lineattacks = {
+      x: dateVal,
+      y: unpack(rows, 'Attack'),
+      type: 'scatter',
+      name: 'Daily Attacks'
+    };
+
+    var linedeaths = {
+      x: dateVal,
+      y: unpack(rows, 'Death'),
+      type: 'scatter',
+      name: 'Daily Deaths'
+    };
+
+    var linetotalattack = {
+      x: dateVal,
+      y: totalAttacks,
+      type: 'scatter',
+      name: 'Total Attacks'
+    };
+
+    var linetotaldeath = {
+      x: dateVal,
+      y: totalDeaths,
+      type: 'scatter',
+      name: 'Total Deaths'
+    };
+
+    var linedata = [lineattacks, linedeaths, linetotalattack, linetotaldeath];
+
+    var layout1 = {
+      title: "Cholera Attacks and Deaths by Date",
+    };
+
+    var layout2 = {
+      title: "Cholera Attacks and Deaths by Date",
+      yaxis: {
+        title: 'Number of People'
+      }
+    };
+
     DeathTable = document.getElementById('DeathTable');
-    LineChart = document.getElementById('deathLines');
-    Plotly.plot(DeathTable, table, layout);
-    Plotly.plot(LineChart, lineattacks, layout);
+    LineChart = document.getElementById('deathline');
+    Plotly.plot(DeathTable, table, layout1);
+    Plotly.plot(LineChart, linedata, layout2);
   });
 </script>
 
