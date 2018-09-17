@@ -15,6 +15,31 @@
 </head>
 
 <style>
+  #overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+  #panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: 25%;
+    display:flex;
+    justify-content: center;
+    font-size: 20px;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }
   .info {
     padding: 6px 8px;
     font: 14px/16px Arial, Helvetica, sans-serif;
@@ -38,11 +63,38 @@
     margin-right: 8px;
     opacity: 1;
   }
+
 </style>
 
 
 <body>
-<h2 style="font-size: 40px; padding-top: 25px" class="ui center aligned header">Attacks and Deaths By Date</h2>
+<div id="overlay" onclick="off()">
+  <div id="panel" class="ui container info">
+    <h4 style="font-size: 20px; padding: 10px 10px 10px 10px; color: black; text-align: center">
+      This webpage was created by Justin Bishay. <br>
+      Leaflet and Plotly.js were used to make the visualizaion. <br>
+      The cholera data was provided by Dr. Jason Leigh. <br><br>
+      (click anywhere to close)</h4>
+  </div>
+</div>
+
+<h1 style="font-size: 60px; padding-top: 50px" class="ui center aligned header">1854 Cholera Outbreak in London</h1>
+<div class="ui container" style="padding-bottom: 20px">
+  <div class="ui four item menu">
+    <a class="item" href="#bydate">Deaths by Date</a>
+    <a class="item" href="#byagesex">Deaths by Age and Sex</a>
+    <a class="item" href="#ukcensus">UK Census</a>
+    <a class="item" href="#naplesmap">Map of Deaths and Pumps</a>
+  </div>
+</div>
+
+<div style="display: flex; justify-content: center; padding-bottom: 50px">
+  <button class="ui black button" onclick="on()">About</button>
+</div>
+
+<img class="ui fluid image" src="./broad-street-cholera.jpg" alt="Slide 1 Alt Text" draggable="false">
+
+<h2 id="bydate" style="font-size: 40px; padding-top: 25px" class="ui center aligned header">Attacks and Deaths By Date</h2>
 <div class="ui two column grid">
   <div class="column" style="width: 40%;">
     <div id="DeathTable" style="height: 100%; width: 100%;"></div>
@@ -51,8 +103,9 @@
     <div id="deathline" style="height: 100%; width: 100%;"></div>
   </div>
 </div>
+<br>
 
-<h2 style="font-size: 40px; padding-top: 50px" class="ui center aligned header">Naples Deaths by Age and Sex</h2>
+<h2 id="byagesex" style="font-size: 40px; padding-top: 50px" class="ui center aligned header">Deaths by Age and Sex</h2>
 <div class="ui two column grid">
   <div class="column" style="width: 40%;">
     <div id="naplestable"></div>
@@ -61,8 +114,9 @@
     <div id="sextable"></div>
   </div>
 </div>
+<br>
 
-<h2 style="font-size: 40px; padding-top: 50px" class="ui center aligned header">UK Census Data</h2>
+<h2 id="ukcensus" style="font-size: 40px; padding-top: 50px" class="ui center aligned header">UK Census Data</h2>
 <div class="ui two column grid">
   <div class="column" style="width: 35%;">
     <div id="censustable"></div>
@@ -72,15 +126,25 @@
   </div>
 </div>
 <div id="censuspie"></div>
+<br>
 
-<h2 style="font-size: 40px; padding-top: 50px" class="ui center aligned header">Naples Deaths and Pump Locations</h2>
-<div class="ui container" style="padding-bottom: 50px">
-  <div id="choleramap" style="height: 500px"></div>
+<h2 id="naplesmap" style="font-size: 40px; padding-top: 50px" class="ui center aligned header">Deaths and Pump Locations</h2>
+<div class="ui container" style="padding-bottom: 50px; height: 80%; width: 80%">
+  <div id="choleramap" style="height: 100%; width: 100%"></div>
 </div>
 
 </body>
 
 <script>
+  // functions for about panel
+  function on() {
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  function off() {
+    document.getElementById("overlay").style.display = "none";
+  }
+
   Plotly.d3.tsv("./choleraDeaths.tsv", function(err, rows) {
 
     // function to organize data properly
@@ -253,11 +317,11 @@
     var bardata = [maledata, femaledata];
 
     var layout1 = {
-      title: 'Naples Age and Sex Data'
+      title: 'Age and Sex Data'
     }
 
     var layout2 = {
-      title: 'Naples Male and Female Data',
+      title: 'Male and Female Data',
       barmode: 'grouped',
       xaxis: {
         title: 'Age Range',
