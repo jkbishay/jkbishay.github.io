@@ -305,7 +305,7 @@
       x: unpack(rows, 'Age'),
       y: unpack(rows, 'Male'),
       marker: {
-        color: 'rgb(44, 160, 100)'
+        color: 'rgb(33, 121, 33)'
       }
     };
 
@@ -315,7 +315,7 @@
       x: unpack(rows, 'Age'),
       y: unpack(rows, 'Female'),
       marker: {
-        color: 'rgb(255, 127, 60)'
+        color: 'rgb(232, 144, 12)'
       }
     };
 
@@ -415,7 +415,11 @@
       },
       name: 'Men',
       hoverinfo: 'label+percent+name',
-      textposition: 'outside'
+      textposition: 'outside',
+      marker: {
+        colors: ['rgb(31, 110, 160)', 'rgb(232, 144, 12)', 'rgb(33, 121, 33)', 'rgb(214, 65, 33)', 'rgb(148, 103, 189)',
+          'rgb(140, 86, 75)', 'rgb(227, 117, 194)', 'rgb(127, 127, 127)', 'rgb(189, 189, 34)']
+      }
     },
     {
       type: 'pie',
@@ -426,7 +430,11 @@
       },
       name: 'Women',
       hoverinfo: 'label+percent+name',
-      textposition: 'outside'
+      textposition: 'outside',
+      marker: {
+        colors: ['rgb(31, 110, 160)', 'rgb(232, 144, 12)', 'rgb(33, 121, 33)', 'rgb(214, 65, 33)', 'rgb(148, 103, 189)',
+          'rgb(140, 86, 75)', 'rgb(227, 117, 194)', 'rgb(127, 127, 127)', 'rgb(189, 189, 34)']
+      }
     },
     {
       type: 'pie',
@@ -439,7 +447,7 @@
       hoverinfo: 'label+percent',
       textposition: 'outside',
       marker: {
-        colors: ['rgb(44, 160, 100)', 'rgb(255, 127, 60)']
+        colors: ['rgb(33, 121, 33)', 'rgb(232, 144, 12)']
       }
     }];
 
@@ -450,7 +458,7 @@
       x: unpack(rows, 'Age'),
       y: unpack(rows, 'Male'),
       marker: {
-        color: 'rgb(44, 160, 100)'
+        color: 'rgb(33, 121, 33)'
       }
     },{
       type: 'bar',
@@ -458,7 +466,7 @@
       x: unpack(rows, 'Age'),
       y: unpack(rows, 'Female'),
       marker: {
-        color: 'rgb(255, 127, 60)'
+        color: 'rgb(232, 144, 12)'
       }
     }];
 
