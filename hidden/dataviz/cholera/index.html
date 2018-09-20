@@ -144,6 +144,8 @@
     document.getElementById("overlay").style.display = "none";
   }
 
+  window.onresize = function(){ location.reload(); };
+  
   Plotly.d3.tsv("./choleraDeaths.tsv", function(err, rows) {
 
     // function to organize data properly
