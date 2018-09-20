@@ -63,11 +63,10 @@
     margin-right: 8px;
     opacity: 1;
   }
-
 </style>
 
 
-<body>
+<body style="background: #f5f5f5">
 <div id="overlay" onclick="off()">
   <div id="panel" class="ui container info">
     <h4 style="font-size: 20px; position: absolute; margin-top: -5%; color: black; text-align: center">
@@ -244,10 +243,13 @@
 
     var layout1 = {
       title: "Cholera Attacks and Deaths by Date",
+      paper_bgcolor: "#f5f5f5"
     };
 
     var layout2 = {
       title: "Cholera Attacks and Deaths by Date",
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
       yaxis: {
         title: 'Number of People'
       }
@@ -303,7 +305,7 @@
       x: unpack(rows, 'Age'),
       y: unpack(rows, 'Male'),
       marker: {
-        color: 'rgb(44, 160, 44)'
+        color: 'rgb(44, 160, 100)'
       }
     };
 
@@ -311,18 +313,24 @@
       type: 'bar',
       name: 'Female',
       x: unpack(rows, 'Age'),
-      y: unpack(rows, 'Female')
+      y: unpack(rows, 'Female'),
+      marker: {
+        color: 'rgb(255, 127, 60)'
+      }
     };
 
     var bardata = [maledata, femaledata];
 
     var layout1 = {
-      title: 'Age and Sex Data'
+      title: 'Age and Sex Deaths per 10,000 People',
+      paper_bgcolor: "#f5f5f5",
     }
 
     var layout2 = {
       title: 'Male and Female Data',
       barmode: 'grouped',
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
       xaxis: {
         title: 'Age Range',
       },
@@ -427,11 +435,11 @@
       domain: {
         x: [.68, 1]
       },
-      name: 'Women',
+      name: 'Men vs Women',
       hoverinfo: 'label+percent',
       textposition: 'outside',
       marker: {
-        colors: ['rgb(44, 160, 44)', 'rgb(255, 127, 14)']
+        colors: ['rgb(44, 160, 100)', 'rgb(255, 127, 60)']
       }
     }];
 
@@ -442,18 +450,23 @@
       x: unpack(rows, 'Age'),
       y: unpack(rows, 'Male'),
       marker: {
-        color: 'rgb(44, 160, 44)'
+        color: 'rgb(44, 160, 100)'
       }
     },{
       type: 'bar',
       name: 'Female',
       x: unpack(rows, 'Age'),
-      y: unpack(rows, 'Female')
+      y: unpack(rows, 'Female'),
+      marker: {
+        color: 'rgb(255, 127, 60)'
+      }
     }];
 
     var pielayout = {
       title: 'Age Breakdown',
       titlefont: { size: 26 },
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
       annotations: [
         {
           text: 'Men',
@@ -477,14 +490,21 @@
       ]
     };
 
+    var tableLayout = {
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
+    }
+
     Table = document.getElementById('censustable');
     CensusPie = document.getElementById('censuspie');
     CensusBar = document.getElementById('censusbar');
 
-    Plotly.plot(Table, table);
+    Plotly.plot(Table, table, tableLayout);
     Plotly.plot(CensusPie, piedata, pielayout);
     Plotly.plot(CensusBar, bardata, {
       barmode: 'grouped',
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
       xaxis: {
         title: 'Age Range'
       },
