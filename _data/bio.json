@@ -45,6 +45,16 @@
       ]
     },
     {
+      "name": "Augmented Reality",
+      "keywords": [
+      ]
+    },
+    {
+      "name": "Virtual Reality",
+      "keywords": [
+      ]
+    },
+    {
       "name": "Artificial Intelligence",
       "keywords": [
       ]
@@ -66,7 +76,8 @@
       "level": "",
       "keywords": [
         "MacOS",
-        "Git/GitHub"
+        "Git/GitHub",
+        "Unity"
       ]
     }
   ],
