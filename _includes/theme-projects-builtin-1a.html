@@ -9,7 +9,7 @@
 </style>
 
 <div class="ui container" style="padding: 14px 20px 14px 20px; height: 100%; background-color: #03051e;">
-  <h1 style="text-align: center; font-size: 45px; color: whitesmoke; margin-bottom: 0px">About Me</h1>
+  <h1 style="text-align: center; font-size: 45px; color: whitesmoke; margin-bottom: 0px">Projects</h1>
   <div class="ui special stackable centered three cards" style="padding-top: 20px">
     {% assign project_pages = site.pages | where: "type", "project" | sort: "date" | reverse %}
     {% for page in project_pages %}
