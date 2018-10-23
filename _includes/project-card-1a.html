@@ -1,6 +1,13 @@
 <!-- Used by theme-projects-builtin-1a, entire card is the link. -->
 
-<div class="card" style="background-color: {% if include.page.color %} {{ include.page.color }} {% endif %}">
+<style>
+  .imagesize {
+    height: 226px;
+    width: 362px;
+  }
+</style>
+
+<div class="card imagesize" style="background-color: #03093d">
     {% if include.page.image %}
       <div class="blurring dimmable image">
         <div class = "ui dimmer">
@@ -17,7 +24,7 @@
         <img src="{{ site.baseurl }}/{{ include.page.image }}">
       </div>
     {% endif %}
-   <!--<div class="content">
-    <span class="center aligned header">{{ include.page.title }}</span>
-  </div>-->
+   <div class="content">
+    <span class="center aligned header" style="color: whitesmoke;">{{ include.page.title }}</span>
+  </div>
 </div>
