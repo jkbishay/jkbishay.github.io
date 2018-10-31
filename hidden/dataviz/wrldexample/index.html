@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WRLD</title>
+
+  <!-- load WRLD package using script -->
+  <script src="https://cdn-webgl.wrld3d.com/wrldjs/dist/latest/wrld.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.1/leaflet.css" rel="stylesheet" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+  <div class="ui container" style="height: 1000px;">
+    <div id="map" style="height: 100%"></div>
+  </div>
+</body>
+
+<script>
+
+  /* Create the map (id, API key, style) */
+  var mymap = L.Wrld.map("map", "15252938b3f2d94241b7c61e38d28fc8", {
+    center: [41.8,-87.7],
+    zoom: 15
+  });
+
+  /* set the weather of the map */
+  mymap.themes.setWeather(L.Wrld.themes.weather.Snowy);
+
+  /* set the time of day */
+  mymap.themes.setTime(L.Wrld.themes.time.Night);
+
+  /* data for building locations */
+  Plotly.d3.csv("./buildinglocations.csv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    };
+
+    var lats = unpack(rows, 'Latitude');
+    var long = unpack(rows, 'Longitude');
+
+    console.log(lats);
+    console.log(long);
+
+    function onInitialStreamingComplete() {
+      for (i = 0; i < lats.length; i++) {
+
+        var latitude = parseFloat(lats[i]);
+        var longitude = parseFloat(long[i]);
+
+        var buildingHighlight = L.Wrld.buildings.buildingHighlight(
+            L.Wrld.buildings.buildingHighlightOptions()
+                .highlightBuildingAtLocation([longitude, latitude])
+                .color([255, 0, 0, 128])
+        ).addTo(mymap);
+      }
+    };
+
+    mymap.on("initialstreamingcomplete", onInitialStreamingComplete);
+
+      /*locations[i] = [parseFloat(lats[i]), parseFloat(long[i])];
+      var circle = L.circle(locations[i], {
+        color: 'green',
+        fillColor: '#0f3',
+        fillOpacity: 0.7,
+        radius: 7
+      }).addTo(mymap);*/
+  });
+
+  /* code for changing weather based on an interval
+  var weathers = [L.Wrld.themes.weather.Clear, L.Wrld.themes.weather.Overcast, L.Wrld.themes.weather.Rainy, L.Wrld.themes.weather.Snowy];
+  var weatherIndex = 2;
+  setInterval(function() {
+    map.themes.setWeather(weathers[weatherIndex]);
+    weatherIndex = (weatherIndex + 1) % weathers.length;
+  }, 5000);
+  */
+
+
+
+</script>
+
+</html>
