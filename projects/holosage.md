@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: images/holosage/holosage_banner.png
+image: images/holosage/holosage_logo.png
 backgroundImage: images/holosage/holosage_allobjects.png
 color: silver
 title: HoloSage
@@ -15,7 +15,7 @@ labels:
 summary: Augmented Reality training and annotation program
 ---
 
-<img class="ui huge centered bordered image" src="../images/holosage/holosage_banner.png">
+<img class="ui huge centered bordered image" src="../images/holosage/holosage_logo.png">
 
 <div style="display: flex; justify-content: center" class="ui large labels">
   <div class="ui basic label">Augmented Reality</div>
