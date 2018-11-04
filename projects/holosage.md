@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: images/holosage/holosage_logo.png
+image: images/holosage/holosage_menu.png
 backgroundImage: images/holosage/holosage_allobjects.png
 color: silver
 title: HoloSage
@@ -46,7 +46,7 @@ This project was my first experience of working with AR. Prior to this I mainly 
     <img class="ui large bordered image" src="../images/holosage/holosage_recordmenu.png">
   </div>
   <div class="column">
-    <img class="ui large bordered image" src="../images/holosage/holosage_toolmenu.png">
+    <img class="ui large bordered image" src="../images/holosage/holosage_drawmenu.png">
     <img class="ui large bordered image" src="../images/holosage/holosage_allobjects.png">
   </div>
 </div>
