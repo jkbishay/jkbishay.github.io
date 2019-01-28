@@ -16,7 +16,7 @@ labels:
 summary: A short 2D bullet hell indie game made for Global Game Jam 2019
 ---
 
-<img class="ui huge centered bordered image" src="../images/runbarush/runbarush_menu.png">
+<img class="ui huge centered bordered image" src="../images/wetheone/wetheone_Title.png">
 
 <div style="display: flex; justify-content: center" class="ui large labels">
   <div class="ui basic label">Game Design</div>
