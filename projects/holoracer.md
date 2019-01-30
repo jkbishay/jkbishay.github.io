@@ -4,15 +4,15 @@ type: project
 image: images/holoracer/holoracer_title.png
 backgroundImage: images/wetheone/holoracer_track.png
 color: lightsalmon
-title: We, The One
+title: HoloRacer
 permalink: projects/wetheone
 # All dates must be YYYY-MM-DD format!
 date: 2019-01-27
 labels:
+  - Augmented Reality
   - Game Design
   - Unity
   - C#
-  - Global Game Jam
 summary: An augmented reality car racing game
 ---
 
