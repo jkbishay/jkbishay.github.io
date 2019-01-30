@@ -36,9 +36,9 @@ I presented this project at a social software showcase event called WetWare Wedn
 
 <div class="ui one column grid">
   <div class="column">
-    <img class="ui large bordered image" src="../images/holoracer/holoracer_track.png">
-    <img class="ui large bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
-    <img class="ui large bordered image" src="../images/holoracer/holoracer_ceilingAI.png">
+    <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png">
+    <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
+    <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingAI.png">
   </div>
   <div class="column">
   </div>
