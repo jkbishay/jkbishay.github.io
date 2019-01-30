@@ -5,7 +5,7 @@ image: images/holoracer/holoracer_title.png
 backgroundImage: images/wetheone/holoracer_track.png
 color: lightsalmon
 title: HoloRacer
-permalink: projects/wetheone
+permalink: projects/holoracer
 # All dates must be YYYY-MM-DD format!
 date: 2019-01-27
 labels:
