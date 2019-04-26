@@ -53,15 +53,15 @@
                     color: 'green',
                     fillColor: '#0f3',
                     fillOpacity: 0.7,
-                    radius: 9
+                    radius: 12
                 }).addTo(mymap);
             }
             else if (parseInt(points[i], 10) > 3 && parseInt(points[i], 10) < 7) {
                 var circle = L.circle(locations[i], {
                     color: 'orange',
-                    fillColor: '#30f',
+                    fillColor: '#ffa500',
                     fillOpacity: 0.7,
-                    radius: 9
+                    radius: 12
                 }).addTo(mymap);
             }
             else if (parseInt(points[i], 10) >= 7) {
@@ -69,7 +69,7 @@
                     color: 'red',
                     fillColor: '#f30',
                     fillOpacity: 0.7,
-                    radius: 9
+                    radius: 12
                 }).addTo(mymap);
             }
         }
