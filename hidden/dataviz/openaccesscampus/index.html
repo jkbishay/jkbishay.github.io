@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cholera Visualization</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+            integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+            crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+            integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+            crossorigin=""></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div id="nightmap" style="height: 100%; width: 100%"></div>
+</body>
+
+<script>
+    // initialize geo map
+    var mymap = L.map('nightmap').setView([21.3011139,-157.8177671], 16);
+    mymap.dragging.disable();
+    mymap.touchZoom.disable();
+    mymap.doubleClickZoom.disable();
+    mymap.scrollWheelZoom.disable();
+
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'sk.eyJ1IjoiamtiaXNoYXkiLCJhIjoiY2ptM3N5ZGJkMThqaTNrcWd4dTZnNzIzdyJ9._3R0Q92lPQ1YdRwrkbdS_g'
+    }).addTo(mymap);
+
+    mymap.touchZoom.disable();
+
+    // get data for heat map
+    Plotly.d3.csv("./eveningpoints.csv", function(err, rows) {
+
+        function unpack(rows, key) {
+            return rows.map(function(row) { return row[key]; });
+        };
+
+        var lats = unpack(rows, 'Latitude');
+        var long = unpack(rows, 'Longitude');
+        var points = unpack(rows, 'Points');
+        var datapoints = [];
+
+        for (i = 0; i < points.length; i++) {
+            datapoints[i] = [parseFloat(lats[i]), parseFloat(long[i]), parseFloat(points[i])];
+            if (parseInt(points[i], 10) < 4) {
+                var circle = L.circle(locations[i], {
+                    color: 'green',
+                    fillColor: '#0f3',
+                    fillOpacity: 0.7,
+                    radius: 9
+                }).addTo(mymap);
+            }
+            else if (parseInt(points[i], 10) > 3 && parseInt(points[i], 10) < 7) {
+                var circle = L.circle(locations[i], {
+                    color: 'orange',
+                    fillColor: '#30f',
+                    fillOpacity: 0.7,
+                    radius: 9
+                }).addTo(mymap);
+            }
+            else if (parseInt(points[i], 10) >= 7) {
+                var circle = L.circle(locations[i], {
+                    color: 'red',
+                    fillColor: '#f30',
+                    fillOpacity: 0.7,
+                    radius: 9
+                }).addTo(mymap);
+            }
+        }
+    });
+
+    // Add legend to the map
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function (map) {
+
+        var div = L.DomUtil.create()
+        var div = L.DomUtil.create('div', 'info legend'),
+            grades = [1, 3, 8, 15],
+            labels = [];
+            colors = ['rgb(255, 255, 0)', 'rgb(253, 141, 60)', 'rgb(128, 0, 38)'];
+
+        // loop through our density intervals and generate a label with a colored square for each interval
+        for (var i = 0; i < grades.length - 1; i++) {
+        div.innerHTML +=
+            '<i style="background:' + colors[i] + '"></i> ' +
+            grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + ' Deaths' + '<br>' : '+');
+        }
+
+        div.innerHTML += '<i style="background:' + '#0f3' + '"></i> ' + 'Pumps' +'<br>';
+
+        return div;
+    };
+
+    legend.addTo(mymap);
+</script>
