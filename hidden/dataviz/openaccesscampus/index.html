@@ -44,7 +44,7 @@
         var lats = unpack(rows, 'Latitude');
         var long = unpack(rows, 'Longitude');
         var points = unpack(rows, 'Points');
-        var datapoints = [];
+        var locations = [];
 
         for (i = 0; i < points.length; i++) {
             locations[i] = [parseFloat(lats[i]), parseFloat(long[i])];
