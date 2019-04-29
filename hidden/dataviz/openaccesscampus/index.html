@@ -74,7 +74,15 @@
 
         for (i = 0; i < points.length; i++) {
             locations[i] = [parseFloat(lats[i]), parseFloat(long[i])];
-            if (parseInt(points[i], 10) < 4) {
+            if (parseInt(points[i], 10) == 0) {
+                var circle = L.circle(locations[i], {
+                    color: 'black',
+                    fillColor: '#333',
+                    fillOpacity: 0.7,
+                    radius: 12
+                }).addTo(mymap);
+            }
+            else if (parseInt(points[i], 10) > 0 && parseInt(points[i], 10) < 4) {
                 var circle = L.circle(locations[i], {
                     color: 'green',
                     fillColor: '#0f3',
@@ -84,7 +92,7 @@
             }
             else if (parseInt(points[i], 10) > 3 && parseInt(points[i], 10) < 7) {
                 var circle = L.circle(locations[i], {
-                    color: 'orange',
+                    color: '#c47c00',
                     fillColor: '#ffa500',
                     fillOpacity: 0.7,
                     radius: 12
