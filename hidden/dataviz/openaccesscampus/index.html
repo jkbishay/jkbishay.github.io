@@ -116,7 +116,7 @@
 
         for (i = 0; i < points.length; i++) {
         datapoints[i] = [parseFloat(lats[i]), parseFloat(long[i]), parseFloat(points[i])];
-            if (parseInt(deaths[i], 10) > maxpoints) {
+            if (parseInt(points[i], 10) > maxpoints) {
                 maxpoints = points[i];
             }
         }
