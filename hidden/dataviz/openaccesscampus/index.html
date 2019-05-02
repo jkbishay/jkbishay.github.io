@@ -74,7 +74,7 @@
         var points = unpack(rows, 'Points');
         var locations = [];
 
-        /*for (i = 0; i < points.length; i++) {
+        for (i = 0; i < points.length; i++) {
             locations[i] = [parseFloat(lats[i]), parseFloat(long[i])];
             if (parseInt(points[i], 10) == 0) {
                 var circle = L.circle(locations[i], {
@@ -108,10 +108,10 @@
                     radius: 12
                 }).addTo(mymap);
             }
-        }*/
+        }
 
         // heat map
-        var datapoints = [];
+        /*var datapoints = [];
         var maxpoints = 0;
 
         for (i = 0; i < points.length; i++) {
@@ -128,7 +128,7 @@
             max: maxpoints,
             maxZoom: 15
         }
-        var heat = L.heatLayer(datapoints, heatoptions).addTo(mymap);
+        var heat = L.heatLayer(datapoints, heatoptions).addTo(mymap);*/
     });
     // Add legend to the map
     var legend = L.control({position: 'bottomright'});
