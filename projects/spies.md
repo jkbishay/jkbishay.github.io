@@ -14,7 +14,7 @@ labels:
   - Game Design
   - Unity
   - C#
-summary: A short 2D puzzle demo game my team and I created
+summary: A virtual reality multiplayer spy game
 ---
 
 <img class="ui huge centered bordered image" src="../images/spies/spies_title.png">
