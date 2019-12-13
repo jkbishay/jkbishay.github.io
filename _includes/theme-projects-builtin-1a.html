@@ -8,9 +8,9 @@
   }
 </style>
 
-<div class="ui container" style="padding: 14px 20px 14px 20px; height: 200%; background-color: #03051e;">
+<div class="ui container" style="padding: 14px 20px 14px 20px; background-color: #03051e; display: flex; flex-direction: column; min-height: 100%;">
   <h1 style="text-align: center; font-size: 45px; color: whitesmoke; margin-bottom: 0px">Projects</h1>
-  <div class="ui special stackable centered three cards" style="padding-top: 20px">
+  <div class="ui special stackable centered three cards" style="padding-top: 20px; flex: 1;">
     {% assign project_pages = site.pages | where: "type", "project" | sort: "date" | reverse %}
     {% for page in project_pages %}
       {% unless page.draft %}
