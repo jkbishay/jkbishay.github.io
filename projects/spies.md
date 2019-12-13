@@ -7,7 +7,7 @@ color: deepskyblue
 title: S.P.I.E.S.
 permalink: projects/spies
 # All dates must be YYYY-MM-DD format!
-date: 2017-12-13
+date: 2019-12-11
 labels:
   - Virtual Reality
   - Networking
