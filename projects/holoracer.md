@@ -34,7 +34,11 @@ HotWheels was a large inspiration for this project as it was one of my favorite 
 
 I presented this project at a social software showcase event called WetWare Wednesday in November of 2018. The project was received well amongst spectators at the event. It is capable of featuring up to 5 AI cars at once guided by a waypoint system that can be setup by the player. 
 
-<div class="ui one column grid">
+<div style="justify-content: center">
+  <iframe width="700" height="394" src="https://www.youtube.com/embed/TOoPjq2TaMk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div>
+
+<div class="ui one column grid" style="margin-top: 16px">
   <div class="column">
     <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png">
     <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
