@@ -33,7 +33,9 @@ This project taught me a lot about how to design a truly good game. I learned to
 
 You can learn more about our game at its [website.](https://dreamingbento.github.io/)
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3oDPTKcFKlY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div style="margin-bottom: 16px; justify-content: center">
+  <iframe width="700" height="394" src="https://www.youtube.com/embed/3oDPTKcFKlY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div>
 
 <div class="ui two column grid">
   <div class="column">
