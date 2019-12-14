@@ -31,9 +31,9 @@ For this project, I programmed and designed many of the puzzles that were featur
 
 This project taught me a lot about how to design a truly good game. I learned to focus on the more important aspects of designing a video game and to take care to not be distracted by trying to come up with an amazing story, visuals, or outrageous mechanics. On the technical side, I was able to expand my knowledge of Unity and C#. I learned many different tips and tricks about designing certain things in Unity and I learned how to manipulate the camera to achieve the desired aesthetic effect. 
 
-Check out a short trailer for the game [here!](https://youtu.be/3oDPTKcFKlY)
-
 You can learn more about our game at its [website.](https://dreamingbento.github.io/)
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3oDPTKcFKlY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <div class="ui two column grid">
   <div class="column">
