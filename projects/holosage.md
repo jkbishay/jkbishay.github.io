@@ -40,7 +40,7 @@ This project was my first experience of working with AR. Prior to this I mainly 
   <iframe width="700" height="394" src="https://www.youtube.com/embed/U8wsWn5IBE4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <div>
 
-<div class="ui two column grid">
+<div class="ui two column grid" style="margin-top: 16px">
   <div class="column">
     <img class="ui large bordered image" src="../images/holosage/holosage_drawLAVA.png">
     <img class="ui large bordered image" src="../images/holosage/holosage_recordmenu.png">
