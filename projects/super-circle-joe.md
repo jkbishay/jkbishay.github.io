@@ -11,7 +11,7 @@ date: 2017-02-15
 labels:
   - Java
   - Game Design
-summary: A 2D arcade bullet-hell style shooter I made in Java
+summary: A 2D arcade bullet-hell style shooter
 ---
 
 <img class="ui huge centered bordered image" src="../images/scj/SCJ_menu.png">
