@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<link rel="icon" href="favicon.ico">
+		<title>Main Page</title>
+		<link rel="stylesheet" href="http://js.arcgis.com/4.14/esri/themes/light/main.css">
+		  <script src="http://js.arcgis.com/4.14/"></script>
+		  <script>
+			require([
+				"esri/Map",
+				"esri/views/MapView"
+			  ], function(Map, MapView) {
+		  
+			  var map = new Map({
+				basemap: "dark-gray-vector"
+			  });
+		  
+			  var view = new MapView({
+				container: "mapDiv",
+				map: map,
+				center: [0, 0], // longitude, latitude
+				zoom: 1
+			  });
+
+			//   var coronaData = new GeoJSONLayer({
+			// 	  url: "https://opendata.arcgis.com/datasets/bbb2e4f589ba40d692fab712ae37b9ac_1.geojson"
+			//   });
+
+			//   view.add(coronaData);
+			});
+			</script>
+	</head>
+	<!-- ============================================================================================================================================= Body -->
+	<style>
+		html, body, #viewDiv {
+		  padding: 0;
+		  margin: 0;
+		  height: 100%;
+		  width: 100%;
+		}
+	</style>
+	<body>
+		<div id="mapDiv"></div>
+	</body>
+</html>
