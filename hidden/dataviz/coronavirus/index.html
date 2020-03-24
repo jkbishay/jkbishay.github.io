@@ -19,6 +19,42 @@
             width: 100%;
             height: 100%;
         }
+
+        .leaflet-popup-content-wrapper {
+            background-color: black;
+        }
+
+        #PopupTitle {
+            font-size: large;
+            font-weight: 600;
+            color: lightgrey;
+            margin-bottom: 10px;
+        }
+
+        #PopupBody {
+            font-size: 14px;
+            color: lightgrey;
+        }
+
+        strong.active {
+            color: crimson;
+        }
+
+        strong.caseChange {
+            color: gold;
+        }
+
+        strong.confirmed {
+            color: orange;
+        }
+
+        strong.recovered {
+            color: dodgerblue;
+        }
+
+        strong.deaths {
+            color: orchid;
+        }
     </style>
     <body>
         <div id="map"></div>
@@ -31,11 +67,7 @@
             attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         }).addTo(mymap);
 
-        var casesY = [];
-        var recoveredY = [];
-        var deadY = [];
-        var activeY = [];
-
+        // process data
         Promise.all([
             d3.csv("./COVID-19-master/csse_covid_19_data/csse_covid_19_daily_reports/03-21-2020.csv"),
             d3.csv("./COVID-19-master/csse_covid_19_data/csse_covid_19_daily_reports/03-22-2020.csv")
@@ -48,63 +80,65 @@
                 var today = data[1][i];
                 var yesterday = data[0].find(item => item['Country/Region'] === today['Country/Region'] && item['Province/State'] === today['Province/State'])
 
-                var radius = 25;
-                if (today.Confirmed <= 25) {
+                var radius = 24;
+                var activeCases = today.Confirmed - today.Recovered - today.Deaths;
+                if (activeCases <= 25) {
                     radius = 2;
                 }
-                else if (today.Confirmed <= 100) {
+                else if (activeCases <= 100) {
                     radius = 5;
                 }
-                else if (today.Confirmed <= 500) {
-                    radius = 8;
+                else if (activeCases <= 500) {
+                    radius = 7;
                 }
-                else if (today.Confirmed <= 1000) {
-                    radius = 11;
+                else if (activeCases <= 1000) {
+                    radius = 10;
                 }
-                else if (today.Confirmed <= 5000) {
-                    radius = 15;
+                else if (activeCases <= 5000) {
+                    radius = 14;
                 }
-                else if (today.Confirmed <= 10000) {
-                    radius = 20;
+                else if (activeCases <= 10000) {
+                    radius = 18;
                 }
 
                 var color = '#ed2d1f';
                 var caseChange;
                 if (yesterday) {
                     caseChange = today.Confirmed - yesterday.Confirmed;
-                    
-                    if (caseChange <= 3) {
-                        color = '#fff4e9';
-                    }
-                    else if (caseChange <= 15) {
-                        color = '#fccda8'
-                    }
-                    else if (caseChange <= 100) {
-                        color = '#f8a36f'
-                    }
-                    else if (caseChange <= 1000) {
-                        color = '#f37240'
-                    }
                 }
                 else {
                     caseChange = today.Confirmed;
                 }
+                    
+                if (caseChange <= 3) {
+                    color = '#fff4e9';
+                }
+                else if (caseChange <= 15) {
+                    color = '#fccda8'
+                }
+                else if (caseChange <= 100) {
+                    color = '#f8a36f'
+                }
+                else if (caseChange <= 1000) {
+                    color = '#f37240'
+                }
+                
 
                 if (today['Province/State']) {
-                    popup = '<h4>' + today['Province/State'] + ', ' + today['Country/Region'] + '</h4>'
-                            + 'Active: ' + (today.Confirmed - today.Recovered - today.Deaths) + '<br>'
-                            + 'New Daily Cases: ' + caseChange + '<br>' 
-                            + 'Total Confirmed: ' + today.Confirmed + '<br>' 
-                            + 'Recovered: ' + today.Recovered + '<br>' 
-                            + 'Deaths: ' + today.Deaths + '<br>';
+                    popup = '<div id="PopupTitle">' + today['Province/State'] + ', ' + today['Country/Region'] + '</div>'
+                            + '<div id="PopupBody">Active: <strong class="active">' + activeCases + '</strong><br>'
+                            + 'New Daily Cases: <strong class="caseChange">+' + caseChange + '</strong><br>' 
+                            + 'Total Confirmed: <strong class="confirmed">' + today.Confirmed + '</strong><br>' 
+                            + 'Recovered: <strong class="recovered">' + today.Recovered + '</strong><br>' 
+                            + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong></div>';
                 }
                 else {
-                    popup = '<h4>' + today['Country/Region'] + '</h4>'
-                            + 'Active: ' + (today.Confirmed - today.Recovered - today.Deaths) + '<br>'
-                            + 'New Daily Cases: ' + caseChange + '<br>' 
-                            + 'Total Confirmed: ' + today.Confirmed + '<br>' 
-                            + 'Recovered: ' + today.Recovered + '<br>' 
-                            + 'Deaths: ' + today.Deaths + '<br>';
+                    popup = '<div id="PopupTitle">' + today['Country/Region'] + '</div>'
+                            + '<div id="PopupBody">Active: <strong class="active">' + activeCases + '</strong><br>'
+                            + 'New Daily Cases: <strong class="caseChange">+' + caseChange + '</strong><br>' 
+                            + 'Total Confirmed: <strong class="confirmed">' + today.Confirmed + '</strong><br>' 
+                            + 'Recovered: <strong class="recovered">' + today.Recovered + '</strong><br>' 
+                            + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong></div>';
                 }
 
                 L.circleMarker([today['Latitude'], today['Longitude']], {
