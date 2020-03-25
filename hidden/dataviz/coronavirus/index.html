@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Coronavirus Growth Map</title>
+        <title>COVID-19 Growth Map</title>
+        <link rel="stylesheet" href="index.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
                 integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
@@ -15,53 +16,75 @@
         <link href='https://api.mapbox.com/mapbox.js/v3.3.0/mapbox.css' rel='stylesheet'/> 
     </head>
     <style>
-        #map {
-            width: 100%;
-            height: 100%;
+        body {
+            background-color: rgb(20, 20, 20); 
         }
 
         .leaflet-popup-content-wrapper {
             background-color: black;
         }
-
-        #PopupTitle {
-            font-size: large;
-            font-weight: 600;
-            color: lightgrey;
-            margin-bottom: 10px;
-        }
-
-        #PopupBody {
-            font-size: 14px;
-            color: lightgrey;
-        }
-
-        strong.active {
-            color: crimson;
-        }
-
-        strong.caseChange {
-            color: gold;
-        }
-
-        strong.confirmed {
-            color: orange;
-        }
-
-        strong.recovered {
-            color: dodgerblue;
-        }
-
-        strong.deaths {
-            color: orchid;
-        }
     </style>
+
     <body>
-        <div id="map"></div>
+        <div id="titleBar">
+            <h1>COVID-19 Active and New Daily Cases by Country and Region</h1>
+            <p>Developed by Justin Bishay, Computer Science M.S. Student, <a href="https://jkbishay.github.io/" target="_blank">Website</a></p>
+            <p style="margin-top: -10px;">
+                Laboratory for Advanced Visualization & Applications 
+                <a href="https://www.lavaflow.info/" target="_blank"><img target="_blank" src="./lavaLogo.png" style="width: 45px; height: 22px;"/></a>
+                &emsp; Hawaii Data Science Institute
+                <a href="http://datascience.hawaii.edu/" target="_blank"><img target="_blank" src="./HIDSILogo.png" style="width: 20px; height: 20px;"/></a>
+                &emsp; University of Hawaii at Manoa
+                <a href="https://manoa.hawaii.edu/" target="_blank"><img target="_blank" src="./UHMLogo.png" style="width: 20px; height: 20px;"/></a>
+            </p>
+        </div>
+        <div id="mainGrid">
+            <div id="map"></div>
+            <div class="ui equal width grid" id="info">
+                <div class="column"><h2>Global Data</h2></div>
+                <div class="row">
+                    <div class="column">
+                        <h2>Active Cases</h2>
+                        <div id="activeCount"></div>
+                    </div>
+                    <div class="column">
+                        <h2>New Cases</h2>
+                        <div id="changeCount"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <h2>Recovered</h2>
+                        <div id="recoveredCount"></div>
+                    </div>
+                    <div class="column">
+                        <h2>Deaths</h2>
+                        <div id="deathCount"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column legend" style="padding-left: 75px; padding-right: 75px;">
+                        <h3>Number of New Cases</h3>
+                        <i style="background: #fff4e9;"></i> 0-3<br>
+                        <i style="background: #fccda8;"></i> 3-15<br>
+                        <i style="background: #f8a36f;"></i> 15-100<br>
+                        <i style="background: #f37240;"></i> 100-1000<br>
+                        <i style="background: #ed2d1f;"></i> 1000+<br>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column">
+                        <p>Last Updated on March 22, 2020 at 12:00 AM GMT <br>
+                            Data is provided by Johns Hopkins CSSE from <a href="https://github.com/CSSEGISandData/COVID-19">GitHub</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
+
     <script>
         // initialize geo map
-        var mymap = L.map('map').setView([0, 0], 3);
+        var mymap = L.map('map').setView([34.9888971, -39.252909], 3);
         L.mapbox.accessToken = 'pk.eyJ1IjoiamtiaXNoYXkiLCJhIjoiY2ptM3N4OGU5MGk5YTNxbW10dms2b2FyYyJ9.IH37mJFcTWUa6O3RH7b4cA';
         L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/dark-v9/tiles/{z}/{x}/{y}?access_token=' + L.mapbox.accessToken, {
             attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -76,12 +99,22 @@
                 return data.map(function(row) { return row[key]; });
             };
 
+            var globalActive = 0;
+            var globalRecovered = 0;
+            var globalDeaths = 0;
+            var globalNewCases = 0;
+
             for (let i = 0; i < data[1].length; i++) {
                 var today = data[1][i];
                 var yesterday = data[0].find(item => item['Country/Region'] === today['Country/Region'] && item['Province/State'] === today['Province/State'])
 
                 var radius = 24;
                 var activeCases = today.Confirmed - today.Recovered - today.Deaths;
+
+                globalActive += activeCases;
+                globalRecovered += parseInt(today.Recovered, 10);
+                globalDeaths += parseInt(today.Deaths, 10);
+
                 if (activeCases <= 25) {
                     radius = 2;
                 }
@@ -102,13 +135,15 @@
                 }
 
                 var color = '#ed2d1f';
-                var caseChange;
+                var newCases;
                 if (yesterday) {
                     caseChange = today.Confirmed - yesterday.Confirmed;
                 }
                 else {
                     caseChange = today.Confirmed;
                 }
+
+                globalNewCases += parseInt(caseChange, 10);
                     
                 if (caseChange <= 3) {
                     color = '#fff4e9';
@@ -123,22 +158,22 @@
                     color = '#f37240'
                 }
                 
-
+                // popup info
                 if (today['Province/State']) {
                     popup = '<div id="PopupTitle">' + today['Province/State'] + ', ' + today['Country/Region'] + '</div>'
                             + '<div id="PopupBody">Active: <strong class="active">' + activeCases + '</strong><br>'
-                            + 'New Daily Cases: <strong class="caseChange">+' + caseChange + '</strong><br>' 
-                            + 'Total Confirmed: <strong class="confirmed">' + today.Confirmed + '</strong><br>' 
+                            + 'New Cases: <strong class="caseChange"><i class="arrow up icon"></i>' + caseChange + '</strong><br>' 
                             + 'Recovered: <strong class="recovered">' + today.Recovered + '</strong><br>' 
-                            + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong></div>';
+                            + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong><br>'
+                            + 'Total Cases: <strong class="confirmed">' + today.Confirmed + '</strong></div>';
                 }
                 else {
                     popup = '<div id="PopupTitle">' + today['Country/Region'] + '</div>'
                             + '<div id="PopupBody">Active: <strong class="active">' + activeCases + '</strong><br>'
-                            + 'New Daily Cases: <strong class="caseChange">+' + caseChange + '</strong><br>' 
-                            + 'Total Confirmed: <strong class="confirmed">' + today.Confirmed + '</strong><br>' 
+                            + 'New Cases: <strong class="caseChange"><i class="arrow up icon"></i>' + caseChange + '</strong><br>' 
                             + 'Recovered: <strong class="recovered">' + today.Recovered + '</strong><br>' 
-                            + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong></div>';
+                            + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong><br>'
+                            + 'Total Cases: <strong class="confirmed">' + today.Confirmed + '</strong></div>';
                 }
 
                 L.circleMarker([today['Latitude'], today['Longitude']], {
@@ -149,6 +184,11 @@
                     radius: radius
                 }).addTo(mymap).bindPopup(popup);
             }
+
+            document.getElementById('activeCount').innerHTML = globalActive;
+            document.getElementById('recoveredCount').innerHTML = globalRecovered;
+            document.getElementById('deathCount').innerHTML = globalDeaths;
+            document.getElementById('changeCount').innerHTML = '<i class="arrow up icon"></i>' + globalNewCases;
         });
 
         
