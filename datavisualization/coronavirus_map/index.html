@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>COVID-19 Growth Map</title>
+        <title>COVID-19 New Daily Cases</title>
         <link rel="stylesheet" href="index.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
@@ -37,22 +37,22 @@
                 <div class="column"><h2>Global Data</h2></div>
                 <div class="row">
                     <div class="column">
-                        <h3>New Cases</h3>
-                        <div id="changeCount"></div>
+                        <h3>New Cases Today</h3>
+                        <strong id="changeCount"></strong>
                     </div>
                     <div class="column">
                         <h3>Active Cases</h3>
-                        <div id="activeCount"></div>
+                        <strong id="activeCount"></strong>
                     </div>
                 </div>
                 <div class="row">
                     <div class="column">
                         <h3>Recovered</h3>
-                        <div id="recoveredCount"></div>
+                        <strong id="recoveredCount"></strong>
                     </div>
                     <div class="column">
                         <h3>Deaths</h3>
-                        <div id="deathCount"></div>
+                        <strong id="deathCount"></strong>
                     </div>
                 </div>
                 <div class="row">
@@ -67,8 +67,7 @@
                 </div>
                 <div class="row">
                     <div class="column">
-                        <p style="font-size: 10px;">Last Updated on March 25, 2020 at 12:00 AM GMT <br>
-                            Data is provided by Johns Hopkins CSSE from <a href="https://github.com/CSSEGISandData/COVID-19">GitHub</a></p>
+                        <p style="font-size: 10px;" id="lastUpdated"></p>
                     </div>
                 </div>
             </div>
@@ -117,7 +116,7 @@
             zoom: 3, 
             minZoom: 2,
             maxBounds: L.latLngBounds([-90, -240], [90, 240]),
-            maxBoundsViscosity: 0.7
+            maxBoundsViscosity: 0.5
         });
 
         L.mapbox.accessToken = 'pk.eyJ1IjoiamtiaXNoYXkiLCJhIjoiY2ptM3N4OGU5MGk5YTNxbW10dms2b2FyYyJ9.IH37mJFcTWUa6O3RH7b4cA';
@@ -125,13 +124,87 @@
             attribution: '© <a href="https://www.mapbox.com/feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         }).addTo(mymap);
 
-        var currentDay = 25;
-        var currentMonth = '03';
+        // process current and previous date 
+        var d = new Date();
+        var currentDay;
+        if (d.getUTCDate() < 10) {
+            currentDay = '0' + d.getUTCDate();
+        }
+        else {
+            currentDay = '' + d.getUTCDate();
+        }
+
+        var currentMonth;
+        if (d.getUTCMonth() + 1 < 10) {
+            currentMonth = '0' + (d.getUTCMonth() + 1);
+        }
+        else {
+            currentMonth = '' + (d.getUTCMonth() + 1);
+        }
+        var currentYear = d.getUTCFullYear();
+
+        // update data only after it is uploaded 
+        if (d.getUTCHours() == 0 && d.getUTCMinutes() < 10) {
+            currentDay -= 2;
+        }
+        else {
+            currentDay--;
+        }
+
+        var previousDay = currentDay - 1;
+        var previousMonth = currentMonth;
+        var previousYear = currentYear;
+        // if month has changed
+        if (previousDay <= 0) {
+            switch(currentMonth - 1) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                    previousDay = 31;
+                    if (currentMonth - 1 < 10) {
+                        previousMonth = '0' + (currentMonth - 1);
+                    }
+                    else {
+                        previousMonth = '' + (currentMonth - 1);
+                    }
+                    break;
+                case 2:
+                    if (currentYear % 4 == 0) {
+                        previousDay = 29;
+                    }
+                    else {
+                        previousDay = 28;
+                    }
+                    previousMonth = '0' + (currentMonth - 1);
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    previousDay = 30;
+                    if (currentMonth - 1 < 10) {
+                        previousMonth = '0' + (currentMonth - 1);
+                    }
+                    else {
+                        previousMonth = '' + (currentMonth - 1);
+                    }
+                    break;
+                // THIS IS DECEMBER
+                case 0:
+                    previousDay = 31;
+                    previousYear--;
+                    previousMonth = '12';
+                    break;
+            }
+        }
 
         // process data
         Promise.all([
-            d3.csv("./COVID-19-master/csse_covid_19_data/csse_covid_19_daily_reports/" + currentMonth + "-" + (currentDay - 1) + "-2020.csv"),
-            d3.csv("./COVID-19-master/csse_covid_19_data/csse_covid_19_daily_reports/" + currentMonth + "-" + currentDay + "-2020.csv"),
+            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + previousMonth + "-" + previousDay + "-" + previousYear + ".csv"),
+            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + currentMonth + "-" + currentDay + "-" + currentYear + ".csv"),
             d3.csv("./statelatlong.csv")
         ]).then(function (data) {
             // global totals counters
@@ -146,6 +219,9 @@
                 if (today.Country_Region !== 'US') {
                     var yesterday = data[0].find(item => item['Country_Region'] === today['Country_Region'] && item['Province_State'] === today['Province_State']);
                     plotPoint(today, yesterday);
+                }
+                else if (today.Country_Region === 'US' && today.Province_State === 'Recovered') {
+                    globalRecovered += parseInt(today.Recovered, 10);
                 }
             }
 
@@ -200,10 +276,10 @@
                 plotPoint(today, yesterday);
             }
 
-            document.getElementById('activeCount').innerHTML = globalActive;
-            document.getElementById('recoveredCount').innerHTML = globalRecovered;
-            document.getElementById('deathCount').innerHTML = globalDeaths;
-            document.getElementById('changeCount').innerHTML = '<i class="arrow up icon"></i>' + globalNewCases;
+            document.getElementById('activeCount').innerHTML = globalActive.toLocaleString();
+            document.getElementById('recoveredCount').innerHTML = globalRecovered.toLocaleString();
+            document.getElementById('deathCount').innerHTML = globalDeaths.toLocaleString();
+            document.getElementById('changeCount').innerHTML = '<i class="arrow up icon"></i>' + globalNewCases.toLocaleString();
 
             function plotPoint(today, yesterday) {
                 // data is weird, double check if Active is truly 0
@@ -215,7 +291,7 @@
                 globalRecovered += parseInt(today.Recovered, 10);
                 globalDeaths += parseInt(today.Deaths, 10);
 
-                var radius = 24;
+                var radius = 22;
                 if (today.Active <= 25) {
                     radius = 2;
                 }
@@ -285,15 +361,23 @@
                             + 'Total Cases: <strong class="confirmed">' + today.Confirmed + '</strong></div>';
                 }
 
-                L.circleMarker([today['Lat'], today['Long_']], {
-                    color: color,
-                    fillColor: color,
-                    fillOpacity: 0.7,
-                    weight: 1,
-                    radius: radius
-                }).addTo(mymap).bindPopup(popup);
+                // dont plot garbage locations, but count their data
+                if (today.Province_State !== 'Recovered') {
+                    L.circleMarker([today['Lat'], today['Long_']], {
+                        color: color,
+                        fillColor: color,
+                        fillOpacity: 0.65,
+                        weight: 1,
+                        radius: radius
+                    }).addTo(mymap).bindPopup(popup);
+                }
             }
         });
+
+        
+        document.getElementById('lastUpdated').innerHTML = 'Last Updated on ' + currentMonth + '/' + currentDay + '/' + currentYear  
+            + ' at 11:55 PM UTC <br> Data is provided by Johns Hopkins CSSE from' 
+            + '<a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">GitHub</a>';
         
     </script>
 </html>
