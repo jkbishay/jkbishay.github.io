@@ -7,7 +7,7 @@
 }
 
 #titleBar {
-    height: 18%; 
+    height: 9%; 
     text-align: center; 
     padding-top: 12px;
     border-top: 2px solid lightgrey;
@@ -19,9 +19,18 @@
 #mainGrid {
     display: grid; 
     width: 100%; 
-    height: 80%; 
+    height: 81%; 
     grid-template-columns: 75% 25%;
     border: 2px solid lightgrey;
+}
+
+#footer {
+    width: 100%;
+    height: 10%;
+    color: lightgray; 
+    text-align: center; 
+    align-content: center;
+    padding-top: 12px;
 }
 
 #map {
@@ -64,11 +73,11 @@
 }
 
 strong.active {
-    color: crimson;
+    color: gold;
 }
 
 strong.caseChange {
-    color: gold;
+    color: crimson;
 }
 
 strong.confirmed {
@@ -84,7 +93,7 @@ strong.deaths {
 }
 
 #activeCount {
-    color: crimson;
+    color: gold;
     font-size: x-large;
 }
 
@@ -99,6 +108,6 @@ strong.deaths {
 }
 
 #changeCount {
-    color: gold;
+    color: crimson;
     font-size: x-large;
 }
