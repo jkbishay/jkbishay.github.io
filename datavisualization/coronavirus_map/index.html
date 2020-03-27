@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>COVID-19 New Daily Cases</title>
+        <title>Coronavirus Map of New Daily Cases</title>
         <link rel="stylesheet" href="index.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"/>
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
@@ -216,7 +216,7 @@
             // process data for non-USA regions
             for (let i = 0; i < data[1].length; i++) {
                 var today = data[1][i];
-                if (today.Country_Region !== 'US') {
+                if (today.Country_Region !== 'US' && today.Confirmed != 0) {
                     var yesterday = data[0].find(item => item['Country_Region'] === today['Country_Region'] && item['Province_State'] === today['Province_State']);
                     plotPoint(today, yesterday);
                 }
@@ -273,7 +273,10 @@
                     Deaths: dead
                 }
 
-                plotPoint(today, yesterday);
+                // do not plot points if no cases exist
+                if (today.Confirmed != 0) {
+                    plotPoint(today, yesterday);
+                }
             }
 
             document.getElementById('activeCount').innerHTML = globalActive.toLocaleString();
