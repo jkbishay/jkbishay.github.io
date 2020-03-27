@@ -128,10 +128,10 @@
         var d = new Date();
         var currentDay;
         if (d.getUTCDate() < 10) {
-            currentDay = '0' + d.getUTCDate();
+            currentDay = '0' + (d.getUTCDate() - 1);
         }
         else {
-            currentDay = '' + d.getUTCDate();
+            currentDay = '' + (d.getUTCDate() - 1);
         }
 
         var currentMonth;
@@ -144,12 +144,15 @@
         var currentYear = d.getUTCFullYear();
 
         // update data only after it is uploaded 
-        if (d.getUTCHours() == 0 && d.getUTCMinutes() < 10) {
-            currentDay -= 2;
-        }
-        else {
-            currentDay--;
-        }
+        ///
+        // TODO: FIX THIS BUG BEFORE IT BREAKS ON APRIL 1 AND 2
+        ///
+        // if (d.getUTCHours() == 0 && d.getUTCMinutes() < 10) {
+        //     currentDay -= 2;
+        // }
+        // else {
+        //     currentDay--;
+        // }
 
         var previousDay = currentDay - 1;
         var previousMonth = currentMonth;
