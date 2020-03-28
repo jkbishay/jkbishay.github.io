@@ -6,6 +6,10 @@
     cursor: default !important;
 }
 
+.leaflet-popup-tip {
+    display: none;
+}
+
 #titleBar {
     height: 9%; 
     text-align: center; 
