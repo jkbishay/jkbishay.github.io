@@ -74,7 +74,7 @@
                             <button class="ui yellow button mini" id="activeButton" onclick="clickChartButton('activeButton')">Active Cases</button>
                             <button class="ui blue button mini" id="recoveredButton" onclick="clickChartButton('recoveredButton')">Recovered</button>
                             <button class="ui purple button mini" id="deathButton" onclick="clickChartButton('deathButton')">Deaths</button>
-                            <button class="ui red basic button mini" id="increaseButton" onclick="clickIncreaseButton()">Daily Change</button>
+                            <button class="ui red button mini" id="increaseButton" onclick="clickChartButton('increaseButton')">Daily Change</button>
                         </div>
                     </div>
                 </div>
@@ -755,7 +755,7 @@
                 document.getElementById('activeButton').className = "ui yellow button mini";
                 document.getElementById('recoveredButton').className = "ui blue button mini";
                 document.getElementById('deathButton').className = "ui purple button mini";
-                document.getElementById('increaseButton').className = "ui red basic button mini";
+                document.getElementById('increaseButton').className = "ui red button mini";
 
                 Chart.defaults.global.defaultFontColor = 'lightgray';
                 chart = new Chart(ctx, {
@@ -793,9 +793,7 @@
                                 borderColor: "#ed2d1f",
                                 data: increase,
                                 pointRadius: 1,
-                                fill: false,
-                                hidden: true
-                            }
+                                fill: false                            }
                         ]
                     },
                     options: {
@@ -836,14 +834,17 @@
                     color = "purple";
                     set = "Deaths";
                     break;
+                case 'increaseButton':
+                    color = "red";
+                    set = "Daily Increase";
             }
             var button = document.getElementById(buttonID);
             if (button.classList.contains("basic")) {
                 button.className = "ui " + color + " button mini";
                 chart.data.datasets.find(item => item['label'] == set).hidden = false;
                 // turn off daily change dataset
-                document.getElementById('increaseButton').className = "ui red basic button mini";
-                chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = true;
+                // document.getElementById('increaseButton').className = "ui red basic button mini";
+                // chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = true;
             }
             else {
                 button.className = "ui " + color + " basic button mini";
