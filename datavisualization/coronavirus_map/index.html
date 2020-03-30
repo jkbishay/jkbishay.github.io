@@ -64,7 +64,10 @@
                     <div class="column">
                         <h1 id="infoTitle">Global Data</h1>
                         <h1 style="font-size: 1.25em; margin-top: 0;">Time Series Chart</h1>
-                        <canvas id="infectionChart" height=180></canvas>
+                        <canvas id="infectionChart" height=150></canvas>
+                        <button class="ui yellow button mini" id="activeButton" onclick="clickChartButton('activeButton')">Active Cases</button>
+                        <button class="ui blue button mini" id="recoveredButton" onclick="clickChartButton('recoveredButton')">Recovered</button>
+                        <button class="ui purple button mini" id="deathButton" onclick="clickChartButton('deathButton')">Deaths</button>
                     </div>
                 </div>
                 <div class="row" style="margin-top: -1em;">
@@ -108,7 +111,6 @@
                         </a>
                     </p>
                 </div>
-            </div>
             </div>
         </div>
     </body>
@@ -374,7 +376,7 @@
 
             // initialize geo map
             var mymap = L.map('map', {
-                center: [34.9888971, -39.252909],
+                center: [28.1559614,6.6860949],
                 zoom: 2, 
                 minZoom: 2,
                 maxZoom: 6,
@@ -592,7 +594,7 @@
             }
         });
 
-        //TODO: add daily increase series, remove legend and add buttons
+        //TODO: add daily increase series, reset buttons on makeChart()
         function makeChart(region, province = "") {
             // time series data for charts
             Promise.all([
@@ -615,6 +617,7 @@
                 var confs = [];
                 var recs = [];
                 var deaths = [];
+                var active = [];
                 if (region == "Global") {
                     for (let [key, value] of Object.entries(data[0][0])) {
                         if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
@@ -660,6 +663,10 @@
                             }
                         }
                     }
+
+                    for (let i = 0; i < confs.length; i++) {
+                        active.push(confs[i] - recs[i] - deaths[i]);
+                    }
                 }
                 else {
                     var areaC = data[0].find(item => item['Country/Region'] === region && item['Province/State'] === province);
@@ -697,7 +704,16 @@
                     recs.splice(0, firstIdx);
                     deaths.splice(0, firstIdx);
                     dateLabels.splice(0, firstIdx);
+
+                    for (let i = 0; i < confs.length; i++) {
+                        active.push(confs[i] - recs[i] - deaths[i]);
+                    }
                 }
+
+                document.getElementById('activeButton').className = "ui yellow button mini";
+                document.getElementById('recoveredButton').className = "ui blue button mini";
+                document.getElementById('deathButton').className = "ui purple button mini";
+
 
                 Chart.defaults.global.defaultFontColor = 'lightgray';
                 chart = new Chart(ctx, {
@@ -706,10 +722,10 @@
                         labels: dateLabels,
                         datasets: [
                             {
-                                label: "Total Cases",
+                                label: "Active Cases",
                                 backgroundColor: "gold",
                                 borderColor: "gold",
-                                data: confs,
+                                data: active,
                                 pointRadius: 1,
                                 fill: false
                             },
@@ -728,11 +744,12 @@
                                 data: deaths,
                                 pointRadius: 1,
                                 fill: false
-                            },
+                            }
                         ]
                     },
                     options: {
                         legend: {
+                            display: false,
                             position: 'bottom',
                             labels: {
                                 boxWidth: 12
@@ -745,15 +762,40 @@
                         // }
                     }
                 });
-                
-
-                // var active = confs[confs.length - 1] - recs[recs.length - 1]  - deaths[deaths.length - 1];
-                // var change = confs[confs.length - 1] - confs[confs.length - 2];
             });
         }
 
         // initialize page with global charts
         makeChart("Global");
+
+        function clickChartButton(buttonID) {
+            var color = "";
+            var set = "";
+            switch (buttonID) {
+                case 'activeButton':
+                    color = "yellow";
+                    set = "Active Cases";
+                    break;
+                case 'recoveredButton':
+                    color = "blue";
+                    set = "Recovered";
+                    break;
+                case 'deathButton':
+                    color = "purple";
+                    set = "Deaths";
+                    break;
+            }
+            var button = document.getElementById(buttonID);
+            if (button.classList.contains("basic")) {
+                button.className = "ui " + color + " button mini";
+                chart.data.datasets.find(item => item['label'] == set).hidden = false;
+            }
+            else {
+                button.className = "ui " + color + " basic button mini";
+                chart.data.datasets.find(item => item['label'] == set).hidden = true;
+            }
+            chart.update();
+        }
 
         document.getElementById('lastUpdated').innerHTML = 'Last Updated on ' + currentMonth + '/' + currentDay + '/' + currentYear  
             + ' at 11:55 PM UTC <br> Data is provided by Johns Hopkins CSSE from ' 
