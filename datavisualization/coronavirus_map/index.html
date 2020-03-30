@@ -13,6 +13,7 @@
                 crossorigin=""></script>
         <script src="https://d3js.org/d3.v5.min.js"></script>
         <script src='https://api.mapbox.com/mapbox.js/v3.3.0/mapbox.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <link href='https://api.mapbox.com/mapbox.js/v3.3.0/mapbox.css' rel='stylesheet'/> 
     </head>
     <style>
@@ -34,10 +35,14 @@
         <div id="mainGrid">
             <div id="map"></div>
             <div class="ui equal width grid" id="info">
-                <div class="column"><h2>Global Data</h2></div>
-                <div class="row">
+                <!-- <div class="row">
+                    <div class="column" style="margin-bottom: -3em; margin-top: -0.2em;">
+                        <h1 id="infoTitle">Global Data</h1>
+                    </div>
+                </div> -->
+                <div class="row" style="margin-bottom: -15px; padding-left: 1em; padding-right: 1em;">
                     <div class="column">
-                        <h3>New Cases Today</h3>
+                        <h3>Daily Increase</h3>
                         <strong id="changeCount"></strong>
                     </div>
                     <div class="column">
@@ -45,7 +50,7 @@
                         <strong id="activeCount"></strong>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" style="padding-left: 1em; padding-right: 1em;">
                     <div class="column">
                         <h3>Recovered</h3>
                         <strong id="recoveredCount"></strong>
@@ -56,23 +61,30 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="column legend" style="padding-left: 75px; padding-right: 75px;">
+                    <div class="column">
+                        <h1 id="infoTitle">Global Data</h1>
+                        <h1 style="font-size: 1.25em; margin-top: 0;">Time Series Chart</h1>
+                        <canvas id="infectionChart" height=180></canvas>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: -1em;">
+                    <div class="column legend" style="padding-left: 6em; padding-right: 6em; margin-top: -0.5em;">
                         <h4>Number of New Cases</h4>
-                        <i style="background: #ed2d1f;"></i> 1000+<br>
-                        <i style="background: #f37240;"></i> 100-1000<br>
-                        <i style="background: #f8a36f;"></i> 20-100<br>
-                        <i style="background: #fccda8;"></i> 5-20<br>
-                        <i style="background: #fff4e9;"></i> 0-5<br>
+                        <i style="background: #ed2d1f;"></i><div style="font-size: 0.85em;">1000+</div>
+                        <i style="background: #f37240;"></i><div style="font-size: 0.85em;">500-1000</div>
+                        <i style="background: #f8a36f;"></i><div style="font-size: 0.85em;">50-500</div>
+                        <i style="background: #fccda8;"></i><div style="font-size: 0.85em;">10-50</div>
+                        <i style="background: #fff4e9;"></i><div style="font-size: 0.85em;">0-10</div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="column">
-                        <p style="font-size: 10px;" id="lastUpdated"></p>
+                        <p style="font-size: 10px; margin-top: -2.3em;" id="lastUpdated"></p>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="footer">
+        <div class="footer">
             <p>Developed by Justin Bishay, Computer Science M.S. Student, <a href="https://jkbishay.github.io/" target="_blank">Website</a></p>
             <div class="ui three column grid" style="margin-top: -25px; padding-left: 9%; padding-right: 9%;">
                 <div class="column">
@@ -98,14 +110,6 @@
                 </div>
             </div>
             </div>
-            <!-- <p>
-                Laboratory for Advanced Visualization & Applications 
-                <a href="https://www.lavaflow.info/" target="_blank"><img target="_blank" src="./lavaLogo.png" style="width: 45px; height: 22px;"/></a>
-                &emsp; Hawaii Data Science Institute
-                <a href="http://datascience.hawaii.edu/" target="_blank"><img target="_blank" src="./HIDSILogo.png" style="width: 20px; height: 20px;"/></a>
-                &emsp; University of Hawaii at Manoa
-                <a href="https://manoa.hawaii.edu/" target="_blank"><img target="_blank" src="./UHMLogo.png" style="width: 20px; height: 20px;"/></a>
-            </p> -->
         </div>
     </body>
 
@@ -193,7 +197,7 @@
             var globalNewCases = 0;
 
             var markers = [];
-            var radii = [2, 3, 6, 9, 12, 16, 22];
+            var radii = [1, 2, 3, 6, 8, 11, 14];
 
             // process data for non-USA regions
             for (let i = 0; i < data[1].length; i++) {
@@ -315,13 +319,13 @@
                 globalNewCases += parseInt(caseChange, 10);
                     
                 var color = '#ed2d1f';
-                if (caseChange <= 5) {
+                if (caseChange <= 10) {
                     color = '#fff4e9';
                 }
-                else if (caseChange <= 20) {
+                else if (caseChange <= 50) {
                     color = '#fccda8'
                 }
-                else if (caseChange <= 100) {
+                else if (caseChange <= 500) {
                     color = '#f8a36f'
                 }
                 else if (caseChange <= 1000) {
@@ -354,7 +358,9 @@
                         fillOpacity: 0.65,
                         weight: 1,
                         radius: radius
-                    }).bindPopup(popup));
+                    }).bindPopup(popup)
+                        .on('click', L.bind(makeChart, null, today.Country_Region, today.Province_State))
+                        .on('popupclose', L.bind(makeChart, null, "Global")));
                 }
             }
 
@@ -369,10 +375,12 @@
             // initialize geo map
             var mymap = L.map('map', {
                 center: [34.9888971, -39.252909],
-                zoom: 3, 
+                zoom: 2, 
                 minZoom: 2,
+                maxZoom: 6,
                 maxBounds: L.latLngBounds([-90, -240], [90, 240]),
                 maxBoundsViscosity: 0.5,
+                wheelPxPerZoomLevel: 200,
                 layers: [mapLayer, markerLayer]
             });
 
@@ -380,37 +388,71 @@
             var oldZoom = mymap.getZoom();
             mymap.on('zoomstart', function() {
                 oldZoom = mymap.getZoom();
+                mymap.scrollWheelZoom.disable();
             });
 
             // change marker size on zoom
             mymap.on('zoomend', function() {
                 var zoom = mymap.getZoom();
-                console.log(zoom);
-                // zooming into 4
-                if (zoom == 4 && zoom > oldZoom) {
+                var zoom2 = [1, 2, 3, 6, 8, 11, 14];
+                var zoom3 = [2, 3, 6, 9, 12, 16, 22];
+                var zoom4 = [4, 7, 11, 15, 19, 23, 30];
+                var zoom5 = [6, 10, 14, 19, 24, 29, 36];
+
+                // zooming into 3
+                if (zoom == 3 && zoom > oldZoom) {
                     for (let i = 0; i < markers.length; i++) {
                         var rad = markers[i]._radius;
                         switch(rad) {
-                            case radii[0]:
-                                markers[i].setRadius(radii[0] + 3);
+                            case zoom2[0]:
+                                markers[i].setRadius(zoom3[0]);
                                 break;
-                            case radii[1]: 
-                                markers[i].setRadius(radii[1] + 5);
+                            case zoom2[1]: 
+                                markers[i].setRadius(zoom3[1]);
                                 break;
-                            case radii[2]: 
-                                markers[i].setRadius(radii[2] + 6);
+                            case zoom2[2]: 
+                                markers[i].setRadius(zoom3[2]);
                                 break;
-                            case radii[3]: 
-                                markers[i].setRadius(radii[3] + 6);
+                            case zoom2[3]: 
+                                markers[i].setRadius(zoom3[3]);
                                 break;
-                            case radii[4]: 
-                                markers[i].setRadius(radii[4] + 7);
+                            case zoom2[4]: 
+                                markers[i].setRadius(zoom3[4]);
                                 break;
-                            case radii[5]: 
-                                markers[i].setRadius(radii[5] + 7);
+                            case zoom2[5]: 
+                                markers[i].setRadius(zoom3[5]);
                                 break;
-                            case radii[6]: 
-                                markers[i].setRadius(radii[6] + 8);
+                            case zoom2[6]: 
+                                markers[i].setRadius(zoom3[6]);
+                                break;
+                        }
+                    }
+                }
+                // zooming into 4
+                else if (zoom == 4 && zoom > oldZoom) {
+                    for (let i = 0; i < markers.length; i++) {
+                        var rad = markers[i]._radius;
+                        switch(rad) {
+                            case zoom3[0]:
+                                markers[i].setRadius(zoom4[0]);
+                                break;
+                            case zoom3[1]: 
+                                markers[i].setRadius(zoom4[1]);
+                                break;
+                            case zoom3[2]: 
+                                markers[i].setRadius(zoom4[2]);
+                                break;
+                            case zoom3[3]: 
+                                markers[i].setRadius(zoom4[3]);
+                                break;
+                            case zoom3[4]: 
+                                markers[i].setRadius(zoom4[4]);
+                                break;
+                            case zoom3[5]: 
+                                markers[i].setRadius(zoom4[5]);
+                                break;
+                            case zoom3[6]: 
+                                markers[i].setRadius(zoom4[6]);
                                 break;
                         }
                     }
@@ -420,26 +462,26 @@
                     for (let i = 0; i < markers.length; i++) {
                         var rad = markers[i]._radius;
                         switch(rad) {
-                            case radii[0] + 3:
-                                markers[i].setRadius(radii[0] + 3 + 2);
+                            case zoom4[0]:
+                                markers[i].setRadius(zoom5[0]);
                                 break;
-                            case radii[1] + 5: 
-                                markers[i].setRadius(radii[1] + 5 + 3);
+                            case zoom4[1]: 
+                                markers[i].setRadius(zoom5[1]);
                                 break;
-                            case radii[2] + 6: 
-                                markers[i].setRadius(radii[2] + 6 + 3);
+                            case zoom4[2]: 
+                                markers[i].setRadius(zoom5[2]);
                                 break;
-                            case radii[3] + 6: 
-                                markers[i].setRadius(radii[3] + 6 + 4);
+                            case zoom4[3]: 
+                                markers[i].setRadius(zoom5[3]);
                                 break;
-                            case radii[4] + 7: 
-                                markers[i].setRadius(radii[4] + 7 + 5);
+                            case zoom4[4]: 
+                                markers[i].setRadius(zoom5[4]);
                                 break;
-                            case radii[5] + 7: 
-                                markers[i].setRadius(radii[5] + 7 + 6);
+                            case zoom4[5]: 
+                                markers[i].setRadius(zoom5[5]);
                                 break;
-                            case radii[6] + 8: 
-                                markers[i].setRadius(radii[6] + 8 + 6);
+                            case zoom4[6]: 
+                                markers[i].setRadius(zoom5[6]);
                                 break;
                         }
                     }
@@ -449,26 +491,26 @@
                     for (let i = 0; i < markers.length; i++) {
                         var rad = markers[i]._radius;
                         switch(rad) {
-                            case radii[0] + 3 + 2:
-                                markers[i].setRadius(radii[0] + 3);
+                            case zoom5[0]:
+                                markers[i].setRadius(zoom4[0]);
                                 break;
-                            case radii[1] + 5 + 3: 
-                                markers[i].setRadius(radii[1] + 5);
+                            case zoom5[1]: 
+                                markers[i].setRadius(zoom4[1]);
                                 break;
-                            case radii[2] + 6 + 3: 
-                                markers[i].setRadius(radii[2] + 6);
+                            case zoom5[2]: 
+                                markers[i].setRadius(zoom4[2]);
                                 break;
-                            case radii[3] + 6 + 4: 
-                                markers[i].setRadius(radii[3] + 6);
+                            case zoom5[3]: 
+                                markers[i].setRadius(zoom4[3]);
                                 break;
-                            case radii[4] + 7 + 5: 
-                                markers[i].setRadius(radii[4] + 7);
+                            case zoom5[4]: 
+                                markers[i].setRadius(zoom4[4]);
                                 break;
-                            case radii[5] + 7 + 6: 
-                                markers[i].setRadius(radii[5] + 7);
+                            case zoom5[5]: 
+                                markers[i].setRadius(zoom4[5]);
                                 break;
-                            case radii[6] + 8 + 6: 
-                                markers[i].setRadius(radii[6] + 8);
+                            case zoom5[6]: 
+                                markers[i].setRadius(zoom4[6]);
                                 break;
                         }
                     }
@@ -478,34 +520,241 @@
                     for (let i = 0; i < markers.length; i++) {
                         var rad = markers[i]._radius;
                         switch(rad) {
-                            case radii[0] + 3:
-                                markers[i].setRadius(radii[0]);
+                            case zoom4[0]:
+                                markers[i].setRadius(zoom3[0]);
                                 break;
-                            case radii[1] + 5: 
-                                markers[i].setRadius(radii[1]);
+                            case zoom4[1]: 
+                                markers[i].setRadius(zoom3[1]);
                                 break;
-                            case radii[2] + 6: 
-                                markers[i].setRadius(radii[2]);
+                            case zoom4[2]: 
+                                markers[i].setRadius(zoom3[2]);
                                 break;
-                            case radii[3] + 6: 
-                                markers[i].setRadius(radii[3]);
+                            case zoom4[3]: 
+                                markers[i].setRadius(zoom3[3]);
                                 break;
-                            case radii[4] + 7: 
-                                markers[i].setRadius(radii[4]);
+                            case zoom4[4]: 
+                                markers[i].setRadius(zoom3[4]);
                                 break;
-                            case radii[5] + 7: 
-                                markers[i].setRadius(radii[5]);
+                            case zoom4[5]: 
+                                markers[i].setRadius(zoom3[5]);
                                 break;
-                            case radii[6] + 8: 
-                                markers[i].setRadius(radii[6]);
+                            case zoom4[6]: 
+                                markers[i].setRadius(zoom3[6]);
                                 break;
                         }
                     }
                 }
+                // zooming out to 2
+                else if (zoom == 2 && zoom < oldZoom) {
+                    for (let i = 0; i < markers.length; i++) {
+                        var rad = markers[i]._radius;
+                        switch(rad) {
+                            case zoom3[0]:
+                                markers[i].setRadius(zoom2[0]);
+                                break;
+                            case zoom3[1]: 
+                                markers[i].setRadius(zoom2[1]);
+                                break;
+                            case zoom3[2]: 
+                                markers[i].setRadius(zoom2[2]);
+                                break;
+                            case zoom3[3]: 
+                                markers[i].setRadius(zoom2[3]);
+                                break;
+                            case zoom3[4]: 
+                                markers[i].setRadius(zoom2[4]);
+                                break;
+                            case zoom3[5]: 
+                                markers[i].setRadius(zoom2[5]);
+                                break;
+                            case zoom3[6]: 
+                                markers[i].setRadius(zoom2[6]);
+                                break;
+                        }
+                    }
+                }
+                mymap.scrollWheelZoom.enable();
             });
         });
 
-        
+        // initialize chart here so it can be destroyed for redraws
+        var canvas = document.getElementById('infectionChart');
+        var ctx = canvas.getContext('2d');
+        var chart = new Chart(ctx, {
+            type: 'line',
+            options: {
+                legend: {
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 12
+                    }
+                }
+            }
+        });
+
+        //TODO: add daily increase series, remove legend and add buttons
+        function makeChart(region, province = "") {
+            // time series data for charts
+            Promise.all([
+                d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"),
+                d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"),
+                d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
+            ]).then(function (data) {
+                var title = region;
+                if (province != "" && region != "US" && region != "Canada" && region != "Global") {
+                    title = province + ', ' + region;
+                }
+                else if (region == "US") {
+                    title = "United States of America";
+                }
+
+                document.getElementById('infoTitle').innerHTML = title;
+                chart.destroy();
+
+                var dateLabels = [];
+                var confs = [];
+                var recs = [];
+                var deaths = [];
+                if (region == "Global") {
+                    for (let [key, value] of Object.entries(data[0][0])) {
+                        if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                            dateLabels.push(key);
+                        }
+                    }
+
+                    for (let i = 0; i < Object.keys(data[0][0]).length - 4; i++) {
+                        confs[i] = 0;
+                    }
+                    for (let i = 0; i < data[0].length; i++) {
+                        let j = 0;
+                        for (let [key, value] of Object.entries(data[0][i])) {
+                            if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                                confs[j] += parseInt(value, 10);
+                                j++;
+                            }
+                        }
+                    }
+
+                    for (let i = 0; i < Object.keys(data[1][0]).length - 4; i++) {
+                        recs[i] = 0;
+                    }
+                    for (let i = 0; i < data[1].length; i++) {
+                        let j = 0;
+                        for (let [key, value] of Object.entries(data[1][i])) {
+                            if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                                recs[j] += parseInt(value, 10);
+                                j++;
+                            }
+                        }
+                    }
+
+                    for (let i = 0; i < Object.keys(data[2][0]).length - 4; i++) {
+                        deaths[i] = 0;
+                    }
+                    for (let i = 0; i < data[2].length; i++) {
+                        let j = 0;
+                        for (let [key, value] of Object.entries(data[2][i])) {
+                            if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                                deaths[j] += parseInt(value, 10);
+                                j++;
+                            }
+                        }
+                    }
+                }
+                else {
+                    var areaC = data[0].find(item => item['Country/Region'] === region && item['Province/State'] === province);
+                    var areaR = data[1].find(item => item['Country/Region'] === region && item['Province/State'] === province);
+                    var areaD = data[2].find(item => item['Country/Region'] === region && item['Province/State'] === province);
+
+                    if (region == "Canada" || region == "US") {
+                        areaC = data[0].find(item => item['Country/Region'] === region);
+                        areaR = data[1].find(item => item['Country/Region'] === region);
+                        areaD = data[2].find(item => item['Country/Region'] === region);
+                    }
+
+                    for (let [key, value] of Object.entries(areaC)) {
+                        if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                            dateLabels.push(key);
+                            confs.push(parseInt(value, 10));
+                        }
+                    }
+                    for (let [key, value] of Object.entries(areaR)) {
+                        if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                            recs.push(parseInt(value, 10));
+                        }
+                    }
+                    for (let [key, value] of Object.entries(areaD)) {
+                        if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                            deaths.push(parseInt(value, 10));
+                        }
+                    }
+
+                    var firstIdx = confs.findIndex(val => val >= 100);
+                    if (firstIdx == -1 || firstIdx > confs.length - 5) {
+                        firstIdx = confs.findIndex(val => val >= 1);
+                    }
+                    confs.splice(0, firstIdx);
+                    recs.splice(0, firstIdx);
+                    deaths.splice(0, firstIdx);
+                    dateLabels.splice(0, firstIdx);
+                }
+
+                Chart.defaults.global.defaultFontColor = 'lightgray';
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: dateLabels,
+                        datasets: [
+                            {
+                                label: "Total Cases",
+                                backgroundColor: "gold",
+                                borderColor: "gold",
+                                data: confs,
+                                pointRadius: 1,
+                                fill: false
+                            },
+                            {
+                                label: "Recovered",
+                                backgroundColor: "dodgerblue",
+                                borderColor: "dodgerblue",
+                                data: recs,
+                                pointRadius: 1,
+                                fill: false
+                            },
+                            {
+                                label: "Deaths",
+                                backgroundColor: "orchid",
+                                borderColor: "orchid",
+                                data: deaths,
+                                pointRadius: 1,
+                                fill: false
+                            },
+                        ]
+                    },
+                    options: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12
+                            }
+                        },
+                        // scales: {
+                        //     yAxes: [{
+                        //         type: 'logarithmic'
+                        //     }]
+                        // }
+                    }
+                });
+                
+
+                // var active = confs[confs.length - 1] - recs[recs.length - 1]  - deaths[deaths.length - 1];
+                // var change = confs[confs.length - 1] - confs[confs.length - 2];
+            });
+        }
+
+        // initialize page with global charts
+        makeChart("Global");
+
         document.getElementById('lastUpdated').innerHTML = 'Last Updated on ' + currentMonth + '/' + currentDay + '/' + currentYear  
             + ' at 11:55 PM UTC <br> Data is provided by Johns Hopkins CSSE from ' 
             + '<a href="https://github.com/CSSEGISandData/COVID-19" target="_blank">GitHub</a>';
