@@ -21,6 +21,11 @@
             background-color: rgb(20, 20, 20); 
             height: 100%;
             width: 100%;
+            font-family: sans-serif;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: sans-serif;
         }
 
         .leaflet-popup-content-wrapper {
@@ -40,7 +45,7 @@
                         <h1 id="infoTitle">Global Data</h1>
                     </div>
                 </div> -->
-                <div class="row" style="margin-bottom: -15px; padding-left: 1em; padding-right: 1em;">
+                <div class="row" style="margin-bottom: -2em; margin-top: -1em; padding-left: 1em; padding-right: 1em;">
                     <div class="column">
                         <h3>Daily Increase</h3>
                         <strong id="changeCount"></strong>
@@ -65,31 +70,44 @@
                         <h1 id="infoTitle">Global Data</h1>
                         <h1 style="font-size: 1.25em; margin-top: 0;">Time Series Chart</h1>
                         <canvas id="infectionChart" height=150></canvas>
-                        <button class="ui yellow button mini" id="activeButton" onclick="clickChartButton('activeButton')">Active Cases</button>
-                        <button class="ui blue button mini" id="recoveredButton" onclick="clickChartButton('recoveredButton')">Recovered</button>
-                        <button class="ui purple button mini" id="deathButton" onclick="clickChartButton('deathButton')">Deaths</button>
+                        <div class="four ui buttons mini">
+                            <button class="ui yellow button mini" id="activeButton" onclick="clickChartButton('activeButton')">Active Cases</button>
+                            <button class="ui blue button mini" id="recoveredButton" onclick="clickChartButton('recoveredButton')">Recovered</button>
+                            <button class="ui purple button mini" id="deathButton" onclick="clickChartButton('deathButton')">Deaths</button>
+                            <button class="ui red basic button mini" id="increaseButton" onclick="clickIncreaseButton()">Daily Change</button>
+                        </div>
                     </div>
                 </div>
                 <div class="row" style="margin-top: -1em;">
                     <div class="column legend" style="padding-left: 6em; padding-right: 6em; margin-top: -0.5em;">
                         <h4>Number of New Cases</h4>
-                        <i style="background: #ed2d1f;"></i><div style="font-size: 0.85em;">1000+</div>
-                        <i style="background: #f37240;"></i><div style="font-size: 0.85em;">500-1000</div>
-                        <i style="background: #f8a36f;"></i><div style="font-size: 0.85em;">50-500</div>
-                        <i style="background: #fccda8;"></i><div style="font-size: 0.85em;">10-50</div>
-                        <i style="background: #fff4e9;"></i><div style="font-size: 0.85em;">0-10</div>
+                        <div class="row" style="height: 1em;">
+                            <i style="background: #ed2d1f;"></i><div style="font-size: 0.85em;">1000+</div>
+                        </div>
+                        <div class="row" style="height: 1em;">
+                            <i style="background: #f37240;"></i><div style="font-size: 0.85em;">500-1000</div>
+                        </div>
+                        <div class="row" style="height: 1em;">
+                            <i style="background: #f8a36f;"></i><div style="font-size: 0.85em;">50-500</div>
+                        </div>
+                        <div class="row" style="height: 1em;">
+                            <i style="background: #fccda8;"></i><div style="font-size: 0.85em;">10-50</div>
+                        </div>
+                        <div class="row" style="height: 1em;">
+                            <i style="background: #fff4e9;"></i><div style="font-size: 0.85em;">0-10</div>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="column">
-                        <p style="font-size: 10px; margin-top: -2.3em;" id="lastUpdated"></p>
+                        <p style="font-size: 0.8em; margin-top: -2.3em;" id="lastUpdated"></p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer">
             <p>Developed by Justin Bishay, Computer Science M.S. Student, <a href="https://jkbishay.github.io/" target="_blank">Website</a></p>
-            <div class="ui three column grid" style="margin-top: -25px; padding-left: 9%; padding-right: 9%;">
+            <div class="ui three column grid" style="margin-top: -2em; padding-left: 9%; padding-right: 9%; font-size: 0.9em;">
                 <div class="column">
                     <p>
                         <a href="http://datascience.hawaii.edu/" target="_blank" style="color: lightgray;">
@@ -594,7 +612,7 @@
             }
         });
 
-        //TODO: add daily increase series, reset buttons on makeChart()
+        // create chart based on selected region and province
         function makeChart(region, province = "") {
             // time series data for charts
             Promise.all([
@@ -618,6 +636,7 @@
                 var recs = [];
                 var deaths = [];
                 var active = [];
+                var increase = [];
                 if (region == "Global") {
                     for (let [key, value] of Object.entries(data[0][0])) {
                         if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
@@ -662,10 +681,6 @@
                                 j++;
                             }
                         }
-                    }
-
-                    for (let i = 0; i < confs.length; i++) {
-                        active.push(confs[i] - recs[i] - deaths[i]);
                     }
                 }
                 else {
@@ -723,16 +738,24 @@
                     recs.splice(0, firstIdx);
                     deaths.splice(0, firstIdx);
                     dateLabels.splice(0, firstIdx);
-
-                    for (let i = 0; i < confs.length; i++) {
-                        active.push(confs[i] - recs[i] - deaths[i]);
-                    }
                 }
 
+                // create active cases data
+                for (let i = 0; i < confs.length; i++) {
+                    active.push(confs[i] - recs[i] - deaths[i]);
+                }
+
+                // create daily change data
+                increase.push(confs[0]);
+                for (let i = 0; i < confs.length - 1; i++) {
+                    increase.push(confs[i+1] - confs[i]);
+                }
+
+                // reset buttons when redrawing chart
                 document.getElementById('activeButton').className = "ui yellow button mini";
                 document.getElementById('recoveredButton').className = "ui blue button mini";
                 document.getElementById('deathButton').className = "ui purple button mini";
-
+                document.getElementById('increaseButton').className = "ui red basic button mini";
 
                 Chart.defaults.global.defaultFontColor = 'lightgray';
                 chart = new Chart(ctx, {
@@ -763,6 +786,15 @@
                                 data: deaths,
                                 pointRadius: 1,
                                 fill: false
+                            },
+                            {
+                                label: "Daily Increase",
+                                backgroundColor: "#ed2d1f",
+                                borderColor: "#ed2d1f",
+                                data: increase,
+                                pointRadius: 1,
+                                fill: false,
+                                hidden: true
                             }
                         ]
                     },
@@ -787,6 +819,7 @@
         // initialize page with global charts
         makeChart("Global");
 
+        // handle click with dataset chart buttons
         function clickChartButton(buttonID) {
             var color = "";
             var set = "";
@@ -808,10 +841,41 @@
             if (button.classList.contains("basic")) {
                 button.className = "ui " + color + " button mini";
                 chart.data.datasets.find(item => item['label'] == set).hidden = false;
+                // turn off daily change dataset
+                document.getElementById('increaseButton').className = "ui red basic button mini";
+                chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = true;
             }
             else {
                 button.className = "ui " + color + " basic button mini";
                 chart.data.datasets.find(item => item['label'] == set).hidden = true;
+            }
+            chart.update();
+        }
+
+        // handle click on daily change chart button
+        function clickIncreaseButton() {
+            var button = document.getElementById('increaseButton');
+            if (button.classList.contains("basic")) {
+                button.className = "ui red button mini";
+                chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = false;
+                // turn off other datasets
+                document.getElementById('activeButton').className = "ui yellow basic button mini";
+                chart.data.datasets.find(item => item['label'] == "Active Cases").hidden = true;
+                document.getElementById('recoveredButton').className = "ui blue basic button mini";
+                chart.data.datasets.find(item => item['label'] == "Recovered").hidden = true;
+                document.getElementById('deathButton').className = "ui purple basic button mini";
+                chart.data.datasets.find(item => item['label'] == "Deaths").hidden = true;
+            }
+            else {
+                button.className = "ui red basic button mini";
+                chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = true;
+                // turn on other datasets
+                document.getElementById('activeButton').className = "ui yellow button mini";
+                chart.data.datasets.find(item => item['label'] == "Active Cases").hidden = false;
+                document.getElementById('recoveredButton').className = "ui blue button mini";
+                chart.data.datasets.find(item => item['label'] == "Recovered").hidden = false;
+                document.getElementById('deathButton').className = "ui purple button mini";
+                chart.data.datasets.find(item => item['label'] == "Deaths").hidden = false;
             }
             chart.update();
         }
