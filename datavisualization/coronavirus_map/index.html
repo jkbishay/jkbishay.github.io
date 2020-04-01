@@ -801,11 +801,11 @@
                     increase.push(confs[i+1] - confs[i]);
                 }
 
-                // reset buttons when redrawing chart
-                document.getElementById('activeButton').className = "ui yellow button mini";
-                document.getElementById('recoveredButton').className = "ui blue button mini";
-                document.getElementById('deathButton').className = "ui purple button mini";
-                document.getElementById('increaseButton').className = "ui red button mini";
+                // show/hide series depending on current button selection
+                var activeHide = document.getElementById('activeButton').classList.contains("basic");
+                var recHide = document.getElementById('recoveredButton').classList.contains("basic");
+                var deathHide = document.getElementById('deathButton').classList.contains("basic");
+                var increaseHide = document.getElementById('increaseButton').classList.contains("basic");
 
                 Chart.defaults.global.defaultFontColor = 'lightgray';
                 chart = new Chart(ctx, {
@@ -819,7 +819,8 @@
                                 borderColor: "gold",
                                 data: active,
                                 pointRadius: 1,
-                                fill: false
+                                fill: false,
+                                hidden: activeHide
                             },
                             {
                                 label: "Recovered",
@@ -827,7 +828,8 @@
                                 borderColor: "dodgerblue",
                                 data: recs,
                                 pointRadius: 1,
-                                fill: false
+                                fill: false,
+                                hidden: recHide
                             },
                             {
                                 label: "Deaths",
@@ -835,7 +837,8 @@
                                 borderColor: "orchid",
                                 data: deaths,
                                 pointRadius: 1,
-                                fill: false
+                                fill: false,
+                                hidden: deathHide
                             },
                             {
                                 label: "Daily Increase",
@@ -843,7 +846,8 @@
                                 borderColor: "#ed2d1f",
                                 data: increase,
                                 pointRadius: 1,
-                                fill: false                            }
+                                fill: false,
+                                hidden: increaseHide                        }
                         ]
                     },
                     options: {
