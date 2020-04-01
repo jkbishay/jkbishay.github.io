@@ -92,10 +92,6 @@ strong.caseChange {
     color: #ed2d1f;
 }
 
-strong.confirmed {
-    color: orange;
-}
-
 strong.recovered {
     color: dodgerblue;
 }

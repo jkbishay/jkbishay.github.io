@@ -68,7 +68,7 @@
                 <div class="row">
                     <div class="column">
                         <h1 id="infoTitle">Global Data</h1>
-                        <h1 style="font-size: 1.25em; margin-top: 0;">Time Series Chart</h1>
+                        <h1 style="font-size: 1.25em; margin-top: 0;">Cases</h1>
                         <canvas id="infectionChart" height=150></canvas>
                         <div class="four ui buttons mini">
                             <button class="ui yellow button mini" id="activeButton" onclick="clickChartButton('activeButton')">Active Cases</button>
@@ -201,63 +201,73 @@
             }
         }
 
-        var previousDay = currentDay - 1;
-        var previousMonth = currentMonth;
-        var previousYear = currentYear;
-        // if month has changed
-        if (previousDay <= 0) {
-            switch(currentMonth - 1) {
-                case 1:
-                case 3:
-                case 5:
-                case 7:
-                case 8:
-                case 10:
-                    previousDay = 31;
-                    if (currentMonth - 1 < 10) {
-                        previousMonth = '0' + (currentMonth - 1);
-                    }
-                    else {
-                        previousMonth = '' + (currentMonth - 1);
-                    }
-                    break;
-                case 2:
-                    if (currentYear % 4 == 0) {
-                        previousDay = 29;
-                    }
-                    else {
-                        previousDay = 28;
-                    }
-                    previousMonth = '0' + (currentMonth - 1);
-                    break;
-                case 4:
-                case 6:
-                case 9:
-                case 11:
-                    previousDay = 30;
-                    if (currentMonth - 1 < 10) {
-                        previousMonth = '0' + (currentMonth - 1);
-                    }
-                    else {
-                        previousMonth = '' + (currentMonth - 1);
-                    }
-                    break;
-                // THIS IS DECEMBER
-                case 0:
-                    previousDay = 31;
-                    previousYear--;
-                    previousMonth = '12';
-                    break;
+        function getYesterday(day, month, year) {
+            var previousDay = day - 1;
+            var previousMonth = month;
+            var previousYear = year;
+            // if month has changed
+            if (previousDay <= 0) {
+                switch(month - 1) {
+                    case 1:
+                    case 3:
+                    case 5:
+                    case 7:
+                    case 8:
+                    case 10:
+                        previousDay = 31;
+                        if (month - 1 < 10) {
+                            previousMonth = '0' + (month - 1);
+                        }
+                        else {
+                            previousMonth = '' + (month - 1);
+                        }
+                        break;
+                    case 2:
+                        if (currentYear % 4 == 0) {
+                            previousDay = 29;
+                        }
+                        else {
+                            previousDay = 28;
+                        }
+                        previousMonth = '0' + (month - 1);
+                        break;
+                    case 4:
+                    case 6:
+                    case 9:
+                    case 11:
+                        previousDay = 30;
+                        if (month - 1 < 10) {
+                            previousMonth = '0' + (month - 1);
+                        }
+                        else {
+                            previousMonth = '' + (month - 1);
+                        }
+                        break;
+                    // THIS IS DECEMBER
+                    case 0:
+                        previousDay = 31;
+                        previousYear--;
+                        previousMonth = '12';
+                        break;
+                }
             }
+
+            return { day: previousDay, month: previousMonth, year: previousYear };
         }
 
-        // console.log(currentMonth + "-" + currentDay + "-" + currentYear);
-        // console.log(previousMonth + "-" + previousDay + "-" + previousYear);
+        var yest = getYesterday(currentDay, currentMonth, currentYear);
+        var yest2 = getYesterday(yest.day, yest.month, yest.year);
+
+        console.log(currentMonth + "-" + currentDay + "-" + currentYear);
+        console.log(yest.month + "-" + yest.day + "-" + yest.year);
+        console.log(yest2.month + "-" + yest2.day + "-" + yest2.year);
+
 
         // process data
         Promise.all([
-            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + previousMonth + "-" + previousDay + "-" + previousYear + ".csv"),
+            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + yest.month + "-" + yest.day + "-" + yest.year + ".csv"),
             d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + currentMonth + "-" + currentDay + "-" + currentYear + ".csv"),
+            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + yest2.month + "-" + yest2.day + "-" + yest2.year + ".csv"),
             d3.csv("./statelatlong.csv")
         ]).then(function (data) {
             // global totals counters
@@ -267,29 +277,30 @@
             var globalNewCases = 0;
 
             var markers = [];
-            var radii = [1, 2, 3, 6, 8, 11, 14];
+            var radii = [1, 2, 3, 5, 8, 11, 14];
 
             // process data for non-USA regions
             for (let i = 0; i < data[1].length; i++) {
                 var today = data[1][i];
                 if (today.Country_Region !== 'US' && today.Confirmed != 0) {
                     var yesterday = data[0].find(item => item['Country_Region'] === today['Country_Region'] && item['Province_State'] === today['Province_State']);
-                    plotPoint(today, yesterday);
+                    var yesterYesterday = data[2].find(item => item['Country_Region'] === today['Country_Region'] && item['Province_State'] === today['Province_State']);
+                    plotPoint(today, yesterday, yesterYesterday);
                 }
-                else if (today.Country_Region === 'US' && today.Province_State === 'Recovered') {
+                else if ((today.Country_Region === 'US' || today.Country_Region === 'Canada') && today.Province_State === 'Recovered') {
                     globalRecovered += parseInt(today.Recovered, 10);
                 }
             }
 
             // process data for USA by state
-            for (let i = 0; i < data[2].length; i++) {
+            for (let i = 0; i < data[3].length; i++) {
                 var conf = 0;
                 var rec = 0;
                 var dead = 0;
 
                 // today's data
                 for (let j = 0; j < data[1].length; j++) {
-                    if (data[1][j].Province_State === data[2][i].City) {
+                    if (data[1][j].Province_State === data[3][i].City) {
                         conf += parseInt(data[1][j].Confirmed, 10);
                         rec += parseInt(data[1][j].Recovered, 10);
                         dead += parseInt(data[1][j].Deaths, 10);
@@ -297,10 +308,10 @@
                 }
 
                 var today = {
-                    Province_State: data[2][i].City,
+                    Province_State: data[3][i].City,
                     Country_Region: 'US',
-                    Lat: data[2][i].Latitude,
-                    Long_: data[2][i].Longitude,
+                    Lat: data[3][i].Latitude,
+                    Long_: data[3][i].Longitude,
                     Confirmed: conf,
                     Recovered: rec,
                     Deaths: dead
@@ -312,7 +323,7 @@
 
                 // yesterday's data
                 for (let j = 0; j < data[0].length; j++) {
-                    if (data[0][j].Province_State === data[2][i].City) {
+                    if (data[0][j].Province_State === data[3][i].City) {
                         conf += parseInt(data[0][j].Confirmed, 10);
                         rec += parseInt(data[0][j].Recovered, 10);
                         dead += parseInt(data[0][j].Deaths, 10);
@@ -320,10 +331,33 @@
                 }
 
                 var yesterday = {
-                    Province_State: data[2][i].City,
+                    Province_State: data[3][i].City,
                     Country_Region: 'US',
-                    Lat: data[2][i].Latitude,
-                    Long_: data[2][i].Longitude,
+                    Lat: data[3][i].Latitude,
+                    Long_: data[3][i].Longitude,
+                    Confirmed: conf,
+                    Recovered: rec,
+                    Deaths: dead
+                }
+
+                conf = 0;
+                rec = 0;
+                dead = 0;
+
+                // two days ago's data
+                for (let j = 0; j < data[2].length; j++) {
+                    if (data[2][j].Province_State === data[3][i].City) {
+                        conf += parseInt(data[2][j].Confirmed, 10);
+                        rec += parseInt(data[2][j].Recovered, 10);
+                        dead += parseInt(data[2][j].Deaths, 10);
+                    }
+                }
+
+                var twoDaysBack = {
+                    Province_State: data[3][i].City,
+                    Country_Region: 'US',
+                    Lat: data[3][i].Latitude,
+                    Long_: data[3][i].Longitude,
                     Confirmed: conf,
                     Recovered: rec,
                     Deaths: dead
@@ -331,7 +365,7 @@
 
                 // do not plot points if no cases exist
                 if (today.Confirmed != 0) {
-                    plotPoint(today, yesterday);
+                    plotPoint(today, yesterday, twoDaysBack);
                 }
             }
 
@@ -340,7 +374,8 @@
             document.getElementById('deathCount').innerHTML = globalDeaths.toLocaleString();
             document.getElementById('changeCount').innerHTML = '<i class="arrow up icon"></i>' + globalNewCases.toLocaleString();
 
-            function plotPoint(today, yesterday) {
+            // function to take data and plot onto map
+            function plotPoint(today, yesterday, twoDaysAgo) {
                 // data is weird, double check if Active is truly 0
                 if (!today.Active || today.Active == 0) {
                     today.Active = parseInt(today.Confirmed, 10) - parseInt(today.Recovered, 10) - parseInt(today.Deaths, 10);
@@ -370,12 +405,9 @@
                     radius = radii[5];
                 }
 
-                var caseChange = 0;
+                var caseChange = parseInt(today.Confirmed, 10);
                 if (yesterday) {
                     caseChange = parseInt(today.Confirmed, 10) - parseInt(yesterday.Confirmed, 10);
-                }
-                else {
-                    caseChange = parseInt(today.Confirmed, 10);
                 }
 
                 var dailyInfo;
@@ -383,7 +415,23 @@
                     dailyInfo = 'New Cases: <strong>' + caseChange + '</strong><br>';
                 }
                 else {
-                    dailyInfo = 'New Cases: <strong class="caseChange"><i class="arrow up icon"></i>' + caseChange + '</strong><br>'
+                    dailyInfo = 'New Cases: <strong class="caseChange"><i class="arrow up icon"></i>' + caseChange + '</strong><br>';
+                }
+
+                var rateChange = caseChange;
+                if (twoDaysAgo) {
+                    rateChange = caseChange - (parseInt(yesterday.Confirmed, 10) - parseInt(twoDaysAgo.Confirmed, 10));
+                }
+
+                var rateInfo;
+                if (rateChange > 0) {
+                    rateInfo = 'Change in Daily Increase: <strong style="color: orange;"><i class="arrow up icon"></i>' + rateChange + '</strong><br>';
+                }
+                else if (rateChange < 0) {
+                    rateInfo = 'Change in Daily Increase: <strong style="color: cyan;"><i class="arrow down icon"></i>' + (rateChange * -1) + '</strong><br>';
+                }
+                else {
+                    rateInfo = 'Change in Daily Increase: <strong>' + rateChange + '</strong><br>';
                 }
 
                 globalNewCases += parseInt(caseChange, 10);
@@ -406,18 +454,20 @@
                 if (today['Province_State']) {
                     popup = '<div id="PopupTitle">' + today['Province_State'] + ', ' + today['Country_Region'] + '</div>'
                             + '<div id="PopupBody">' + dailyInfo
+                            + rateInfo + '<br>'
                             + 'Active: <strong class="active">' + today.Active + '</strong><br>'
                             + 'Recovered: <strong class="recovered">' + today.Recovered + '</strong><br>' 
                             + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong><br>'
-                            + 'Total Cases: <strong class="confirmed">' + today.Confirmed + '</strong></div>';
+                            + 'Total Cases: <strong>' + today.Confirmed + '</strong></div>';
                 }
                 else {
                     popup = '<div id="PopupTitle">' + today['Country_Region'] + '</div>'
                             + '<div id="PopupBody">' + dailyInfo
+                            + rateInfo + '<br>'
                             + 'Active: <strong class="active">' + today.Active + '</strong><br>'
                             + 'Recovered: <strong class="recovered">' + today.Recovered + '</strong><br>' 
                             + 'Deaths: <strong class="deaths">' + today.Deaths + '</strong><br>'
-                            + 'Total Cases: <strong class="confirmed">' + today.Confirmed + '</strong></div>';
+                            + 'Total Cases: <strong>' + today.Confirmed + '</strong></div>';
                 }
 
                 // dont plot garbage locations, but count their data towards totals
@@ -464,7 +514,7 @@
             // change marker size on zoom
             mymap.on('zoomend', function() {
                 var zoom = mymap.getZoom();
-                var zoom2 = [1, 2, 3, 6, 8, 11, 14];
+                var zoom2 = [1, 2, 3, 5, 8, 11, 14];
                 var zoom3 = [2, 3, 6, 9, 12, 16, 22];
                 var zoom4 = [4, 7, 11, 15, 19, 23, 30];
                 var zoom5 = [6, 10, 14, 19, 24, 29, 36];
@@ -847,7 +897,8 @@
                                 data: increase,
                                 pointRadius: 1,
                                 fill: false,
-                                hidden: increaseHide                        }
+                                hidden: increaseHide
+                            }
                         ]
                     },
                     options: {
@@ -903,34 +954,6 @@
             else {
                 button.className = "ui " + color + " basic button mini";
                 chart.data.datasets.find(item => item['label'] == set).hidden = true;
-            }
-            chart.update();
-        }
-
-        // handle click on daily change chart button
-        function clickIncreaseButton() {
-            var button = document.getElementById('increaseButton');
-            if (button.classList.contains("basic")) {
-                button.className = "ui red button mini";
-                chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = false;
-                // turn off other datasets
-                document.getElementById('activeButton').className = "ui yellow basic button mini";
-                chart.data.datasets.find(item => item['label'] == "Active Cases").hidden = true;
-                document.getElementById('recoveredButton').className = "ui blue basic button mini";
-                chart.data.datasets.find(item => item['label'] == "Recovered").hidden = true;
-                document.getElementById('deathButton').className = "ui purple basic button mini";
-                chart.data.datasets.find(item => item['label'] == "Deaths").hidden = true;
-            }
-            else {
-                button.className = "ui red basic button mini";
-                chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = true;
-                // turn on other datasets
-                document.getElementById('activeButton').className = "ui yellow button mini";
-                chart.data.datasets.find(item => item['label'] == "Active Cases").hidden = false;
-                document.getElementById('recoveredButton').className = "ui blue button mini";
-                chart.data.datasets.find(item => item['label'] == "Recovered").hidden = false;
-                document.getElementById('deathButton').className = "ui purple button mini";
-                chart.data.datasets.find(item => item['label'] == "Deaths").hidden = false;
             }
             chart.update();
         }
