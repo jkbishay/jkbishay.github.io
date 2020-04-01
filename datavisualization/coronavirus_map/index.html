@@ -138,53 +138,6 @@
         // NOTE: currently set to update at 12:00 AM UTC
         var d = new Date();
         var currentDay;
-        // if (d.getUTCDate() - 1 <= 0) {
-        //     if (previousDay <= 0) {
-        //         switch(currentMonth - 1) {
-        //             case 1:
-        //             case 3:
-        //             case 5:
-        //             case 7:
-        //             case 8:
-        //             case 10:
-        //                 previousDay = 31;
-        //                 if (currentMonth - 1 < 10) {
-        //                     previousMonth = '0' + (currentMonth - 1);
-        //                 }
-        //                 else {
-        //                     previousMonth = '' + (currentMonth - 1);
-        //                 }
-        //                 break;
-        //             case 2:
-        //                 if (currentYear % 4 == 0) {
-        //                     previousDay = 29;
-        //                 }
-        //                 else {
-        //                     previousDay = 28;
-        //                 }
-        //                 previousMonth = '0' + (currentMonth - 1);
-        //                 break;
-        //             case 4:
-        //             case 6:
-        //             case 9:
-        //             case 11:
-        //                 previousDay = 30;
-        //                 if (currentMonth - 1 < 10) {
-        //                     previousMonth = '0' + (currentMonth - 1);
-        //                 }
-        //                 else {
-        //                     previousMonth = '' + (currentMonth - 1);
-        //                 }
-        //                 break;
-        //             // THIS IS DECEMBER
-        //             case 0:
-        //                 previousDay = 31;
-        //                 previousYear--;
-        //                 previousMonth = '12';
-        //                 break;
-        //         }
-        //     }
-        // }
         if (d.getUTCDate() < 10) {
             currentDay = '0' + (d.getUTCDate() - 1);
         }
@@ -200,6 +153,53 @@
             currentMonth = '' + (d.getUTCMonth() + 1);
         }
         var currentYear = d.getUTCFullYear();
+
+        // CHECK if at the start of new month
+        if (currentDay <= 0) {
+            switch(currentMonth - 1) {
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                case 8:
+                case 10:
+                    currentDay = 31;
+                    if (currentMonth - 1 < 10) {
+                        currentMonth = '0' + (currentMonth - 1);
+                    }
+                    else {
+                        currentMonth = '' + (currentMonth - 1);
+                    }
+                    break;
+                case 2:
+                    if (currentYear % 4 == 0) {
+                        currentDay = 29;
+                    }
+                    else {
+                        currentDay = 28;
+                    }
+                    currentMonth = '0' + (currentMonth - 1);
+                    break;
+                case 4:
+                case 6:
+                case 9:
+                case 11:
+                    currentDay = 30;
+                    if (currentMonth - 1 < 10) {
+                        currentMonth = '0' + (currentMonth - 1);
+                    }
+                    else {
+                        currentMonth = '' + (currentMonth - 1);
+                    }
+                    break;
+                // THIS IS DECEMBER
+                case 0:
+                    currentDay = 31;
+                    currentYear--;
+                    currentMonth = '12';
+                    break;
+            }
+        }
 
         var previousDay = currentDay - 1;
         var previousMonth = currentMonth;
@@ -251,15 +251,13 @@
             }
         }
 
-        console.log(currentMonth + "-" + currentDay + "-" + currentYear);
-        console.log(previousMonth + "-" + previousDay + "-" + previousYear);
+        // console.log(currentMonth + "-" + currentDay + "-" + currentYear);
+        // console.log(previousMonth + "-" + previousDay + "-" + previousYear);
 
         // process data
         Promise.all([
-            // d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + previousMonth + "-" + previousDay + "-" + previousYear + ".csv"),
-            // d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + currentMonth + "-" + currentDay + "-" + currentYear + ".csv"),
-            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + "03" + "-" + "30" + "-" + "2020" + ".csv"),
-            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + "03" + "-" + "31" + "-" + "2020" + ".csv"),
+            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + previousMonth + "-" + previousDay + "-" + previousYear + ".csv"),
+            d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + currentMonth + "-" + currentDay + "-" + currentYear + ".csv"),
             d3.csv("./statelatlong.csv")
         ]).then(function (data) {
             // global totals counters
