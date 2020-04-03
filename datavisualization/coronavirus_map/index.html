@@ -203,6 +203,9 @@
 
         function getYesterday(day, month, year) {
             var previousDay = day - 1;
+            if (previousDay < 10) {
+                previousDay = '0' + previousDay;
+            }
             var previousMonth = month;
             var previousYear = year;
             // if month has changed
@@ -450,6 +453,22 @@
                     color = '#f37240'
                 }
                 
+                /// EXPERIMENTING ///
+                // var color = '#f1f1f1';
+                // if (rateChange < -20 && rateChange >= -200) {
+                //     color = '#a4d5f8';
+                // }
+                // else if (rateChange < -200) {
+                //     color = '#00bbff'
+                // }
+                // else if (caseChange > 20 && caseChange <= 200) {
+                //     color = '#fe9a84'
+                // }
+                // else if (caseChange > 200) {
+                //     color = '#ed2d1f'
+                // }
+                
+
                 // popup info
                 if (today['Province_State']) {
                     popup = '<div id="PopupTitle">' + today['Province_State'] + ', ' + today['Country_Region'] + '</div>'
