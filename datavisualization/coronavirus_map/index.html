@@ -361,7 +361,7 @@
                 var rec = 0;
                 var dead = 0;
 
-                if (data[3][i].City !== "Northern Mariana Islands")
+                if (data[3][i].City != "Northern Mariana Islands")
                     rec = parseInt(USrecs.find(item => item.State == data[3][i].City).Recovered, 10);
 
                 // today's data
@@ -519,16 +519,16 @@
                 globalNewCases += parseInt(caseChange, 10);
                     
                 var color = '#ed2d1f';
-                if (today.New <= 20) {
+                if (caseChange <= 20) {
                     color = '#fff4e9';
                 }
-                else if (today.New <= 100) {
+                else if (caseChange <= 100) {
                     color = '#fccda8'
                 }
-                else if (today.New <= 1000) {
+                else if (caseChange <= 1000) {
                     color = '#f8a36f'
                 }
-                else if (today.New <= 2000) {
+                else if (caseChange <= 2000) {
                     color = '#f37240'
                 }
                 
