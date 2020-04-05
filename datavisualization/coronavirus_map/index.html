@@ -82,19 +82,19 @@
                     <div class="column legend" style="padding-left: 6em; padding-right: 6em; margin-top: -0.5em;">
                         <h4>Number of New Cases</h4>
                         <div class="row" style="height: 1em;">
-                            <i style="background: #ed2d1f;"></i><div style="font-size: 0.85em;">1000+</div>
+                            <i style="background: #ed2d1f;"></i><div style="font-size: 0.85em;">2000+</div>
                         </div>
                         <div class="row" style="height: 1em;">
-                            <i style="background: #f37240;"></i><div style="font-size: 0.85em;">500-1000</div>
+                            <i style="background: #f37240;"></i><div style="font-size: 0.85em;">1000-2000</div>
                         </div>
                         <div class="row" style="height: 1em;">
-                            <i style="background: #f8a36f;"></i><div style="font-size: 0.85em;">50-500</div>
+                            <i style="background: #f8a36f;"></i><div style="font-size: 0.85em;">100-1000</div>
                         </div>
                         <div class="row" style="height: 1em;">
-                            <i style="background: #fccda8;"></i><div style="font-size: 0.85em;">10-50</div>
+                            <i style="background: #fccda8;"></i><div style="font-size: 0.85em;">20-100</div>
                         </div>
                         <div class="row" style="height: 1em;">
-                            <i style="background: #fff4e9;"></i><div style="font-size: 0.85em;">0-10</div>
+                            <i style="background: #fff4e9;"></i><div style="font-size: 0.85em;">0-20</div>
                         </div>
                     </div>
                 </div>
@@ -519,16 +519,16 @@
                 globalNewCases += parseInt(caseChange, 10);
                     
                 var color = '#ed2d1f';
-                if (caseChange <= 10) {
+                if (today.New <= 20) {
                     color = '#fff4e9';
                 }
-                else if (caseChange <= 50) {
+                else if (today.New <= 100) {
                     color = '#fccda8'
                 }
-                else if (caseChange <= 500) {
+                else if (today.New <= 1000) {
                     color = '#f8a36f'
                 }
-                else if (caseChange <= 1000) {
+                else if (today.New <= 2000) {
                     color = '#f37240'
                 }
                 
