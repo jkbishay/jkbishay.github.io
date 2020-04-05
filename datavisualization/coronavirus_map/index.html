@@ -85,10 +85,10 @@
                             <i style="background: #ed2d1f;"></i><div style="font-size: 0.85em;">2000+</div>
                         </div>
                         <div class="row" style="height: 1em;">
-                            <i style="background: #f37240;"></i><div style="font-size: 0.85em;">1000-2000</div>
+                            <i style="background: #f37240;"></i><div style="font-size: 0.85em;">500-2000</div>
                         </div>
                         <div class="row" style="height: 1em;">
-                            <i style="background: #f8a36f;"></i><div style="font-size: 0.85em;">100-1000</div>
+                            <i style="background: #f8a36f;"></i><div style="font-size: 0.85em;">100-500</div>
                         </div>
                         <div class="row" style="height: 1em;">
                             <i style="background: #fccda8;"></i><div style="font-size: 0.85em;">20-100</div>
@@ -340,7 +340,7 @@
             var globalNewCases = 0;
 
             var markers = [];
-            var radii = [1, 2, 3, 5, 8, 11, 14];
+            var radii = [1, 2, 3, 5, 7, 10, 13];
 
             // process data for non-USA regions
             for (let i = 0; i < data[1].length; i++) {
@@ -361,8 +361,10 @@
                 var rec = 0;
                 var dead = 0;
 
-                if (data[3][i].City != "Northern Mariana Islands")
+                if (data[3][i].City != "Northern Mariana Islands") {
+                    console.log(data[3][i].City);
                     rec = parseInt(USrecs.find(item => item.State == data[3][i].City).Recovered, 10);
+                }
 
                 // today's data
                 for (let j = 0; j < data[1].length; j++) {
@@ -480,10 +482,10 @@
                 else if (today.Active <= 1000) {
                     radius = radii[3];
                 }
-                else if (today.Active <= 5000) {
+                else if (today.Active <= 10000) {
                     radius = radii[4];
                 }
-                else if (today.Active <= 10000) {
+                else if (today.Active <= 20000) {
                     radius = radii[5];
                 }
 
@@ -525,7 +527,7 @@
                 else if (caseChange <= 100) {
                     color = '#fccda8'
                 }
-                else if (caseChange <= 1000) {
+                else if (caseChange <= 500) {
                     color = '#f8a36f'
                 }
                 else if (caseChange <= 2000) {
@@ -612,8 +614,8 @@
             // change marker size on zoom
             mymap.on('zoomend', function() {
                 var zoom = mymap.getZoom();
-                var zoom2 = [1, 2, 3, 5, 8, 11, 14];
-                var zoom3 = [2, 3, 6, 9, 12, 16, 22];
+                var zoom2 = radii;
+                var zoom3 = [2, 3, 5, 8, 12, 16, 22];
                 var zoom4 = [4, 7, 11, 15, 19, 23, 30];
                 var zoom5 = [6, 10, 14, 19, 24, 29, 36];
 
