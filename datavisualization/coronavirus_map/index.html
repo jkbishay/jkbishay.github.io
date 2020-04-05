@@ -265,13 +265,73 @@
         console.log(yest.month + "-" + yest.day + "-" + yest.year);
         console.log(yest2.month + "-" + yest2.day + "-" + yest2.year);
 
+        // begin compiling data
+        Promise.all([d3.csv("./statelatlong.csv"), d3.csv("./canadaprovinces.csv")])
+        .then(function (locations) {
+            var stateOrder = [];
+            var filesUSA = [];
+            var filesCanada = [];
+            var canadaOrder = [];
+            for (let i = 0; i < locations[0].length; i++) {
+                stateOrder.push(locations[0][i].City);
+                var fileName;
+                switch(locations[0][i].City) {
+                    case "Washington":
+                        fileName = "WA";
+                        break;
+                    case "District of Columbia":
+                        fileName = "Washington%20DC";
+                        break;
+                    case "Virgin Islands":
+                        fileName = "US%20Virgin%20Islands";
+                        break;
+                    case "Northern Mariana Islands":
+                        fileName = "";
+                        break;
+                    default:
+                        fileName = locations[0][i].City.split(' ').join('%20');
+                        break;
+                }
 
-        // process data
+                if (fileName != "") {
+                    filesUSA.push(d3.csv("https://raw.githubusercontent.com/Perishleaf/data-visualisation-scripts/master/dash-2019-coronavirus/cumulative_data/"
+                    + fileName + ".csv"));
+                }
+            }
+
+            for (let i = 0; i < locations[1].length; i++) {
+                canadaOrder.push(locations[1][i].Province);
+                filesCanada.push(d3.csv("https://raw.githubusercontent.com/Perishleaf/data-visualisation-scripts/master/dash-2019-coronavirus/cumulative_data/"
+                    + locations[1][i].Province.split(' ').join('%20') + ".csv"));
+            }
+
+        // get files for US states recoveries
+        Promise.all(filesUSA).then(function (USstates) {
+            var USrecs = [];
+            for (let i = 0; i < USstates.length; i++) {
+                USrecs.push({
+                    State: stateOrder[i],
+                    Recovered: USstates[i][0].Recovered
+                });
+            }
+
+        // get files for Canadian provinces recoveries
+        Promise.all(filesCanada).then(function (canadaStates) {
+            var canadaRecs = [];
+            for (let i = 0; i < canadaStates.length; i++) {
+                canadaRecs.push({
+                    Province: canadaOrder[i],
+                    Recovered: canadaStates[i][0].Recovered
+                });
+            }
+
+        // process full data
         Promise.all([
             d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + yest.month + "-" + yest.day + "-" + yest.year + ".csv"),
             d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + currentMonth + "-" + currentDay + "-" + currentYear + ".csv"),
             d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/" + yest2.month + "-" + yest2.day + "-" + yest2.year + ".csv"),
-            d3.csv("./statelatlong.csv")
+            d3.csv("./statelatlong.csv"),
+            d3.csv("./canadaprovinces.csv")
         ]).then(function (data) {
             // global totals counters
             var globalActive = 0;
@@ -285,7 +345,7 @@
             // process data for non-USA regions
             for (let i = 0; i < data[1].length; i++) {
                 var today = data[1][i];
-                if (today.Country_Region !== 'US' && today.Confirmed != 0) {
+                if (today.Country_Region !== 'US' && today.Country_Region !== 'Canada' && today.Confirmed != 0) {
                     var yesterday = data[0].find(item => item['Country_Region'] === today['Country_Region'] && item['Province_State'] === today['Province_State']);
                     var yesterYesterday = data[2].find(item => item['Country_Region'] === today['Country_Region'] && item['Province_State'] === today['Province_State']);
                     plotPoint(today, yesterday, yesterYesterday);
@@ -301,11 +361,13 @@
                 var rec = 0;
                 var dead = 0;
 
+                if (data[3][i].City !== "Northern Mariana Islands")
+                    rec = parseInt(USrecs.find(item => item.State == data[3][i].City).Recovered, 10);
+
                 // today's data
                 for (let j = 0; j < data[1].length; j++) {
                     if (data[1][j].Province_State === data[3][i].City) {
                         conf += parseInt(data[1][j].Confirmed, 10);
-                        rec += parseInt(data[1][j].Recovered, 10);
                         dead += parseInt(data[1][j].Deaths, 10);
                     }
                 }
@@ -372,6 +434,19 @@
                 }
             }
 
+            // process data for canadian provinces
+            for (let i = 0; i < data[4].length; i++) {
+                var today = data[1].find(item => item.Province_State == data[4][i].Province);
+                today.Recovered = parseInt(canadaRecs.find(item => item.Province == data[4][i].Province).Recovered, 10);
+                var yesterday = data[0].find(item => item.Province_State == data[4][i].Province);
+                var twoDaysBack = data[2].find(item => item.Province_State == data[4][i].Province);
+
+                // do not plot points if no cases exist
+                if (today.Confirmed != 0) {
+                    plotPoint(today, yesterday, twoDaysBack);
+                }
+            }
+
             document.getElementById('activeCount').innerHTML = globalActive.toLocaleString();
             document.getElementById('recoveredCount').innerHTML = globalRecovered.toLocaleString();
             document.getElementById('deathCount').innerHTML = globalDeaths.toLocaleString();
@@ -385,8 +460,12 @@
                 }
 
                 globalActive += parseInt(today.Active, 10);
-                globalRecovered += parseInt(today.Recovered, 10);
                 globalDeaths += parseInt(today.Deaths, 10);
+
+                // count USA and Canada recoveries from JHU for global total
+                if (today.Country_Region !== 'US' && today.Country_Region !== 'Canada') {
+                    globalRecovered += parseInt(today.Recovered, 10);
+                }
 
                 var radius = radii[6];
                 if (today.Active <= 25) {
@@ -516,7 +595,7 @@
                 center: [28.1559614,6.6860949],
                 zoom: 2, 
                 minZoom: 2,
-                maxZoom: 6,
+                maxZoom: 7,
                 maxBounds: L.latLngBounds([-90, -240], [90, 240]),
                 maxBoundsViscosity: 0.5,
                 wheelPxPerZoomLevel: 200,
@@ -714,7 +793,7 @@
                 }
                 mymap.scrollWheelZoom.enable();
             });
-        });
+        })})})});
 
         // initialize chart here so it can be destroyed for redraws
         var canvas = document.getElementById('infectionChart');
@@ -733,18 +812,46 @@
 
         // create chart based on selected region and province
         function makeChart(region, province = "") {
-            // time series data for charts
-            Promise.all([
-                d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"),
+            var files = [d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv"),
                 d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv"),
                 d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv")
-            ]).then(function (data) {
-                var title = region;
-                if (province != "" && region != "US" && region != "Canada" && region != "Global") {
-                    title = province + ', ' + region;
+            ];
+            if (region == 'US') {
+                files = [d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_US.csv"),
+                    "",
+                    d3.csv("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_US.csv")
+                ];
+                switch(province) {
+                    case "Washington":
+                        fileName = "WA";
+                        break;
+                    case "District of Columbia":
+                        fileName = "Washington%20DC";
+                        break;
+                    case "Virgin Islands":
+                        fileName = "US%20Virgin%20Islands";
+                        break;
+                    case "Northern Mariana Islands":
+                        fileName = "";
+                        break;
+                    default:
+                        fileName = province.split(' ').join('%20');
+                        break;
                 }
-                else if (region == "US") {
-                    title = "United States of America";
+                if (fileName != "") {
+                    files[1] = d3.csv("https://raw.githubusercontent.com/Perishleaf/data-visualisation-scripts/master/dash-2019-coronavirus/cumulative_data/"
+                        + fileName + ".csv");
+                }
+            }
+            else if (region == 'Canada') {
+                files[1] = d3.csv("https://raw.githubusercontent.com/Perishleaf/data-visualisation-scripts/master/dash-2019-coronavirus/cumulative_data/"
+                    + province.split(' ').join('%20') + ".csv");
+            }
+            // time series data for charts
+            Promise.all(files).then(function (data) {
+                var title = region;
+                if (province != "" && region != "Global") {
+                    title = province + ', ' + region;
                 }
 
                 document.getElementById('infoTitle').innerHTML = title;
@@ -763,6 +870,7 @@
                         }
                     }
 
+                    // Confirmed cases
                     for (let i = 0; i < Object.keys(data[0][0]).length - 4; i++) {
                         confs[i] = 0;
                     }
@@ -776,6 +884,7 @@
                         }
                     }
 
+                    // Recovered cases
                     for (let i = 0; i < Object.keys(data[1][0]).length - 4; i++) {
                         recs[i] = 0;
                     }
@@ -789,6 +898,7 @@
                         }
                     }
 
+                    // Death cases
                     for (let i = 0; i < Object.keys(data[2][0]).length - 4; i++) {
                         deaths[i] = 0;
                     }
@@ -802,53 +912,105 @@
                         }
                     }
                 }
-                else {
-                    var areaC = data[0].find(item => item['Country/Region'] === region && item['Province/State'] === province);
-                    var areaR = data[1].find(item => item['Country/Region'] === region && item['Province/State'] === province);
-                    var areaD = data[2].find(item => item['Country/Region'] === region && item['Province/State'] === province);
-
-                    if (region == "Canada" || region == "US") {
-                        areaC = data[0].find(item => item['Country/Region'] === region);
-                        areaR = data[1].find(item => item['Country/Region'] === region);
-                        areaD = data[2].find(item => item['Country/Region'] === region);
+                // Charts for US states
+                else if (region == "US") {
+                    // get the dates
+                    for (let [key, value] of Object.entries(data[0][0])) {
+                        if (key != "Province_State" && key != "Country_Region" && key != "Lat" && key != "Long_" 
+                        && key != "Admin2" && key != "UID" && key != "iso2" && key != "iso3" && key != "code3" 
+                        && key != "FIPS" && key != "Combined_Key" && key != "Population") {
+                            dateLabels.push(key);
+                        }
                     }
 
-                    // CANADA IS A VERY SPECIAL CHILD
-                    if (region == "Canada") {
-                        for (let i = 0; i < Object.keys(data[0][0]).length - 4; i++) {
-                            confs[i] = 0;
-                        }
-                        data[0].forEach(element => {
-                            var i = 0;
-                            if (element['Country/Region'] === region) {
-                                for (let [key, value] of Object.entries(element)) {
-                                    if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
-                                        confs[i] += parseInt(value, 10);
-                                        i++;
-                                    }
+                    // Confirmed cases
+                    for (let i = 0; i < Object.keys(data[0][0]).length - 11; i++) {
+                        confs[i] = 0;
+                    }
+                    data[0].forEach(element => {
+                        var i = 0;
+                        if (element['Province_State'] === province) {
+                            for (let [key, value] of Object.entries(element)) {
+                                if (key != "Province_State" && key != "Country_Region" && key != "Lat" && key != "Long_" 
+                                && key != "Admin2" && key != "UID" && key != "iso2" && key != "iso3" && key != "code3" 
+                                && key != "FIPS" && key != "Combined_Key" && key != "Population") {
+                                    confs[i] += parseInt(value, 10);
+                                    i++;
                                 }
                             }
-                        });
+                        }
+                    });
+
+                    // Death cases
+                    for (let i = 0; i < Object.keys(data[2][0]).length - 12; i++) {
+                        deaths[i] = 0;
+                    }
+                    data[2].forEach(element => {
+                        var i = 0;
+                        if (element['Province_State'] === province) {
+                            for (let [key, value] of Object.entries(element)) {
+                                if (key != "Province_State" && key != "Country_Region" && key != "Lat" && key != "Long_" 
+                                && key != "Admin2" && key != "UID" && key != "iso2" && key != "iso3" && key != "code3" 
+                                && key != "FIPS" && key != "Combined_Key" && key != "Population") {
+                                    deaths[i] += parseInt(value, 10);
+                                    i++;
+                                }
+                            }
+                        }
+                    });
+
+                    // Recovered cases
+                    for (let i = data[1].length - 1; i >= 0; i--) {
+                        recs.push(parseInt(data[1][i].Recovered, 10));
+                    }
+
+                    // chop to 100th confirmed case, or first confirmed case if data is too small
+                    var firstIdx = confs.findIndex(val => val >= 100);
+                    if (firstIdx == -1 || firstIdx > confs.length - 5) {
+                        firstIdx = confs.findIndex(val => val >= 1);
+                    }
+                    confs.splice(0, firstIdx);
+                    recs.splice(0, firstIdx);
+                    deaths.splice(0, firstIdx);
+                    dateLabels.splice(0, firstIdx);
+                }
+                // Charts for all other regions
+                else {
+                    var areaC = data[0].find(item => item['Country/Region'] === region && item['Province/State'] === province);
+                    var areaR;
+                    var areaD = data[2].find(item => item['Country/Region'] === region && item['Province/State'] === province);
+
+                    // use other files for Canadian recoveries
+                    if (region == "Canada") {
+                        for (let i = data[1].length - 1; i >= 0; i--) {
+                            recs.push(parseInt(data[1][i].Recovered, 10));
+                        }
                     }
                     else {
-                        for (let [key, value] of Object.entries(areaC)) {
+                        areaR = data[1].find(item => item['Country/Region'] === region && item['Province/State'] === province);
+                        for (let [key, value] of Object.entries(areaR)) {
                             if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
-                                confs.push(parseInt(value, 10));
+                                recs.push(parseInt(value, 10));
                             }
                         }
                     }
-                    for (let [key, value] of Object.entries(areaR)) {
+
+                    // Confirmed cases
+                    for (let [key, value] of Object.entries(areaC)) {
                         if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
+                            confs.push(parseInt(value, 10));
                             dateLabels.push(key);
-                            recs.push(parseInt(value, 10));
                         }
                     }
+                    
+                    // Death cases
                     for (let [key, value] of Object.entries(areaD)) {
                         if (key != "Province/State" && key != "Country/Region" && key != "Lat" && key != "Long") {
                             deaths.push(parseInt(value, 10));
                         }
                     }
 
+                    // chop to 100th confirmed case, or first confirmed case if data is too small
                     var firstIdx = confs.findIndex(val => val >= 100);
                     if (firstIdx == -1 || firstIdx > confs.length - 5) {
                         firstIdx = confs.findIndex(val => val >= 1);
@@ -867,7 +1029,12 @@
                 // create daily change data
                 increase.push(confs[0]);
                 for (let i = 0; i < confs.length - 1; i++) {
-                    increase.push(confs[i+1] - confs[i]);
+                    if (confs[i+1] - confs[i] < 0) {
+                        increase.push(0);
+                    }
+                    else {
+                        increase.push(confs[i+1] - confs[i]);
+                    }
                 }
 
                 // show/hide series depending on current button selection
@@ -876,6 +1043,7 @@
                 var deathHide = document.getElementById('deathButton').classList.contains("basic");
                 var increaseHide = document.getElementById('increaseButton').classList.contains("basic");
 
+                // draw chart
                 Chart.defaults.global.defaultFontColor = 'lightgray';
                 chart = new Chart(ctx, {
                     type: 'line',
@@ -966,9 +1134,6 @@
             if (button.classList.contains("basic")) {
                 button.className = "ui " + color + " button mini";
                 chart.data.datasets.find(item => item['label'] == set).hidden = false;
-                // turn off daily change dataset
-                // document.getElementById('increaseButton').className = "ui red basic button mini";
-                // chart.data.datasets.find(item => item['label'] == "Daily Increase").hidden = true;
             }
             else {
                 button.className = "ui " + color + " basic button mini";
