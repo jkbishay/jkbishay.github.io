@@ -34,9 +34,7 @@
     <nav class="ui stackable secondary compact menu">
 
       <a href="{{ site.baseurl }}/aboutme" class = "item" style="color: whitesmoke">About Me</a>
-      {% if num_projects > 0 %}
-      <a href="{{ site.baseurl }}/projects" style="color: whitesmoke" class=" {% if include.active == "projects" %} active {% endif %}item">Projects ({{ num_projects }})</a>
-      {% endif %}
+      <a href="{{ site.baseurl }}/projects" class = "item" style="color: whitesmoke">Projects</a>
       <a href="{{ site.baseurl }}/datavisualization" class = "item" style="color: whitesmoke">Data Visualizations</a>
 
       {% if num_essays > 0 %}
