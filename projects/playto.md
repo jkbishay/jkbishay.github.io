@@ -29,7 +29,7 @@ This game is a collaborative game design project between Computer Science and An
 
 For this project, I programmed and designed many of the puzzles that were featured in our levels. I also helped to draw out and organize the layout of our levels. While designing the levels and puzzles, I took extra care to ensure that the puzzles were neither too difficult nor too easy. My programming responsibilities also included working on the game's cinematics with the camera movements and implementing the dialogue for our cutscenes. In addition to this, I implemented the audio for our game and created some of the sound effects. I also helped to fix any bugs with the levels and game mechanics throughout the project. 
 
-This project taught me a lot about how to design a truly good game. I learned to focus on the more important aspects of designing a video game and to take care to not be distracted by trying to come up with an amazing story, visuals, or outrageous mechanics. On the technical side, I was able to expand my knowledge of Unity and C#. I learned many different tips and tricks about designing certain things in Unity and I learned how to manipulate the camera to achieve the desired aesthetic effect. 
+This project taught me a lot about how to design a game. I learned to focus on the gameplay experience rather than trying to come up with an amazing story, visuals, or outrageous mechanics. On the technical side, I was able to expand my knowledge of Unity and C#. I learned many different tips and tricks about implementing certain functions in Unity, and I learned how to manipulate the camera to achieve desired cinematic effects. 
 
 You can learn more about our game and find a playable demo at its [website.](https://dreamingbento.github.io/)
 
