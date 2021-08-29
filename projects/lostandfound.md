@@ -5,7 +5,7 @@ image: images/lostandfoundinspace/lostandfoundinspace_title.png
 backgroundImage: images/wetheone/holoracer_track.png
 color: lightsalmon
 title: Lost and Found In Space
-permalink: projects/holoracer
+permalink: projects/lostandfoundinspace
 # All dates must be YYYY-MM-DD format!
 date: 2021-01-30
 labels:
