@@ -4,7 +4,7 @@ type: project
 image: images/holoracer/holoracer_title.png
 backgroundImage: images/wetheone/holoracer_track.png
 color: lightsalmon
-title: Lost and Found":" In Space
+title: Lost and Found In Space
 permalink: projects/holoracer
 # All dates must be YYYY-MM-DD format!
 date: 2021-01-30
