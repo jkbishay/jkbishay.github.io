@@ -30,8 +30,8 @@ This game was made in 72 hours for Global Game Jam 2021. I worked in a group of 
 
 <div class="ui one column grid" style="margin-top: 16px">
   <div class="column">
-    <img class="ui large centered bordered image" src="../images/lostandfoundinspace/lostandfoundinspace_gameplay1.png">
-    <img class="ui large centered bordered image" src="../images/lostandfoundinspace/lostandfoundinspace_gameplay2.png">
+    <img class="ui large centered bordered image" src="../images/lostandfoundinspace/lostandfoundinspace_gameplay1.PNG">
+    <img class="ui large centered bordered image" src="../images/lostandfoundinspace/lostandfoundinspace_gameplay2.PNG">
   </div>
   <div class="column">
   </div>
