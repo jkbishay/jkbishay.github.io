@@ -16,7 +16,6 @@ bio-page-label: Resume
 theme-home: theme-home-1.html
 theme-projects: theme-projects-builtin-1a.html
 theme-essays: theme-essays-builtin-1.html
-# theme-bio: theme-bio-builtin-1.html
 theme-aboutme: theme-aboutme-1.html
 theme-datavis: theme-datavis-1.html
 
