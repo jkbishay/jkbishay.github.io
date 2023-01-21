@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cholera Visualization</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+          integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+          crossorigin=""></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="../Leaflet.heat/dist/leaflet-heat.js"></script>
+</head>
+
+<style>
+  #overlay {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
+  #panel {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40%;
+    height: 25%;
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+    transform: translate(-50%,-50%);
+    -ms-transform: translate(-50%,-50%);
+  }
+  .info {
+    padding: 4% 4%;
+    font: 14px/16px Arial, Helvetica, sans-serif;
+    background: white;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+  }
+  .info h4 {
+    margin: 0 0 5px;
+    color: #777;
+  }
+  .legend {
+    line-height: 18px;
+    color: #555;
+  }
+  .legend i {
+    width: 18px;
+    height: 18px;
+    float: left;
+    margin-right: 8px;
+    opacity: 1;
+  }
+</style>
+
+
+<body style="background: #f5f5f5">
+<div id="overlay" onclick="off()">
+  <div id="panel" class="ui container info">
+    <h4 style="font-size: 20px; position: absolute; margin-top: -5%; color: black; text-align: center">
+      This webpage was created by Justin Bishay. <br>
+      Leaflet and Plotly.js were used to make the visualizaion. <br>
+      The cholera data was provided by Dr. Jason Leigh. <br><br>
+      (click anywhere to close)</h4>
+  </div>
+</div>
+
+<h1 style="font-size: 60px; padding-top: 50px" class="ui center aligned header">1854 Cholera Outbreak in London</h1>
+<div class="ui container" style="padding-bottom: 20px">
+  <div class="ui four item menu">
+    <a class="item" href="#bydate">Deaths by Date</a>
+    <a class="item" href="#byagesex">Deaths by Age and Sex</a>
+    <a class="item" href="#ukcensus">UK Census</a>
+    <a class="item" href="#naplesmap">Map of Deaths and Pumps</a>
+  </div>
+</div>
+
+<div style="display: flex; justify-content: center; padding-bottom: 50px">
+  <button class="ui black button" onclick="on()">About</button>
+</div>
+
+<img class="ui fluid image" src="./broad-street-cholera.jpg" alt="Slide 1 Alt Text" draggable="false">
+
+<h2 id="bydate" style="font-size: 40px; padding-top: 25px" class="ui center aligned header">Attacks and Deaths By Date</h2>
+<div class="ui two column grid">
+  <div class="column" style="width: 40%;">
+    <div id="DeathTable" style="height: 100%; width: 100%;"></div>
+  </div>
+  <div class="column" style="width: 60%;">
+    <div id="deathline" style="height: 100%; width: 100%;"></div>
+  </div>
+</div>
+<br>
+
+<h2 id="byagesex" style="font-size: 40px; padding-top: 50px" class="ui center aligned header">Deaths by Age and Sex</h2>
+<div class="ui two column grid">
+  <div class="column" style="width: 40%;">
+    <div id="naplestable" style="height: 100%; width: 100%;"></div>
+  </div>
+  <div class="column" style=" width: 60%;">
+    <div id="sextable" style="height: 100%; width: 100%;"></div>
+  </div>
+</div>
+<br>
+
+<h2 id="ukcensus" style="font-size: 40px; padding-top: 50px" class="ui center aligned header">UK Census Data</h2>
+<div class="ui two column grid">
+  <div class="column" style="width: 40%;">
+    <div id="censustable" style="height: 100%; width: 100%;"></div>
+  </div>
+  <div class="column" style="width: 60%;">
+    <div id="censusbar" style="height: 100%; width: 100%;"></div>
+  </div>
+</div>
+<div id="censuspie"></div>
+<br>
+
+<h2 id="naplesmap" style="font-size: 40px; padding-top: 50px" class="ui center aligned header">Deaths and Pump Locations</h2>
+<div class="ui container" style="padding-bottom: 50px; height: 80%; width: 80%">
+  <div id="choleramap" style="height: 100%; width: 100%"></div>
+</div>
+
+</body>
+
+<script>
+  // functions for about panel
+  function on() {
+    document.getElementById("overlay").style.display = "block";
+  }
+
+  function off() {
+    document.getElementById("overlay").style.display = "none";
+  }
+
+  window.onresize = function(){ location.reload(); };
+
+  Plotly.d3.tsv("./choleraDeaths.tsv", function(err, rows) {
+
+    // function to organize data properly
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    }
+
+    // get the header names
+    var headerNames = Plotly.d3.keys(rows[0]);
+
+    // cell values
+    var cellValues = [];
+    var headerValues = [];
+    for (i = 0; i < headerNames.length; i++) {
+      headerValue = [headerNames[i]];
+      headerValues[i] = headerValue;
+      cellValue = unpack(rows, headerNames[i]);
+      cellValues[i] = cellValue;
+    }
+
+    // add totals
+    headerValues[headerNames.length] = ["Total"];
+    var totalCount = [];
+    for (i = 0; i < cellValues[0].length; i++) {
+      totalCount[i] = parseInt(cellValues[1][i], 10) + parseInt(cellValues[2][i], 10);
+    }
+    cellValues[headerNames.length] = totalCount;
+
+    // create table
+    var table = [{
+      type: 'table',
+      header: {
+        values: headerValues,
+        align: "center",
+        line: { width: 1, color: 'black' },
+        fill: { color: "grey" },
+        font: { family: "Arial", size: 12, color: "white" }
+      },
+      cells: {
+        values: cellValues,
+        align: ["center", "right", "right", "right"],
+        line: { color: "black", width: 1 },
+        font: { family: "Arial", size: 11, color: ["black"] }
+      }
+    }];
+
+    // setup data for scatter plots
+    var dateVal = unpack(rows, 'Date');
+    var attackData = unpack(rows, 'Attack');
+    var deathData = unpack(rows, 'Death');
+    var totalAttacks = [];
+    var totalDeaths = [];
+    var sum = 0;
+
+    for (i = 0; i < attackData.length; i++) {
+      sum += parseInt(attackData[i], 10);
+      totalAttacks[i] = sum;
+    }
+
+    sum = 0;
+
+    for (i = 0; i < deathData.length; i++) {
+      sum += parseInt(deathData[i], 10);
+      totalDeaths[i] = sum;
+    }
+
+    // scatter plots
+    var lineattacks = {
+      x: dateVal,
+      y: unpack(rows, 'Attack'),
+      type: 'scatter',
+      name: 'Daily Attacks'
+    };
+
+    var linedeaths = {
+      x: dateVal,
+      y: unpack(rows, 'Death'),
+      type: 'scatter',
+      name: 'Daily Deaths'
+    };
+
+    var linetotalattack = {
+      x: dateVal,
+      y: totalAttacks,
+      type: 'scatter',
+      name: 'Total Attacks'
+    };
+
+    var linetotaldeath = {
+      x: dateVal,
+      y: totalDeaths,
+      type: 'scatter',
+      name: 'Total Deaths'
+    };
+
+    var linedata = [lineattacks, linedeaths, linetotalattack, linetotaldeath];
+
+    var layout1 = {
+      title: "Cholera Attacks and Deaths by Date",
+      paper_bgcolor: "#f5f5f5"
+    };
+
+    var layout2 = {
+      title: "Cholera Attacks and Deaths by Date",
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
+      yaxis: {
+        title: 'Number of People'
+      }
+    };
+
+    DeathTable = document.getElementById('DeathTable');
+    LineChart = document.getElementById('deathline');
+    Plotly.plot(DeathTable, table, layout1);
+    Plotly.plot(LineChart, linedata, layout2);
+  });
+
+  Plotly.d3.tsv("./naplesCholeraAgeSexData.tsv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    }
+
+    // get the header names
+    var headerNames = Plotly.d3.keys(rows[0]);
+
+    // cell values
+    var cellValues = [];
+    var headerValues = [];
+    for (i = 0; i < headerNames.length; i++) {
+      headerValue = [headerNames[i]];
+      headerValues[i] = headerValue;
+      cellValue = unpack(rows, headerNames[i]);
+      cellValues[i] = cellValue;
+    }
+
+    // create table
+    var table = [{
+      type: 'table',
+      header: {
+        values: headerValues,
+        align: "center",
+        line: { width: 1, color: 'black' },
+        fill: { color: "grey" },
+        font: { family: "Arial", size: 12, color: "white" }
+      },
+      cells: {
+        values: cellValues,
+        align: ["center", "right", "right", "right"],
+        line: { color: "black", width: 1 },
+        font: { family: "Arial", size: 11, color: ["black"] }
+      }
+    }];
+
+    // collect data for bar charts
+    var maledata = {
+      type: 'bar',
+      name: 'Male',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Male'),
+      marker: {
+        color: 'rgb(33, 121, 33)'
+      }
+    };
+
+    var femaledata = {
+      type: 'bar',
+      name: 'Female',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Female'),
+      marker: {
+        color: 'rgb(232, 144, 12)'
+      }
+    };
+
+    var bardata = [maledata, femaledata];
+
+    var layout1 = {
+      title: 'Age and Sex Deaths per 10,000 People',
+      paper_bgcolor: "#f5f5f5",
+    }
+
+    var layout2 = {
+      title: 'Male and Female Data',
+      barmode: 'grouped',
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
+      xaxis: {
+        title: 'Age Range',
+      },
+      yaxis: {
+        title: 'Deaths per 10,000 Inhabatants '
+      }
+    }
+
+    Table = document.getElementById('naplestable');
+    Bar = document.getElementById('sextable');
+    Plotly.plot(Table, table, layout1);
+    Plotly.plot(Bar, bardata, layout2);
+  });
+
+  Plotly.d3.csv("./UKcensus1851.csv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function (row) {
+        return row[key];
+      });
+    }
+
+    // get the header names
+    var headerNames = Plotly.d3.keys(rows[0]);
+
+    // cell values
+    var cellValues = [];
+    var headerValues = [];
+    for (i = 0; i < headerNames.length; i++) {
+      headerValue = [headerNames[i]];
+      headerValues[i] = headerValue;
+      cellValue = unpack(rows, headerNames[i]);
+      cellValues[i] = cellValue;
+    }
+
+    // add totals
+    headerValues[headerNames.length] = ["Total"];
+    var totalCount = [];
+    for (i = 0; i < cellValues[0].length; i++) {
+      totalCount[i] = parseInt(cellValues[1][i], 10) + parseInt(cellValues[2][i], 10);
+    }
+    cellValues[headerNames.length] = totalCount;
+
+    // create table
+    var table = [{
+      type: 'table',
+      header: {
+        values: headerValues,
+        align: "center",
+        line: { width: 1, color: 'black' },
+        fill: { color: "grey" },
+        font: { family: "Arial", size: 12, color: "white" }
+      },
+      cells: {
+        values: cellValues,
+        align: ["center", "right", "right", "right"],
+        line: { color: "black", width: 1 },
+        font: { family: "Arial", size: 11, color: ["black"] }
+      }
+    }];
+
+    // organize data for census pie charts
+    var malecen = unpack(rows, 'Male');
+    var femalecen = unpack(rows, 'Female');
+    var mansum = 0;
+    var womansum = 0;
+
+    for (i = 0; i < malecen.length; i++) {
+      mansum += parseInt(malecen[i], 10);
+    }
+
+    for (i = 0; i < femalecen.length; i++) {
+      womansum += parseInt(femalecen[i], 10);
+    }
+
+    var piedata = [{
+      type: 'pie',
+      values: unpack(rows, 'Male'),
+      labels: unpack(rows, 'Age'),
+      domain: {
+        x: [0, 0.33]
+      },
+      name: 'Men',
+      hoverinfo: 'label+percent+name',
+      textposition: 'outside',
+      marker: {
+        colors: ['rgb(31, 110, 160)', 'rgb(232, 144, 12)', 'rgb(33, 121, 33)', 'rgb(214, 65, 33)', 'rgb(148, 103, 189)',
+          'rgb(140, 86, 75)', 'rgb(227, 117, 194)', 'rgb(127, 127, 127)', 'rgb(189, 189, 34)']
+      }
+    },
+    {
+      type: 'pie',
+      values: unpack(rows, 'Female'),
+      labels: unpack(rows, 'Age'),
+      domain: {
+        x: [.34, .67]
+      },
+      name: 'Women',
+      hoverinfo: 'label+percent+name',
+      textposition: 'outside',
+      marker: {
+        colors: ['rgb(31, 110, 160)', 'rgb(232, 144, 12)', 'rgb(33, 121, 33)', 'rgb(214, 65, 33)', 'rgb(148, 103, 189)',
+          'rgb(140, 86, 75)', 'rgb(227, 117, 194)', 'rgb(127, 127, 127)', 'rgb(189, 189, 34)']
+      }
+    },
+    {
+      type: 'pie',
+      values: [mansum, womansum],
+      labels: ["Men", "Women"],
+      domain: {
+        x: [.68, 1]
+      },
+      name: 'Men vs Women',
+      hoverinfo: 'label+percent',
+      textposition: 'outside',
+      marker: {
+        colors: ['rgb(33, 121, 33)', 'rgb(232, 144, 12)']
+      }
+    }];
+
+    // data for bar chart
+    var bardata = [{
+      type: 'bar',
+      name: 'Male',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Male'),
+      marker: {
+        color: 'rgb(33, 121, 33)'
+      }
+    },{
+      type: 'bar',
+      name: 'Female',
+      x: unpack(rows, 'Age'),
+      y: unpack(rows, 'Female'),
+      marker: {
+        color: 'rgb(232, 144, 12)'
+      }
+    }];
+
+    var pielayout = {
+      title: 'Age Breakdown',
+      titlefont: { size: 26 },
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
+      annotations: [
+        {
+          text: 'Men',
+          showarrow: false,
+          x: .15,
+          y: 1.125,
+          font: { size: 16 }
+        },{
+          text: 'Women',
+          showarrow: false,
+          x: .5,
+          y: 1.125,
+          font: { size: 16 }
+        },{
+          text: 'Total Men vs Women',
+          showarrow: false,
+          x: .91,
+          y: 1.125,
+          font: { size: 16 }
+        }
+      ]
+    };
+
+    var tableLayout = {
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
+    }
+
+    Table = document.getElementById('censustable');
+    CensusPie = document.getElementById('censuspie');
+    CensusBar = document.getElementById('censusbar');
+
+    Plotly.plot(Table, table, tableLayout);
+    Plotly.plot(CensusPie, piedata, pielayout);
+    Plotly.plot(CensusBar, bardata, {
+      barmode: 'grouped',
+      paper_bgcolor: "#f5f5f5",
+      plot_bgcolor: "#f5f5f5",
+      xaxis: {
+        title: 'Age Range'
+      },
+      yaxis: {
+        title: 'Number of People'
+      }
+    });
+
+  });
+
+  // initialize geo map
+  var mymap = L.map('choleramap').setView([51.513249,-0.136859], 16);
+  mymap.dragging.disable();
+  mymap.touchZoom.disable();
+  mymap.doubleClickZoom.disable();
+  mymap.scrollWheelZoom.disable();
+
+  L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'sk.eyJ1IjoiamtiaXNoYXkiLCJhIjoiY2ptM3N5ZGJkMThqaTNrcWd4dTZnNzIzdyJ9._3R0Q92lPQ1YdRwrkbdS_g'
+  }).addTo(mymap);
+
+  mymap.touchZoom.disable();
+
+  // get data for heat map
+  Plotly.d3.csv("./choleraDeathLocations.csv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    };
+
+    var lats = unpack(rows, 'Latitude');
+    var long = unpack(rows, 'Longitude');
+    var deaths = unpack(rows, 'Deaths');
+    var datapoints = [];
+    var maxdeath = 0;
+
+    for (i = 0; i < deaths.length; i++) {
+      datapoints[i] = [parseFloat(lats[i]), parseFloat(long[i]), parseFloat(deaths[i])];
+      if (parseInt(deaths[i], 10) > maxdeath) {
+        maxdeath = deaths[i];
+      }
+    }
+
+    var heatoptions = {
+      radius: 15,
+      minOpacity: 0.5,
+      gradient: {0.2: 'rgb(255, 255, 0)', 0.75: 'rgb(253, 141, 60)', 1: 'rgb(128, 0, 38)'},
+      max: maxdeath,
+      maxZoom: 16
+    }
+    var heat = L.heatLayer(datapoints, heatoptions).addTo(mymap);
+  });
+
+  // data for pump locations
+  Plotly.d3.csv("./choleraPumpLocations.csv", function(err, rows) {
+
+    function unpack(rows, key) {
+      return rows.map(function(row) { return row[key]; });
+    };
+
+    var lats = unpack(rows, 'Latitude');
+    var long = unpack(rows, 'Longitude');
+    var locations = [];
+
+    for (i = 0; i < lats.length; i++) {
+      locations[i] = [parseFloat(lats[i]), parseFloat(long[i])];
+      var circle = L.circle(locations[i], {
+        color: 'green',
+        fillColor: '#0f3',
+        fillOpacity: 0.7,
+        radius: 7
+      }).addTo(mymap);
+    }
+
+  });
+
+  // Add legend to the map
+  var legend = L.control({position: 'bottomright'});
+
+  legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create()
+    var div = L.DomUtil.create('div', 'info legend'),
+        grades = [1, 3, 8, 15],
+        labels = [];
+        colors = ['rgb(255, 255, 0)', 'rgb(253, 141, 60)', 'rgb(128, 0, 38)'];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+    for (var i = 0; i < grades.length - 1; i++) {
+      div.innerHTML +=
+          '<i style="background:' + colors[i] + '"></i> ' +
+          grades[i] + (grades[i + 1] ? '&ndash;' + grades[i + 1] + ' Deaths' + '<br>' : '+');
+    }
+
+    div.innerHTML += '<i style="background:' + '#0f3' + '"></i> ' + 'Pumps' +'<br>';
+
+    return div;
+  };
+
+  legend.addTo(mymap);
+
+</script>
+
+</html>
