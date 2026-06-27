@@ -1,5 +1,5 @@
 /*!
- * # Semantic UI 2.2.4 - Segment
+ * # Semantic UI 2.5.0 - Segment
  * http://github.com/semantic-org/semantic-ui/
  *
  *
@@ -101,6 +101,57 @@
 
 
 /*-------------------
+     Placeholder
+--------------------*/
+
+.ui.placeholder.segment {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  max-width: initial;
+  -webkit-animation: none;
+          animation: none;
+  overflow: visible;
+  padding: 1em 1em;
+  min-height: 18rem;
+  background: #F9FAFB;
+  border-color: rgba(34, 36, 38, 0.15);
+  box-shadow: 0px 2px 25px 0 rgba(34, 36, 38, 0.05) inset;
+}
+.ui.placeholder.segment .button,
+.ui.placeholder.segment textarea {
+  display: block;
+}
+.ui.placeholder.segment .field,
+.ui.placeholder.segment textarea,
+.ui.placeholder.segment > .ui.input,
+.ui.placeholder.segment .button {
+  max-width: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ui.placeholder.segment .column .button,
+.ui.placeholder.segment .column .field,
+.ui.placeholder.segment .column textarea,
+.ui.placeholder.segment .column > .ui.input {
+  max-width: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ui.placeholder.segment > .inline {
+  align-self: center;
+}
+.ui.placeholder.segment > .inline > .button {
+  display: inline-block;
+  width: auto;
+  margin: 0px 0.35714286rem 0px 0px;
+}
+.ui.placeholder.segment > .inline > .button:last-child {
+  margin-right: 0px;
+}
+
+/*-------------------
         Piled
 --------------------*/
 
@@ -133,15 +184,13 @@
 }
 .ui.piled.segments:before,
 .ui.piled.segment:before {
-  -webkit-transform: rotate(-1.2deg);
-          transform: rotate(-1.2deg);
+  transform: rotate(-1.2deg);
   top: 0;
   z-index: -2;
 }
 .ui.piled.segments:after,
 .ui.piled.segment:after {
-  -webkit-transform: rotate(1.2deg);
-          transform: rotate(1.2deg);
+  transform: rotate(1.2deg);
   top: 0;
   z-index: -1;
 }
@@ -215,6 +264,13 @@
   padding: 3em;
 }
 
+/* Padded vertical */
+.ui.padded.segment.vertical.segment,
+.ui[class*="very padded"].vertical.segment {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 /*-------------------
        Compact
 --------------------*/
@@ -225,16 +281,12 @@
 
 /* Compact Group */
 .ui.compact.segments {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
 }
 .ui.compact.segments .segment,
 .ui.segments .compact.segment {
   display: block;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 auto;
-          flex: 0 1 auto;
+  flex: 0 1 auto;
 }
 
 /*-------------------
@@ -266,10 +318,7 @@
 
 /* Group */
 .ui.segments {
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   position: relative;
   margin: 1rem 0em;
   border: 1px solid rgba(34, 36, 38, 0.15);
@@ -332,13 +381,8 @@
 
 /* Horizontal Group */
 .ui.horizontal.segments {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
   background-color: transparent;
   border-radius: 0px;
   padding: 0em;
@@ -361,8 +405,7 @@
 
 /* Horizontal Segment */
 .ui.horizontal.segments > .segment {
-  -webkit-box-flex: 1;
-          flex: 1 1 auto;
+  flex: 1 1 auto;
   -ms-flex: 1 1 0px;
   
 /* Solves #2550 MS Flex */
@@ -408,7 +451,6 @@
   pointer-events: none;
   text-shadow: none !important;
   color: transparent !important;
-  -webkit-transition: all 0s linear;
   transition: all 0s linear;
 }
 .ui.loading.segment:before {
@@ -444,22 +486,18 @@
 }
 @-webkit-keyframes segment-spin {
   from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 @keyframes segment-spin {
   from {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   to {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
@@ -499,7 +537,7 @@
 
 /* Red */
 .ui.red.segment:not(.inverted) {
-  border-top: 2px solid #DB2828;
+  border-top: 2px solid #DB2828 !important;
 }
 .ui.inverted.red.segment {
   background-color: #DB2828 !important;
@@ -508,7 +546,7 @@
 
 /* Orange */
 .ui.orange.segment:not(.inverted) {
-  border-top: 2px solid #F2711C;
+  border-top: 2px solid #F2711C !important;
 }
 .ui.inverted.orange.segment {
   background-color: #F2711C !important;
@@ -517,7 +555,7 @@
 
 /* Yellow */
 .ui.yellow.segment:not(.inverted) {
-  border-top: 2px solid #FBBD08;
+  border-top: 2px solid #FBBD08 !important;
 }
 .ui.inverted.yellow.segment {
   background-color: #FBBD08 !important;
@@ -526,7 +564,7 @@
 
 /* Olive */
 .ui.olive.segment:not(.inverted) {
-  border-top: 2px solid #B5CC18;
+  border-top: 2px solid #B5CC18 !important;
 }
 .ui.inverted.olive.segment {
   background-color: #B5CC18 !important;
@@ -535,7 +573,7 @@
 
 /* Green */
 .ui.green.segment:not(.inverted) {
-  border-top: 2px solid #21BA45;
+  border-top: 2px solid #21BA45 !important;
 }
 .ui.inverted.green.segment {
   background-color: #21BA45 !important;
@@ -544,7 +582,7 @@
 
 /* Teal */
 .ui.teal.segment:not(.inverted) {
-  border-top: 2px solid #00B5AD;
+  border-top: 2px solid #00B5AD !important;
 }
 .ui.inverted.teal.segment {
   background-color: #00B5AD !important;
@@ -553,7 +591,7 @@
 
 /* Blue */
 .ui.blue.segment:not(.inverted) {
-  border-top: 2px solid #2185D0;
+  border-top: 2px solid #2185D0 !important;
 }
 .ui.inverted.blue.segment {
   background-color: #2185D0 !important;
@@ -562,7 +600,7 @@
 
 /* Violet */
 .ui.violet.segment:not(.inverted) {
-  border-top: 2px solid #6435C9;
+  border-top: 2px solid #6435C9 !important;
 }
 .ui.inverted.violet.segment {
   background-color: #6435C9 !important;
@@ -571,7 +609,7 @@
 
 /* Purple */
 .ui.purple.segment:not(.inverted) {
-  border-top: 2px solid #A333C8;
+  border-top: 2px solid #A333C8 !important;
 }
 .ui.inverted.purple.segment {
   background-color: #A333C8 !important;
@@ -580,7 +618,7 @@
 
 /* Pink */
 .ui.pink.segment:not(.inverted) {
-  border-top: 2px solid #E03997;
+  border-top: 2px solid #E03997 !important;
 }
 .ui.inverted.pink.segment {
   background-color: #E03997 !important;
@@ -589,7 +627,7 @@
 
 /* Brown */
 .ui.brown.segment:not(.inverted) {
-  border-top: 2px solid #A5673F;
+  border-top: 2px solid #A5673F !important;
 }
 .ui.inverted.brown.segment {
   background-color: #A5673F !important;
@@ -598,7 +636,7 @@
 
 /* Grey */
 .ui.grey.segment:not(.inverted) {
-  border-top: 2px solid #767676;
+  border-top: 2px solid #767676 !important;
 }
 .ui.inverted.grey.segment {
   background-color: #767676 !important;
@@ -607,7 +645,7 @@
 
 /* Black */
 .ui.black.segment:not(.inverted) {
-  border-top: 2px solid #1B1C1D;
+  border-top: 2px solid #1B1C1D !important;
 }
 .ui.inverted.black.segment {
   background-color: #1B1C1D !important;
@@ -680,7 +718,6 @@
   color: rgba(0, 0, 0, 0.6);
 }
 .ui.secondary.inverted.segment {
-  background: #4c4f52 -webkit-linear-gradient(rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
   background: #4c4f52 linear-gradient(rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 100%);
   color: rgba(255, 255, 255, 0.8);
 }
@@ -691,7 +728,6 @@
   color: rgba(0, 0, 0, 0.6);
 }
 .ui.tertiary.inverted.segment {
-  background: #717579 -webkit-linear-gradient(rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 100%);
   background: #717579 linear-gradient(rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.35) 100%);
   color: rgba(255, 255, 255, 0.8);
 }
@@ -707,8 +743,8 @@
   bottom: 0px;
   border-radius: 0px;
   margin: 0em -1px;
-  width: calc(100% +  2px );
-  max-width: calc(100% +  2px );
+  width: calc(100% - (-1px * 2));
+  max-width: calc(100% - (-1px * 2));
   box-shadow: none;
   border: 1px solid #D4D4D5;
 }
