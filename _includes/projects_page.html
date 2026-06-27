@@ -1,14 +1,6 @@
 <!-- Like theme-projects-builtin-1, but uses project-card-2.html (i.e. entire card is a link). -->
 
-<style>
-  .sunset-background {
-    background: url('../images/Sunset.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: 1000px;
-  }
-</style>
-
-<div class="ui container" style="padding: 14px 20px 14px 20px; background: rgba(0, 0, 0, 0); display: flex; flex-direction: column; min-height: 100%;">
+<div class="ui container" style="padding: 14px 20px 14px 20px; background: rgba(0, 0, 0, 0); display: flex; flex-direction: column; min-height: 80%;">
   <h1 style="text-align: center; font-size: 45px; color: whitesmoke; margin-bottom: 0px">Projects</h1>
   <div class="ui special stackable centered three cards" style="padding-top: 20px; flex: 1;">
     {% assign project_pages = site.pages | where: "type", "project" | sort: "date" | reverse %}
@@ -41,7 +33,7 @@
   document.addEventListener("DOMContentLoaded", function() {
     var body = document.getElementsByTagName("body")[0];
     body.style.cssText =
-        'background: url("../images/nightskypan.jpeg") center center fixed;' +
+        'background: url("../images/starry_night_sky_forest.jpg") center center fixed;' +
         'background-size: cover;' +
         'background-color: black;' +
         'background-repeat: no-repeat;';
