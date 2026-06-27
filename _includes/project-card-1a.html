@@ -7,7 +7,7 @@
   }
 </style>
 
-<a id="project-card" class="card hidden" style="background-color: #03093d" href="{{ site.baseurl}}{{ include.page.url }}">
+<a class="card hidden" style="background-color: #03093d" href="{{ site.baseurl}}{{ include.page.url }}">
     {% if include.page.image %}
       <div class="blurring dimmable image">
         <div class = "ui dimmer">
@@ -22,7 +22,7 @@
      
           </div>
         </div>
-        <img src="{{ site.baseurl }}/{{ include.page.image }}">
+        <img src="{{ site.baseurl }}/{{ include.page.image }}" height="200">
       </div>
     {% endif %}
    <div class="content">
