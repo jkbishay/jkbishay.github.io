@@ -13,8 +13,8 @@ baseurl: ""
 bio-page-label: Resume
 # You might want to change the theme associated with one or more sections of the site.
 # Defining your own custom theme variations is easy. See the documentation.
-theme-home: theme-home-1.html
-theme-projects: theme-projects-builtin-1a.html
+theme-home: home_page.html
+theme-projects: projects_page.html
 theme-essays: theme-essays-builtin-1.html
 theme-aboutme: theme-aboutme-1.html
 theme-datavis: theme-datavis-1.html
