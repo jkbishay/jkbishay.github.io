@@ -7,17 +7,18 @@
   }
 </style>
 
-<div class="card" style="background-color: #03093d">
+<a class="card" style="background-color: #03093d" href="{{ page.projecturl }}">
     {% if include.page.image %}
       <div class="blurring dimmable image">
         <div class = "ui dimmer">
           <div class = "content">
             
-              {% if page.projecturl %}
+            <h2>{{include.page.summary}}</h2>
+              <!-- {% if page.projecturl %}
                 <a class="ui center" href="{{ page.projecturl }}"><h2>{{include.page.summary}}</h2></a>
               {% else %}
                 <a class="ui center" href="{{ site.baseurl}}{{ include.page.url }}"><h4>{{include.page.summary}}</h4></a>
-              {% endif %}   
+              {% endif %}    -->
      
           </div>
         </div>
@@ -27,4 +28,4 @@
    <div class="content">
     <span class="center aligned header" style="color: whitesmoke;">{{ include.page.title }}</span>
   </div>
-</div>
+</a>

@@ -1,6 +1,6 @@
 ---
 layout: project
-type: project
+type: project_old # this will mark old projects that I will be hiding
 image: images/scj/SCJ_menu.png
 backgroundImage: images/scj/SCJ_gameplay.png
 color: lightgoldenrodyellow

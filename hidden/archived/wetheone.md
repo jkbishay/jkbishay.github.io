@@ -1,6 +1,6 @@
 ---
 layout: project
-type: project
+type: project_old # this will mark old projects that I will be hiding
 image: images/wetheone/wetheone_Title.png
 backgroundImage: images/wetheone/wetheone_Gameplay1.png
 color: lightsalmon
