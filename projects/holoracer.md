@@ -13,7 +13,7 @@ labels:
   - Game Design
   - Unity
   - C#
-summary: An augmented reality car racing game
+summary: Augmented Reality car racing game
 ---
 
 <img class="ui huge centered bordered image" src="../images/holoracer/holoracer_title2.png">

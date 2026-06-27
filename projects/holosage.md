@@ -15,7 +15,7 @@ labels:
 summary: Augmented Reality training and annotation program
 ---
 
-<img class="ui huge centered bordered image" src="../images/holosage/holosage_logo.png">
+<img class="ui medium centered bordered image" src="../images/holosage/holosage_logo.png">
 
 <div style="display: flex; justify-content: center" class="ui large labels">
   <div class="ui basic label">Augmented Reality</div>

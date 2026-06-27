@@ -15,7 +15,7 @@ labels:
 summary: A short 2D puzzle demo game
 ---
 
-<img class="ui huge centered bordered image" src="../images/playto/Playto_Menu.png">
+<img class="ui big centered bordered image" src="../images/playto/Playto_Menu.png">
 
 <div style="display: flex; justify-content: center" class="ui large labels">
   <div class="ui basic label">Game Design</div>

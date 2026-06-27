@@ -1,6 +1,6 @@
 ---
 layout: project
-type: project
+type: project_old # this will mark old projects that I will be hiding
 image: images/lostandfoundinspace/lostandfoundinspace_title.png
 backgroundImage: images/wetheone/holoracer_track.png
 color: lightsalmon

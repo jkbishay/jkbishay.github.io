@@ -13,10 +13,10 @@ labels:
   - Unity
   - C#
   - Global Game Jam
-summary: A short puzzle indie game made for Global Game Jam 2018
+summary: Puzzle game made for Global Game Jam 2018
 ---
 
-<img class="ui huge centered bordered image" src="../images/runbarush/runbarush_menu.png">
+<img class="ui big centered bordered image" src="../images/runbarush/runbarush_menu.png">
 
 <div style="display: flex; justify-content: center" class="ui large labels">
   <div class="ui basic label">Game Design</div>
