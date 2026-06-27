@@ -2,17 +2,17 @@
   "basics": {
     "name": "Justin Bishay",
     "label": "Student",
-    "picture": "https://raw.githubusercontent.com/jkbishay/jkbishay.github.io/master/images/justinButBetter.jpg",
+    "picture": "https://raw.githubusercontent.com/jkbishay/jkbishay.github.io/master/images/justin.jpg",
     "email": "jkbishay@hawaii.edu",
     "phone": "808-782-7438",
     "website": "https://jkbishay.github.io",
-    "summary": "I am pursuring a B.S. in Computer Science at the University of Hawaii. I aspire to one day be a game developer. I expect to graduate in Spring, 2019.",
+    "summary": "",
     "location": {
-      "address": "1146 Leilipoa Way",
-      "postalCode": "96825",
-      "city": "Honolulu",
+      "address": "6160 E Lake Sammamish Pkwy NE",
+      "postalCode": "98052",
+      "city": "Redmond",
       "countryCode": "USA",
-      "region": "Hawaii"
+      "region": "Washington"
     },
     "profiles": [
       {
