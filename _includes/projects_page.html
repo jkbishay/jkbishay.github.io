@@ -27,12 +27,17 @@
 </script>
 
 <script type="text/javascript">
-  $('.special.cards').visibility({
-    type       : 'image',
-    transition : 'fade in',
-    duration   : 3000
-  })
-;
+  $(document).ready(function() {
+      // Triggers the fade-in transition on load
+      $('#project-card').transition({
+        animation : 'fade in',
+        duration  : '3000ms' // Controls the fade duration
+      });
+    });
+  // $('#project-card').visibility({
+  //   transition : 'fade in',
+  //   duration   : 3000
+  // });
 </script>
 
 <script type="text/javascript">
