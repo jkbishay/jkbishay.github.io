@@ -15,9 +15,11 @@ bio-page-label: Resume
 # Defining your own custom theme variations is easy. See the documentation.
 theme-home: home_page.html
 theme-projects: projects_page.html
-# theme-essays: theme-essays-builtin-1.html
-# theme-aboutme: theme-aboutme-1.html
-# theme-datavis: theme-datavis-1.html
+
+# Deprecated, keeping these around to avoid broken links
+theme-essays: home_page.html
+theme-aboutme: home_page.html
+theme-datavis: home_page.html
 
 # Specify the rouge syntax highlighter theme. Pick one from css/rouge.
 rouge-theme: igorpro
