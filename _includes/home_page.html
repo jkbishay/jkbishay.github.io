@@ -41,7 +41,7 @@
           <i class="mail square icon huge yellow"></i>
         </a>
       </div>
-      <div style="display: flex; justify-content: center; padding-top: 25px">
+      <div class="hidden" id="page-buttons" style="display: flex; justify-content: center; padding-top: 25px">
         <a class="ui inverted huge white button" href="{{ site.baseurl}}/projects/">Projects</a>
         <div style="padding-left: 8px; padding-right: 8px"></div>
         <a class="ui inverted huge white button" href="{{ site.baseurl}}/JustinBishay_Resume.pdf">Resume</a>
@@ -60,4 +60,14 @@
         'background-color: black;' +
         'background-repeat: no-repeat;';
   });
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+      // Triggers the fade-in transition on load
+      $('#page-buttons').transition({
+        animation : 'fade in',
+        duration  : '2500ms' // Controls the fade duration
+      });
+    });
 </script>
