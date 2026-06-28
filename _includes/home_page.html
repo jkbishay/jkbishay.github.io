@@ -54,7 +54,7 @@
 
       <!-- page buttons -->
       <div style="display: flex; justify-content: center; padding-top: 25px">
-        <div class="hidden" id="page-buttons" style="display: flex; justify-content: center; padding-top: 25px">
+        <div id="page-buttons">
           <a class="ui inverted huge white button" href="{{ site.baseurl}}/projects/">Projects</a>
           <div style="padding-left: 8px; padding-right: 8px"></div>
           <a class="ui inverted huge white button" href="{{ site.baseurl}}/JustinBishay_Resume.pdf">Resume</a>
@@ -81,27 +81,27 @@
   $(document).ready(function() {
       // Triggers the fade-in transition on load
       $('#personal-photo').transition({
-        animation : 'fade up',
+        animation : 'fade up in',
         duration  : '500ms' // Controls the fade duration
       });
       
       $('#name').transition({
-        animation : 'fade up',
+        animation : 'fade up in',
         duration  : '1000ms' // Controls the fade duration
       });
       
       $('#bio').transition({
-        animation : 'fade up',
+        animation : 'fade up in',
         duration  : '1500ms' // Controls the fade duration
       });
       
       $('#icon-links').transition({
-        animation : 'fade up',
+        animation : 'fade up in',
         duration  : '2500ms' // Controls the fade duration
       });
       
       $('#page-buttons').transition({
-        animation : 'fade up',
+        animation : 'fade up in',
         duration  : '3000ms' // Controls the fade duration
       });
     });
