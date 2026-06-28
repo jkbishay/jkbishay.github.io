@@ -53,8 +53,8 @@
       </div>
 
       <!-- page buttons -->
-      <div style="display: flex; justify-content: center; padding-top: 25px">
-        <div id="page-buttons">
+      <div class="ui grid" style="display: flex; justify-content: center; padding-top: 25px">
+        <div id="page-buttons" class="row">
           <a class="ui inverted huge white button" href="{{ site.baseurl}}/projects/">Projects</a>
           <div style="padding-left: 8px; padding-right: 8px"></div>
           <a class="ui inverted huge white button" href="{{ site.baseurl}}/JustinBishay_Resume.pdf">Resume</a>
@@ -82,17 +82,17 @@
       // Triggers the fade-in transition on load
       $('#personal-photo').transition({
         animation : 'fade up in',
-        duration  : '500ms' // Controls the fade duration
+        duration  : '1000ms' // Controls the fade duration
       });
       
       $('#name').transition({
         animation : 'fade up in',
-        duration  : '1000ms' // Controls the fade duration
+        duration  : '1500ms' // Controls the fade duration
       });
       
       $('#bio').transition({
         animation : 'fade up in',
-        duration  : '1500ms' // Controls the fade duration
+        duration  : '2000ms' // Controls the fade duration
       });
       
       $('#icon-links').transition({
