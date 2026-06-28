@@ -17,35 +17,50 @@
 <div class="ui stackable middle aligned grid" style="height: 100%">
   <div class="column">
     <div class="ui fluid centered container">
-      <div>
+
+      <!-- picture -->
+      <div id="personal-photo">
         <img src="{{ site.data.bio.basics.picture }}" class="ui circular small centered image">
       </div>
-      <div style="padding-top: 25px">
+
+      <!-- name -->
+      <div id="name" style="padding-top: 25px">
         <h1 style="font-size: 60px; color: white" class="ui center aligned header">Justin Bishay</h1>
       </div>
-      <div style="padding-top: 10px">
+
+      <!-- mini bio -->
+      <div id="bio" style="padding-top: 10px">
         <h3 style="margin-top: 0px; color: lightsteelblue" class="ui center aligned header">
           Professional nerd with a background as a software engineer in games.<br>
           I have 5+ years of experience working on online multiplayer games in C++ and C#.<br>
           I have worked extensively on various game engine systems, matchmaking, and game client tooling.
         </h3>
       </div>
+
+      <!-- icons -->
+      <div id="icon-links">
+        <div style="display: flex; justify-content: center; padding-top: 25px">
+          <a href="http://github.com/jkbishay">
+            <i class="github icon huge yellow"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/justin-bishay-022890156/" class="centered">
+            <i class="linkedin icon huge yellow"></i>
+          </a>
+          <a href="mailto:justinkb47@gmail.com">
+            <i class="mail square icon huge yellow"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- page buttons -->
       <div style="display: flex; justify-content: center; padding-top: 25px">
-        <a href="http://github.com/jkbishay">
-          <i class="github icon huge yellow"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/justin-bishay-022890156/" class="centered">
-          <i class="linkedin icon huge yellow"></i>
-        </a>
-        <a href="mailto:justinkb47@gmail.com">
-          <i class="mail square icon huge yellow"></i>
-        </a>
+        <div class="hidden" id="page-buttons" style="display: flex; justify-content: center; padding-top: 25px">
+          <a class="ui inverted huge white button" href="{{ site.baseurl}}/projects/">Projects</a>
+          <div style="padding-left: 8px; padding-right: 8px"></div>
+          <a class="ui inverted huge white button" href="{{ site.baseurl}}/JustinBishay_Resume.pdf">Resume</a>
+        </div>
       </div>
-      <div class="hidden" id="page-buttons" style="display: flex; justify-content: center; padding-top: 25px">
-        <a class="ui inverted huge white button" href="{{ site.baseurl}}/projects/">Projects</a>
-        <div style="padding-left: 8px; padding-right: 8px"></div>
-        <a class="ui inverted huge white button" href="{{ site.baseurl}}/JustinBishay_Resume.pdf">Resume</a>
-      </div>
+
     </div>
   </div>
 </div>
@@ -65,10 +80,29 @@
 <script type="text/javascript">
   $(document).ready(function() {
       // Triggers the fade-in transition on load
-      $('#page-buttons').transition({
-        animation : 'fade in',
+      $('#personal-photo').transition({
+        animation : 'fade up',
+        duration  : '500ms' // Controls the fade duration
+      });
+      
+      $('#name').transition({
+        animation : 'fade up',
+        duration  : '1000ms' // Controls the fade duration
+      });
+      
+      $('#bio').transition({
+        animation : 'fade up',
+        duration  : '1500ms' // Controls the fade duration
+      });
+      
+      $('#icon-links').transition({
+        animation : 'fade up',
         duration  : '2500ms' // Controls the fade duration
       });
-      $('#page-buttons').style.display = 'flex'
+      
+      $('#page-buttons').transition({
+        animation : 'fade up',
+        duration  : '3000ms' // Controls the fade duration
+      });
     });
 </script>
