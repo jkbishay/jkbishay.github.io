@@ -14,9 +14,9 @@ bio-page-label: Resume
 # You might want to change the theme associated with one or more sections of the site.
 # Defining your own custom theme variations is easy. See the documentation.
 theme-home: home_page.html
-theme-projects: projects_page.html
 
 # Deprecated, keeping these around to avoid broken links
+theme-projects: home_page.html
 theme-essays: home_page.html
 theme-aboutme: home_page.html
 theme-datavis: home_page.html
