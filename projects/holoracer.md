@@ -2,7 +2,7 @@
 layout: project
 type: project
 image: images/holoracer/holoracer_title.png
-backgroundImage: images/wetheone/holoracer_track.png
+backgroundImage: images/holoracer/holoracer_track.png
 color: lightsalmon
 title: HoloRacer
 permalink: projects/holoracer
