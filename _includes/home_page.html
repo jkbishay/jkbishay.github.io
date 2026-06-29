@@ -55,7 +55,7 @@
       <!-- page buttons -->
       <div class="ui grid" style="display: flex; justify-content: center; padding-top: 25px">
         <div id="page-buttons" class="row">
-          <a id="projects-button" class="ui inverted huge white button" href="{{ site.baseurl}}/projects/">Projects</a>
+          <button id="projects-button" class="ui inverted huge white button">Projects</button>
           <div style="padding-left: 8px; padding-right: 8px"></div>
           <a class="ui inverted huge white button" href="{{ site.baseurl}}/JustinBishay_Resume.pdf">Resume</a>
         </div>
@@ -65,7 +65,7 @@
   </div>
 </div>
 
-<div id="projects-section" class="ui container" style="padding: 14px 20px 14px 20px; background: rgba(0, 0, 0, 0); display: flex; flex-direction: column; min-height: 80%;">
+<div id="projects-section" class="ui container" style="padding: 50px 20px 14px 20px; background: rgba(0, 0, 0, 0); display: flex; flex-direction: column; min-height: 80%;">
   <h1 style="text-align: center; font-size: 45px; color: whitesmoke; margin-bottom: 0px">Projects</h1>
   <div class="ui special stackable centered three cards" style="padding-top: 20px; flex: 1;">
     {% assign project_pages = site.pages | where: "type", "project" | sort: "date" | reverse %}
@@ -118,15 +118,18 @@
       });
     });
 
- $('#projects-section')
-  .visibility({
-    transition : 'fade in',
-    duration   : 1000
-  });
-</script>
+    $('#projects-button').on('click', function() {
+      $('html, body').animate({
+        scrollTop: $('#projects-section').offset().top
+      }, 800); // Speed in milliseconds
+    });
 
-<script type="text/javascript">
-function myFunction() {
-  document.getElementById("panel").style.display = "block";
-}
+    $('#projects-section').visibility({
+      once: true, // Only triggers the fade effect the first time it enters the screen
+      continuous: false,
+      onTopVisible: function() {
+        // Trigger the Semantic UI fade animation when the top of the element is visible
+        $(this).transition('fade in', '1000ms');
+      }
+    });
 </script>
