@@ -118,13 +118,19 @@
       });
     });
 
-    $('#projects-button').on('click', function() {
-      $('html, body').animate({
-        scrollTop: $('#projects-section').offset().top
-      }, 800); // Speed in milliseconds
+    // $('#projects-button').on('click', function() {
+    //   $('html, body').animate({
+    //     scrollTop: $('#projects-section').offset().top
+    //   }, 800); // Speed in milliseconds
+    // });
+
+    document.querySelector('#projects-button').addEventListener('click', function() {
+      document.querySelector('#projects-section').scrollIntoView({ 
+        behavior: 'smooth' 
+      });
     });
 
-    $('#projects-section').visibility({
+    $('.special.cards').visibility({
       once: true, // Only triggers the fade effect the first time it enters the screen
       continuous: false,
       onTopVisible: function() {
