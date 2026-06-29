@@ -26,8 +26,9 @@ layout: projects
   document.addEventListener("DOMContentLoaded", function() {
     var body = document.getElementsByTagName("body")[0];
     body.style.cssText =
-        'background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../{{ page.backgroundImage }}") center center fixed;' +
+        'background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../{{ page.backgroundImage }}") center center fixed;' +
         'background-size: cover;' +
+        'background-attachment: fixed;' +
         'background-color: black;' +
         'background-repeat: no-repeat;';
   });

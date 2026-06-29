@@ -2,7 +2,7 @@
 layout: project
 type: project
 image: images/holosage/holosage_menu.png
-backgroundImage: images/holosage/holosage_allobjects.png
+backgroundImage: images/holosage/holosage_drawLAVA.png
 color: silver
 title: HoloSage
 permalink: projects/holosage
