@@ -65,7 +65,7 @@
   </div>
 </div>
 
-<div id="projects-section" class="ui container" style="padding: 14px 20px 14px 20px; background: rgba(0, 0, 0, 0); display: none; flex-direction: column; min-height: 80%;">
+<div id="projects-section" class="ui container" style="padding: 14px 20px 14px 20px; background: rgba(0, 0, 0, 0); display: flex; flex-direction: column; min-height: 80%;">
   <h1 style="text-align: center; font-size: 45px; color: whitesmoke; margin-bottom: 0px">Projects</h1>
   <div class="ui special stackable centered three cards" style="padding-top: 20px; flex: 1;">
     {% assign project_pages = site.pages | where: "type", "project" | sort: "date" | reverse %}
@@ -118,26 +118,11 @@
       });
     });
 
-  $('#projects-button').on('click', 
-    setTimeout(
-      function() {
-        // Triggers the fade transition on the target element
-        $('#projects-section').transition({
-          animation : 'fade up in',
-          duration  : '1500ms' // Controls the fade duration
-        });
-      }, 
-      1500) // this is the time we wait before running this
-    );
-
-  $('#projects-button').on('click', 
-      function() {
-        // Triggers the fade transition on the target element
-        $('#home-section').transition({
-          animation : 'fade up out',
-          duration  : '1500ms' // Controls the fade duration
-        });
-      });
+ $('#projects-section')
+  .visibility({
+    transition : 'fade in',
+    duration   : 1000
+  });
 </script>
 
 <script type="text/javascript">
