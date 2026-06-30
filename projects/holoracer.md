@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: images/holoracer/holoracer_title.png
+image: images/holoracer/holoracer_track.png
 backgroundImage: images/holoracer/holoracer_track.png
 color: lightsalmon
 title: HoloRacer
@@ -33,6 +33,23 @@ summary: Augmented Reality car racing game
   </div>
 </div>
 
+<div class="ui container" style="width: 75%">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
+    <div class="ui two column grid">
+      <div class="column">
+        <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png">
+      </div>
+      <div class="column">
+        <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 16px; text-align: center">
+          The player can build a race track in their real world space and race a car around it. The race track pieces and warp portals were modeled and colored by myself in Blender. Through this I learned quite a bit about the pipeline of art asset creation and importing them into a game engine. 
+          <br/>
+          To make it more of a complete game experience, I decided to add AI racer opponents. To do this, I created a waypoint system allowing users to place markers along the track by leveraging Unity's AI pathfinding system to guide them to the next waypoint marker.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <br/>
 
 "HoloRacer" is an augmented reality car racing game. The player can build a race track and drive a car around it. The player can also set up waypoints to spawn AI cars. It is also possible to take advantage of being in augmented reality to drive the cars on the surfaces in the player's environment. This game was a solo project created in Unity for Microsoft's HoloLens.
@@ -56,7 +73,7 @@ I presented this project at a social software showcase event called WetWare Wedn
 </div>
 
 <script type="text/javascript">
-  $('.ui.container').visibility({
+  $('.ui.raised.segment').visibility({
       once: true, // Only triggers the fade effect the first time it enters the screen
       continuous: false,
       onTopVisible: function() {

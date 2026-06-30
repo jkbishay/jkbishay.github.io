@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: images/playto/Playto_Menu.png
+image: images/playto/Playto_pencil.png
 backgroundImage: images/playto/Playto_DialoguePic.png
 color: deepskyblue
 title: Playto
