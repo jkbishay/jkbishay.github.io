@@ -27,7 +27,7 @@ summary: Augmented Reality car racing game
       <div class="ui basic label">3D Modeling</div>
       <div class="ui basic label">Blender</div>
     </div>
-    <p style="display: flex; padding-top: 10px; font-size: 26px; text-align: center">
+    <p style="display: flex; padding-top: 10px; font-size: 30px; text-align: center">
       HoloRacer is an augmented reality car racing game created in the Unity engine for Microsoft's HoloLens.
     </p>
   </div>
@@ -38,10 +38,10 @@ summary: Augmented Reality car racing game
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="align-items: center; display: flex">
-        <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png">
+        <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png" style="margin-right: 55px; margin-left: 55px;">
       </div>
       <div class="column" style="align-items: center; display: flex">
-        <div style="display: flex; font-size: 20px; text-align: center">
+        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
           The player can build a race track in their real world space and race a car around it. The race track pieces and warp portals were modeled and colored by myself in Blender. Through this I learned quite a bit about the pipeline of art asset creation and importing them into a game engine. 
           <br/>
           <br/>
@@ -75,7 +75,7 @@ summary: Augmented Reality car racing game
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="align-items: center; display: flex">
-        <div style="display: flex; font-size: 20px; text-align: center">
+        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
           Part of the motivation for this project was self directed research around possible methods for placing and manipulating virtual objects in augmented reality space. This was a challenging problem when working in the HoloLens because the HoloLens was limited to a single tap gesture for tap and tap and hold inputs.
           <br/>
           <br/>
@@ -83,7 +83,7 @@ summary: Augmented Reality car racing game
         </div>
       </div>
       <div class="column" style="align-items: center; display: flex">
-        <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track_rotate.png">
+        <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track_rotate.png" style="margin-right: 55px; margin-left: 55px;">
       </div>
     </div>
     <div style="padding-bottom: 10px"></div>
@@ -100,7 +100,7 @@ summary: Augmented Reality car racing game
         <br/>
         I presented this project at a social software showcase event called WetWare Wednesday in November of 2018. The project was received well amongst spectators at the event. It is capable of featuring up to 5 AI cars at once guided by a waypoint system that can be setup by the player. A demo of the project can be viewed here:
       </div>
-      <div style="justify-content: center">
+      <div style="display: flex; justify-content: center">
         <iframe width="900" height="506" src="https://www.youtube.com/embed/TOoPjq2TaMk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div>
     </div>
