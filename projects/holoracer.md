@@ -16,8 +16,9 @@ labels:
 summary: Augmented Reality car racing game
 ---
 
-<div class="ui container" style="width: 65%">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
+<div class="ui container" style="width: 50%">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+    <div style="padding-top: 10px"></div>
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">{{ page.title }}</h1>
     <img class="ui big centered bordered image" src="../images/holoracer/holoracer_title2.png">
     <div class="ui large labels" style="display: flex; justify-content: center; padding-top: 20px" >
@@ -27,20 +28,22 @@ summary: Augmented Reality car racing game
       <div class="ui basic label">3D Modeling</div>
       <div class="ui basic label">Blender</div>
     </div>
-    <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 20px; text-align: center">
+    <div style="display: flex; justify-content: center; padding-top: 10px; font-size: 26px; text-align: center">
       HoloRacer is an augmented reality car racing game created in the Unity engine for Microsoft's HoloLens.
     </div>
+    <div style="padding-bottom: 10px"></div>
   </div>
 </div>
 
-<div class="ui container" style="width: 75%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
+<div class="ui container" style="width: 70%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+    <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="align-items: center; display: flex">
         <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png">
       </div>
       <div class="column">
-        <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 16px; text-align: center">
+        <div style="display: flex; justify-content: center; font-size: 20px; text-align: center">
           The player can build a race track in their real world space and race a car around it. The race track pieces and warp portals were modeled and colored by myself in Blender. Through this I learned quite a bit about the pipeline of art asset creation and importing them into a game engine. 
           <br/>
           <br/>
@@ -48,21 +51,24 @@ summary: Augmented Reality car racing game
         </div>
       </div>
     </div>
+    <div style="padding-bottom: 10px"></div>
   </div>
 </div>
 
 <div class="ui container" style="width: 50%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+    <div style="padding-top: 10px"></div>
     <div class="column">
-      <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 16px; text-align: center">
+      <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 20x; text-align: center">
         My professor suggested that I should leverage the augmented reality technology to do something that is not possible in reality. That inspired me to utilize the HoloLens's spatial mapping capabilities to generate a physics mesh around the player's environment that the cars can drive on.
       </div>
       <img class="ui large centered bordered image" src="../images/holoracer/holoracer_floor.png">
-      <div style="display: flex; justify-content: center; padding: 20px 10px; font-size: 16px; text-align: center">
+      <div style="display: flex; justify-content: center; padding: 20px 10px; font-size: 20px; text-align: center">
         I decided to take this concept one step further and implemented a way for players to change the gravity direction such that you can do something like racing on the ceiling.
       </div>
-      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png" style="padding-bottom: 10px">
+      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
     </div>
+    <div style="padding-bottom: 10px"></div>
   </div>
 </div>
 
