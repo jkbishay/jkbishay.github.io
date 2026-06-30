@@ -5,6 +5,15 @@
 {% assign num_essays = essay_pages.size %}
 {% assign num_projects = project_pages.size %}
 
+<div class="container" style="padding: 25px 25px">
+  <div class="ui centered grid">
+    <div class="ui card" style="background-color: #03051e">
+      <a href="{{ site.baseurl }}/" class="ui button inverted white">Back to Home</a>      
+      <a href="{{ site.baseurl }}/JustinBishay_Resume.pdf" class="ui button inverted white">See My Resume</a>
+    </div>
+  </div>
+</div>
+
 <!--<div class="nonprintable">
   <nav class="ui stackable menu">
     <a href="{{ site.baseurl}}/" class="brand item">
@@ -21,7 +30,7 @@
   </nav>
 </div>-->
 
-<div class="nonprintable container" style="background-color: #03051e; color: whitesmoke">
+<!-- <div class="nonprintable container" style="background-color: #03051e; color: whitesmoke">
   <div class = "ui centered grid">
     <div class = "ui row">
       <div class = "ui secondary compact menu">
@@ -33,13 +42,10 @@
 
     <nav class="ui stackable secondary compact menu">
 
-      <!-- <a href="{{ site.baseurl }}/aboutme" class = "item" style="color: whitesmoke">About Me</a> -->
       <a href="{{ site.baseurl }}/" class = "item" style="color: whitesmoke">Back to Home</a>
-      <!-- <a href="{{ site.baseurl }}/datavisualization" class = "item" style="color: whitesmoke">Data Visualizations</a> -->
       {% if num_essays > 0 %}
-      <!--<a href="{{ site.baseurl }}/essays" style="color: whitesmoke" class=" {% if include.active == "essays" %} active {% endif %} item">Essays ({{ num_essays }})</a>-->
       {% endif %}
       <a href="{{ site.baseurl }}/JustinBishay_Resume.pdf" style="color: whitesmoke" class=" {% if include.active == "bio" %} active {% endif %} item">Resume</a>
     </nav>
   </div>
-</div>
+</div> -->

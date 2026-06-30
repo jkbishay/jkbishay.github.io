@@ -16,16 +16,21 @@ labels:
 summary: Augmented Reality car racing game
 ---
 
-<img class="ui huge centered bordered image" src="../images/holoracer/holoracer_title2.png">
-
-<div style="display: flex; justify-content: center" class="ui large labels">
-  <div class="ui basic label">Augmented Reality</div>
-  <div class="ui basic label">Game Design</div>
-  <div class="ui basic label">3D Modeling</div>
-  <div class="ui basic label">Unity</div>
-  <div class="ui basic label">C#</div>
-  <div class="ui basic label">Blender</div>
+<div class="ui container" style="background-color: rgba(0, 0, 0, 0.8)">
+  <div class="ui raised segment">
+    <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">{{ page.title }}</h1>
+    <img class="ui huge centered bordered image" src="../images/holoracer/holoracer_title2.png">
+      <div style="display: flex; justify-content: center" class="ui large labels">
+        <div class="ui basic label">C#</div>
+        <div class="ui basic label">Unity</div>
+        <div class="ui basic label">Augmented Reality</div>
+        <div class="ui basic label">3D Modeling</div>
+        <div class="ui basic label">Blender</div>
+      </div>
+    </div>
+  </div>
 </div>
+
 <br/>
 
 "HoloRacer" is an augmented reality car racing game. The player can build a race track and drive a car around it. The player can also set up waypoints to spawn AI cars. It is also possible to take advantage of being in augmented reality to drive the cars on the surfaces in the player's environment. This game was a solo project created in Unity for Microsoft's HoloLens.
