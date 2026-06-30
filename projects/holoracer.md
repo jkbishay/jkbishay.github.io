@@ -16,7 +16,7 @@ labels:
 summary: Augmented Reality car racing game
 ---
 
-<div class="ui container">
+<div class="ui container" style="width: 65%">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">{{ page.title }}</h1>
     <img class="ui big centered bordered image" src="../images/holoracer/holoracer_title2.png">
@@ -27,7 +27,7 @@ summary: Augmented Reality car racing game
       <div class="ui basic label">3D Modeling</div>
       <div class="ui basic label">Blender</div>
     </div>
-    <div style="display: flex; justify-content: center; padding-top: 20px; font-size: 20px">
+    <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 20px; text-align: center">
       HoloRacer is an augmented reality car racing game created in the Unity engine for Microsoft's HoloLens.
     </div>
   </div>
