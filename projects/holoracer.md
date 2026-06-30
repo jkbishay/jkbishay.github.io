@@ -16,17 +16,19 @@ labels:
 summary: Augmented Reality car racing game
 ---
 
-<div class="ui container" style="background-color: rgba(0, 0, 0, 0.8)">
-  <div class="ui raised segment">
+<div class="ui container">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">{{ page.title }}</h1>
-    <img class="ui huge centered bordered image" src="../images/holoracer/holoracer_title2.png">
-      <div style="display: flex; justify-content: center" class="ui large labels">
-        <div class="ui basic label">C#</div>
-        <div class="ui basic label">Unity</div>
-        <div class="ui basic label">Augmented Reality</div>
-        <div class="ui basic label">3D Modeling</div>
-        <div class="ui basic label">Blender</div>
-      </div>
+    <img class="ui big centered bordered image" src="../images/holoracer/holoracer_title2.png">
+    <div class="ui large labels" style="display: flex; justify-content: center; padding-top: 20px" >
+      <div class="ui basic label">C#</div>
+      <div class="ui basic label">Unity</div>
+      <div class="ui basic label">Augmented Reality</div>
+      <div class="ui basic label">3D Modeling</div>
+      <div class="ui basic label">Blender</div>
+    </div>
+    <div style="display: flex; justify-content: center; padding-top: 20px; font-size: 20px">
+      HoloRacer is an augmented reality car racing game created in the Unity engine for Microsoft's HoloLens.
     </div>
   </div>
 </div>
@@ -53,3 +55,13 @@ I presented this project at a social software showcase event called WetWare Wedn
   </div>
 </div>
 
+<script type="text/javascript">
+  $('.ui.container').visibility({
+      once: true, // Only triggers the fade effect the first time it enters the screen
+      continuous: false,
+      onTopVisible: function() {
+        // Trigger the Semantic UI fade animation when the top of the element is visible
+        $(this).transition('fade in', '1500ms');
+      }
+    });
+</script>
