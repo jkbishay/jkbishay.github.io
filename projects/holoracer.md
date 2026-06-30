@@ -104,7 +104,7 @@ summary: Augmented Reality car racing game
         <iframe width="900" height="506" src="https://www.youtube.com/embed/TOoPjq2TaMk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <div>
     </div>
-    <div style="padding-bottom: 10px"></div>
+    <div style="padding-bottom: 20px"></div>
   </div>
 </div>
 
