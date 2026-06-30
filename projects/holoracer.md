@@ -33,15 +33,16 @@ summary: Augmented Reality car racing game
   </div>
 </div>
 
-<div class="ui container" style="width: 75%">
+<div class="ui container" style="width: 75%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
     <div class="ui two column grid">
-      <div class="column">
+      <div class="column" style="align-items: center; display: flex">
         <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png">
       </div>
       <div class="column">
         <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 16px; text-align: center">
           The player can build a race track in their real world space and race a car around it. The race track pieces and warp portals were modeled and colored by myself in Blender. Through this I learned quite a bit about the pipeline of art asset creation and importing them into a game engine. 
+          <br/>
           <br/>
           To make it more of a complete game experience, I decided to add AI racer opponents. To do this, I created a waypoint system allowing users to place markers along the track by leveraging Unity's AI pathfinding system to guide them to the next waypoint marker.
         </div>
