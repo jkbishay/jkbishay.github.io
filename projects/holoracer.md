@@ -59,11 +59,11 @@ summary: Augmented Reality car racing game
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
     <div style="padding-top: 10px"></div>
     <div class="column">
-      <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 20x; text-align: center">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20x; text-align: center">
         My professor suggested that I should leverage the augmented reality technology to do something that is not possible in reality. That inspired me to utilize the HoloLens's spatial mapping capabilities to generate a physics mesh around the player's environment that the cars can drive on.
       </div>
-      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_floor.png">
-      <div style="display: flex; justify-content: center; padding: 20px 10px; font-size: 20px; text-align: center">
+      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_floor.png" style="padding-bottom: 20px">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
         I decided to take this concept one step further and implemented a way for players to change the gravity direction such that you can do something like racing on the ceiling.
       </div>
       <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
@@ -72,25 +72,41 @@ summary: Augmented Reality car racing game
   </div>
 </div>
 
-<br/>
-
-"HoloRacer" is an augmented reality car racing game. The player can build a race track and drive a car around it. The player can also set up waypoints to spawn AI cars. It is also possible to take advantage of being in augmented reality to drive the cars on the surfaces in the player's environment. This game was a solo project created in Unity for Microsoft's HoloLens.
-
-HotWheels was a large inspiration for this project as it was one of my favorite toys to play with when I was a kid. The goal was to bring to life the idea of racing cars around the player's environment in whatever crazy way he or she desired. The HoloLens's spatial mapping capabilities provided the possibility of driving a car on floors, walls, and ceilings in addition to a digital track. In order to truly take advantage of this, my professor suggested that I should do something that is not possible in reality. This led me to create teleporters and gravity shifting to allow players to create large tracks that can drive on the walls and ceiling. Because I did not have anyone assisting me with this, I had to create or find assets myself. The car and car AI were provided by Unity's sample assets package. However, I created all of the race track models myself using Blender. This was my first time using Blender for 3D modeling, so it taught me a little bit about the creation and importing of art assets into a game engine like Unity. 
-
-I presented this project at a social software showcase event called WetWare Wednesday in November of 2018. The project was received well amongst spectators at the event. It is capable of featuring up to 5 AI cars at once guided by a waypoint system that can be setup by the player. 
-
-<div style="justify-content: center">
-  <iframe width="700" height="394" src="https://www.youtube.com/embed/TOoPjq2TaMk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<div>
-
-<div class="ui one column grid" style="margin-top: 16px">
-  <div class="column">
-    <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track.png">
-    <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
-    <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingAI.png">
+<div class="ui container" style="width: 70%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+    <div style="padding-top: 10px"></div>
+    <div class="ui two column grid">
+      <div class="column">
+        <div style="display: flex; justify-content: center; font-size: 20px; text-align: center">
+          Part of the motivation for this project was self directed research around possible methods for placing and manipulating virtual objects in augmented reality space. This was a challenging problem when working in the HoloLens because the HoloLens was limited to a single tap gesture for tap and tap and hold inputs.
+          <br/>
+          <br/>
+          I decided to set up each track piece with a set of buttons to control if it was in move or rotate mode. Move mode simply allowed for the piece to be grabbed and repositioned freely, while rotate mode would reveal curved arrows along each axis to allow users to grab on an arrow and rotate the object along the desired axis without it moving position.
+        </div>
+      </div>
+      <div class="column" style="align-items: center; display: flex">
+        <img class="ui large centered bordered image" src="../images/holoracer/holoracer_track_rotate.png">
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
   </div>
-  <div class="column">
+</div>
+
+<div class="ui container" style="width: 80%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+    <div style="padding-top: 10px"></div>
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20x; text-align: center">
+        This was a solo project I worked on during my time as an undergraduate research assistant. It allowed me to explore some of the possibilities of game design with augmented reality technology. HotWheels was a large inspiration for this project as it was one of my favorite toys to play with when I was a kid. The goal was to bring to life the idea of racing cars around the player's environment in whatever crazy way they desired. 
+        <br/>
+        <br/>
+        I presented this project at a social software showcase event called WetWare Wednesday in November of 2018. The project was received well amongst spectators at the event. It is capable of featuring up to 5 AI cars at once guided by a waypoint system that can be setup by the player. A demo of the project can be viewed here:
+      </div>
+      <div style="justify-content: center">
+        <iframe width="700" height="394" src="https://www.youtube.com/embed/TOoPjq2TaMk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
   </div>
 </div>
 
