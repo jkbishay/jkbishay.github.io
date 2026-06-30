@@ -51,6 +51,21 @@ summary: Augmented Reality car racing game
   </div>
 </div>
 
+<div class="ui container" style="width: 50%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.6)">
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 16px; text-align: center">
+        My professor suggested that I should leverage the augmented reality technology to do something that is not possible in reality. That inspired me to utilize the HoloLens's spatial mapping capabilities to generate a physics mesh around the player's environment that the cars can drive on.
+      </div>
+      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_floor.png">
+      <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 16px; text-align: center">
+        I decided to take this concept one step further and implemented a way for players to change the gravity direction such that you can do something like racing on the ceiling.
+      </div>
+      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
+    </div>
+  </div>
+</div>
+
 <br/>
 
 "HoloRacer" is an augmented reality car racing game. The player can build a race track and drive a car around it. The player can also set up waypoints to spawn AI cars. It is also possible to take advantage of being in augmented reality to drive the cars on the surfaces in the player's environment. This game was a solo project created in Unity for Microsoft's HoloLens.
