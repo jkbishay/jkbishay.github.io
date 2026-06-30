@@ -58,10 +58,10 @@ summary: Augmented Reality car racing game
         My professor suggested that I should leverage the augmented reality technology to do something that is not possible in reality. That inspired me to utilize the HoloLens's spatial mapping capabilities to generate a physics mesh around the player's environment that the cars can drive on.
       </div>
       <img class="ui large centered bordered image" src="../images/holoracer/holoracer_floor.png">
-      <div style="display: flex; justify-content: center; padding: 10px 10px; font-size: 16px; text-align: center">
+      <div style="display: flex; justify-content: center; padding: 20px 10px; font-size: 16px; text-align: center">
         I decided to take this concept one step further and implemented a way for players to change the gravity direction such that you can do something like racing on the ceiling.
       </div>
-      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png">
+      <img class="ui large centered bordered image" src="../images/holoracer/holoracer_ceilingPlayer.png" style="padding-bottom: 10px">
     </div>
   </div>
 </div>
