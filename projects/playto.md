@@ -70,10 +70,12 @@ summary: A short 2D puzzle demo game
     <div style="padding-top: 10px"></div>
     <div class="column">
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
-        This project taught me a lot about how to design a game. I learned to focus on the gameplay experience rather than trying to come up with an amazing story, visuals, or outrageous mechanics. On the technical side, I was able to expand my knowledge of Unity and C#. I learned many different tips and tricks about implementing certain functions in Unity, and I learned how to manipulate the camera to achieve desired cinematic effects. 
-        <br/>
-        <br/>
-        You can learn more about our game and find a playable demo at its <a href="https://dreamingbento.github.io/">website</a>.
+        <p>
+          This project taught me a lot about how to design a game. I learned to focus on the gameplay experience rather than trying to come up with an amazing story, visuals, or outrageous mechanics. On the technical side, I was able to expand my knowledge of Unity and C#. I learned many different tips and tricks about implementing certain functions in Unity, and I learned how to manipulate the camera to achieve desired cinematic effects. 
+          <br/>
+          <br/>
+          You can learn more about our game and find a playable demo at its <a href="https://dreamingbento.github.io/">website</a>.
+        </p>
       </div>
       <div style="display: flex; justify-content: center">
         <iframe width="900" height="506" src="https://www.youtube.com/embed/3oDPTKcFKlY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -82,3 +84,14 @@ summary: A short 2D puzzle demo game
     <div style="padding-bottom: 20px"></div>
   </div>
 </div>
+
+<script type="text/javascript">
+  $('.ui.raised.segment').visibility({
+      once: true, // Only triggers the fade effect the first time it enters the screen
+      continuous: false,
+      onTopVisible: function() {
+        // Trigger the Semantic UI fade animation when the top of the element is visible
+        $(this).transition('fade in', '1500ms');
+      }
+    });
+</script>
