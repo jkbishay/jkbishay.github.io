@@ -17,7 +17,7 @@ summary: Augmented Reality car racing game
 ---
 
 <div class="ui container" style="width: 50%">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">{{ page.title }}</h1>
     <img class="ui big centered bordered image" src="../images/holoracer/holoracer_title2.png">
     <div class="ui large labels" style="display: flex; justify-content: center; padding-top: 20px" >
@@ -34,7 +34,7 @@ summary: Augmented Reality car racing game
 </div>
 
 <div class="ui container" style="width: 70%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="align-items: center; display: flex">
@@ -54,9 +54,9 @@ summary: Augmented Reality car racing game
 </div>
 
 <div class="ui container" style="width: 50%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
-    <div class="column">
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
         My professor suggested that I should leverage the augmented reality technology to do something that is not possible in reality. That inspired me to utilize the HoloLens's spatial mapping capabilities to generate a physics mesh around the player's environment that the cars can drive on.
       </div>
@@ -71,7 +71,7 @@ summary: Augmented Reality car racing game
 </div>
 
 <div class="ui container" style="width: 70%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="align-items: center; display: flex">
@@ -91,10 +91,10 @@ summary: Augmented Reality car racing game
 </div>
 
 <div class="ui container" style="width: 80%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="column">
-      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
         This was a solo project I worked on during my time as an undergraduate research assistant. It allowed me to explore some of the possibilities of game design with augmented reality technology. HotWheels was a large inspiration for this project as it was one of my favorite toys to play with when I was a kid. The goal was to bring to life the idea of racing cars around the player's environment in whatever crazy way they desired. 
         <br/>
         <br/>

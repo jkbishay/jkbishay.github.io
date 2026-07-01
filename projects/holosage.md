@@ -16,7 +16,7 @@ summary: Augmented Reality training and annotation program
 ---
 
 <div class="ui container" style="width: 50%">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">{{ page.title }}</h1>
     <img class="ui medium centered bordered image" src="../images/holosage/holosage_logo.png">
     <div class="ui large labels" style="display: flex; justify-content: center; padding-top: 20px" >
@@ -31,7 +31,7 @@ summary: Augmented Reality training and annotation program
 </div>
 
 <div class="ui container" style="width: 80%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="justify-content: center; display: flex; flex-direction: column">
@@ -52,7 +52,7 @@ summary: Augmented Reality training and annotation program
 </div>
 
 <div class="ui container" style="width: 80%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="align-items: center; display: flex">
@@ -69,7 +69,7 @@ summary: Augmented Reality training and annotation program
 </div>
 
 <div class="ui container" style="width: 70%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="justify-content: center; display: flex; flex-direction: column">
@@ -93,7 +93,7 @@ summary: Augmented Reality training and annotation program
 </div>
 
 <div class="ui container" style="width: 60%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="column">
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
@@ -113,7 +113,7 @@ summary: Augmented Reality training and annotation program
 </div>
 
 <div class="ui container" style="width: 80%; padding-top: 25px">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.8)">
     <div style="padding-top: 10px"></div>
     <div class="column">
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
