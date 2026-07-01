@@ -25,18 +25,18 @@ summary: Augmented Reality training and annotation program
       <div class="ui basic label">Augmented Reality</div>
     </div>
     <p style="display: flex; padding-top: 10px; font-size: 30px; text-align: center">
-      HoloSage is an augmented reality training program that to allows users to create and view recorded annotations in real world space. The application was created by undergraduate students Justin Bishay and Andrew Kurano.
+      HoloSage is an augmented reality training program that allows users to create and view recorded annotations in real world space. The application was created by undergraduate students Justin Bishay and Andrew Kurano.
     </p>
   </div>
 </div>
 
-<div class="ui container" style="width: 70%; padding-top: 25px">
+<div class="ui container" style="width: 80%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
-      <div class="column" style="align-items: center; display: flex">
-        <img class="ui large centered bordered image" src="../images/holosage/holosage_allobjects.png" style="margin-right: 55px; margin-left: 55px;">
-        <img class="ui large centered bordered image" src="../images/holosage/holosage_keyboard.png" style="margin-right: 55px; margin-left: 55px;">
+      <div class="column" style="justify-content: center; display: flex; flex-direction: column">
+        <img class="ui large centered bordered image" src="../images/holosage/holosage_allobjects.png" style="margin-bottom: 50px;">
+        <img class="ui large centered bordered image" src="../images/holosage/holosage_keyboard.png">
       </div>
       <div class="column" style="align-items: center; display: flex">
         <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
@@ -51,7 +51,7 @@ summary: Augmented Reality training and annotation program
   </div>
 </div>
 
-<div class="ui container" style="width: 70%; padding-top: 25px">
+<div class="ui container" style="width: 80%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
@@ -72,9 +72,9 @@ summary: Augmented Reality training and annotation program
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
-      <div class="column" style="align-items: center; display: flex">
-        <img class="ui large centered bordered image" src="../images/holosage/holosage_editing.png" style="margin-right: 55px; margin-left: 55px;">
-        <img class="ui large centered bordered image" src="../images/holosage/holosage_recordmenu.png" style="margin-right: 55px; margin-left: 55px;">
+      <div class="column" style="justify-content: center; display: flex; flex-direction: column">
+        <img class="ui large centered bordered image" src="../images/holosage/holosage_editing.jpg" style="margin-bottom: 50px;">
+        <img class="ui large centered bordered image" src="../images/holosage/holosage_recordmenu.png">
       </div>
       <div class="column" style="align-items: center; display: flex">
         <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
@@ -92,11 +92,11 @@ summary: Augmented Reality training and annotation program
   </div>
 </div>
 
-<div class="ui container" style="width: 50%; padding-top: 25px">
+<div class="ui container" style="width: 60%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
     <div style="padding-top: 10px"></div>
     <div class="column">
-      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
         In the later stages of the project, I began to focus much more on the UI. Feedback on the early version of the application's UI was not great. Users constantly lost track of UI elements and they found the virtual menu not fitting into their physical space in the real world. A PhD student assisted me in restructuring the UI to hide functions whenever they were not needed in an attempt to simplify the menu view. The menu was made to be more compact to make the virtual object more portable and keep all sub menus focused into the center view of the menu object. These changes dratsically improved the UI/UX experience for users.
       </div>
       <div class="ui two column grid">
@@ -116,7 +116,7 @@ summary: Augmented Reality training and annotation program
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.7)">
     <div style="padding-top: 10px"></div>
     <div class="column">
-      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
         Andrew graduated in May of 2018, so I became the solo lead for the project's final stages of development and thus had to learn how the entire application functioned. I learned how all the low level systems worked and proceeded to make modifications to them to improve their performance. Working on this project challenged my problem solving skills with difficult tasks. Many of the features we sought to implement had not been previously done with augmented reality (AR), so the code samples and algorithms for the functions we wanted were quite limited. A lot of what we made required us to come up with original solutions. It also taught me how to design user interfaces to be simple, intuitive, and help streamline the process of using the program.
         <br/>
         <br/>
@@ -127,7 +127,7 @@ summary: Augmented Reality training and annotation program
       </div>
       <div style="display: flex; justify-content: center">
         <iframe width="900" height="506" src="https://www.youtube.com/embed/U8wsWn5IBE4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <div>
+      </div>
     </div>
     <div style="padding-bottom: 20px"></div>
   </div>
