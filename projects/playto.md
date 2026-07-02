@@ -24,22 +24,24 @@ summary: A short 2D puzzle demo game
       <div class="ui basic label">Unity</div>
     </div>
     <p style="display: flex; padding-top: 10px; font-size: 30px; text-align: center">
-      "Playto" is a 2D puzzle platformer where the player is a piece of playdough and they can morph into different shapes to navigate levels and solve puzzles. This project was made by Computer Science and Animation undergraduate students Justin Bishay, Neil Teves, Michael Mangrobang, Kayla Abalos, and Kaeli Giron.
+      Playto is a 2D puzzle platformer where the player is a piece of playdough and they can morph into different shapes to navigate levels and solve puzzles. This project was made by Computer Science and Animation undergraduate students Justin Bishay, Neil Teves, Michael Mangrobang, Kayla Abalos, and Kaeli Giron.
     </p>
   </div>
 </div>
 
-<div class="ui container" style="width: 70%; padding-top: 25px">
+<div class="ui container" style="width: 60%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <div style="padding-top: 10px"></div>
-    <div class="ui two column grid">
-      <div class="column" style="justify-content: center; display: flex; flex-direction: column">
-        <img class="ui large centered bordered image" src="../images/playto/Playto_pencil.png" style="margin-bottom: 50px;">
-        <img class="ui large centered bordered image" src="../images/playto/Playto_UnicornPic.png">
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+        For this project, I programmed and designed many of the puzzles that were featured in our game. I also helped to draw out and organize the layout of our levels. While designing the levels and puzzles, I took extra care to ensure that the puzzles were neither too difficult nor too easy.
       </div>
-      <div class="column" style="align-items: center; display: flex">
-        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
-          For this project, I programmed and designed many of the puzzles that were featured in our game. I also helped to draw out and organize the layout of our levels. While designing the levels and puzzles, I took extra care to ensure that the puzzles were neither too difficult nor too easy.
+      <div class="ui two column grid">
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/playto/Playto_pencil.png" style="padding-bottom: 20px">
+        </div>
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/playto/Playto_UnicornPic.png" style="padding-bottom: 20px">
         </div>
       </div>
     </div>
@@ -47,18 +49,20 @@ summary: A short 2D puzzle demo game
   </div>
 </div>
 
-<div class="ui container" style="width: 70%; padding-top: 25px">
+<div class="ui container" style="width: 60%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <div style="padding-top: 10px"></div>
-    <div class="ui two column grid">
-      <div class="column" style="align-items: center; display: flex">
-        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
-          My programming responsibilities also included working on the game's cinematics with the camera movements and implementing the dialogue for our cutscenes. In addition to this, I implemented the audio for our game and created some of the sound effects. I also helped to fix any bugs with the levels and game mechanics throughout the project. 
-        </div>
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+        My programming responsibilities also included working on the game's cinematics with the camera movements and implementing the dialogue for our cutscenes. In addition to this, I implemented the audio for our game and created some of the sound effects. I also helped to fix any bugs with the levels and game mechanics throughout the project.
       </div>
-      <div class="column" style="justify-content: center; display: flex; flex-direction: column">
-        <img class="ui large centered bordered image" src="../images/playto/Playto_DialoguePic.png" style="margin-bottom: 50px;">
-        <img class="ui large centered bordered image" src="../images/playto/Playto_spiders.png">
+      <div class="ui two column grid">
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/playto/Playto_DialoguePic.png" style="padding-bottom: 20px">
+        </div>
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/playto/Playto_spiders.png" style="padding-bottom: 20px">
+        </div>
       </div>
     </div>
     <div style="padding-bottom: 10px"></div>
