@@ -46,29 +46,25 @@ summary: AAA First Person Shooter MMORPG made by Bungie
           <div class="image" style="height: 150px; width: 100%;">
             <img src="../images/destiny/destiny_text_chat_tower.png" style="height: 150px; width: 100%;">
           </div>
+          <div class="content" style="display: flex; align-items: center; justify-content: center;">
+            <span class="center aligned header" style="color: black; font-size: 24px;">Text Chat</span>
+          </div>
         </div>
-        <div class="content" style="display: flex; align-items: center; justify-content: center;">
-          <span class="center aligned header" style="color: black; font-size: 24px;">Text Chat</span>
-        </div>
-      </div>
-      <div class="ui link cards" style="background-color: #ffffff">
         <div class="card">
           <div class="image" style="height: 150px; width: 100%;">
             <img src="../images/destiny/destiny_tooltip_tharsis.png" style="height: 150px; width: 100%;">
           </div>
+          <div class="content" style="display: flex; align-items: center; justify-content: center;">
+            <span class="center aligned header" style="color: black; font-size: 24px;">Activity Tooltips</span>
+          </div>
         </div>
-        <div class="content" style="display: flex; align-items: center; justify-content: center;">
-          <span class="center aligned header" style="color: black; font-size: 24px;">Activity Tooltips</span>
-        </div>
-      </div>
-      <div class="ui link cards" style="background-color: #ffffff">
         <div class="card">
           <div class="image" style="height: 150px; width: 100%;">
             <img src="../images/destiny/destiny_invasion_marketing.jpg" style="height: 150px; width: 100%;">
           </div>
-        </div>
-        <div class="content" style="display: flex; align-items: center; justify-content: center;">
-          <span class="center aligned header" style="color: black; font-size: 24px;">Lawless Frontier Invasion</span>
+          <div class="content" style="display: flex; align-items: center; justify-content: center;">
+            <span class="center aligned header" style="color: black; font-size: 24px;">Lawless Frontier Invasions</span>
+          </div>
         </div>
       </div>
     </div>
