@@ -19,7 +19,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 <div class="ui container" style="width: 50%">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">{{ page.title }}</h1>
-    <img class="ui medium centered bordered image" src="../images/destiny/destiny_title_with_traveler.jpg">
+    <img class="ui big centered bordered image" src="../images/destiny/destiny_title_with_traveler.jpg">
     <div class="ui large labels" style="display: flex; justify-content: center; padding-top: 20px" >
       <div class="ui basic label">C++</div>
       <div class="ui basic label">C#</div>
@@ -38,7 +38,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
     <div style="padding-top: 10px"></div>
     <div class="column">
       <img class="ui large centered bordered image" src="../images/destiny/destiny_monument_of_triumph.jpg" style="padding-bottom: 20px">
-      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 20px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
         I joined Bungie as an intern in May of 2021 and became a full time Gameplay Engineer in January of 2022. During my time at Bungie, I had the privilege of working on the Destiny 2 project. While I am not at liberty to publicize every contribution I made to Destiny 2, there are a few features I worked on that you can see in game for yourself which I am allowed to discuss.
       </div>
       <div class="ui link cards" style="background-color: #ffffff">
