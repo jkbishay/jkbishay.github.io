@@ -11,6 +11,7 @@ date: 2026-06-25
 labels:
   - C++
   - C#
+  - Python
   - Perforce
   - Networking
 summary: AAA First Person Shooter MMORPG made by Bungie
@@ -28,7 +29,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       <div class="ui basic label">Networking</div>
     </div>
     <p style="display: flex; padding-top: 10px; font-size: 30px; text-align: center">
-      Destiny 2 is a AAA First Person Shooter MMORPG created by Bungie. The game released in 2017 and is available on PlayStation, Xbox, and PC.
+      Destiny 2 is a AAA First Person Shooter MMORPG released by Bungie in 2017. It is available on PlayStation, Xbox, and PC.
     </p>
   </div>
 </div>
@@ -37,13 +38,13 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <div style="padding-top: 10px"></div>
     <div class="column">
-      <img class="ui large centered bordered image" src="../images/destiny/destiny_monument_of_triumph.jpg" style="padding-bottom: 20px">
+      <img class="ui big centered bordered image" src="../images/destiny/destiny_monument_of_triumph.jpg" style="padding-bottom: 20px">
       <div style="display: flex; justify-content: center; padding-bottom: 20px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
         I joined Bungie as an intern in May of 2021 and became a full time Gameplay Engineer in January of 2022. During my time at Bungie, I had the privilege of working on the Destiny 2 project. While I am not at liberty to publicize every contribution I made to Destiny 2, there are a few features I worked on that you can see in game for yourself which I am allowed to discuss.
       </div>
-      <div class="ui link cards" style="background-color: #ffffff">
+      <div class="ui link cards" style="display: flex; align-items: center; justify-content: center;">
         <div class="card">
-          <div class="image" style="height: 150px; width: 100%;">
+          <div class="image" style="height: 200px; width: 100%;">
             <img src="../images/destiny/destiny_text_chat_tower.png" style="height: 150px; width: 100%;">
           </div>
           <div class="content" style="display: flex; align-items: center; justify-content: center;">
@@ -51,7 +52,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
           </div>
         </div>
         <div class="card">
-          <div class="image" style="height: 150px; width: 100%;">
+          <div class="image" style="height: 200px; width: 100%;">
             <img src="../images/destiny/destiny_tooltip_tharsis.png" style="height: 150px; width: 100%;">
           </div>
           <div class="content" style="display: flex; align-items: center; justify-content: center;">
@@ -59,11 +60,11 @@ summary: AAA First Person Shooter MMORPG made by Bungie
           </div>
         </div>
         <div class="card">
-          <div class="image" style="height: 150px; width: 100%;">
+          <div class="image" style="height: 200px; width: 100%;">
             <img src="../images/destiny/destiny_invasion_marketing.jpg" style="height: 150px; width: 100%;">
           </div>
           <div class="content" style="display: flex; align-items: center; justify-content: center;">
-            <span class="center aligned header" style="color: black; font-size: 24px;">Lawless Frontier Invasions</span>
+            <span class="center aligned header" style="color: black; font-size: 24px;">Invasions</span>
           </div>
         </div>
       </div>
