@@ -43,7 +43,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
         I joined Bungie as an intern in May of 2021 and became a full time Gameplay Engineer in January of 2022. During my time at Bungie, I had the privilege of working on the Destiny 2 project. While I am not at liberty to publicize every contribution I made to Destiny 2, there are a few features I worked on that you can see in game for yourself which I am allowed to discuss.
       </div>
       <div class="ui link cards" style="display: flex; align-items: center; justify-content: center;">
-        <div class="card">
+        <div id="text-chat-button" class="card">
           <div class="image" style="height: 170px; width: 100%;">
             <img src="../images/destiny/destiny_text_chat_tower.png" style="height: 170px; width: 100%;">
           </div>
@@ -51,7 +51,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
             <span class="center aligned header" style="color: black; font-size: 24px;">Text Chat</span>
           </div>
         </div>
-        <div class="card">
+        <div id="activity-tooltip-button" class="card">
           <div class="image" style="height: 170px; width: 100%;">
             <img src="../images/destiny/destiny_tooltip_tharsis.png" style="height: 170px; width: 100%;">
           </div>
@@ -59,7 +59,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
             <span class="center aligned header" style="color: black; font-size: 24px;">Activity Tooltips</span>
           </div>
         </div>
-        <div class="card">
+        <div id="invasions-button" class="card">
           <div class="image" style="height: 170px; width: 100%;">
             <img src="../images/destiny/destiny_invasion_marketing.jpg" style="height: 170px; width: 100%;">
           </div>
@@ -73,6 +73,116 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
+<!-- text chat -->
+<div id="text-chat-section" class="ui container" style="width: 50%">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <img class="ui big centered bordered image" src="../images/destiny/destiny_text_chat_tower.png">
+    <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Text Chat</h1>
+  </div>
+</div>
+
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       I joined Bungie in the summer of 2021 to help finish the development of cross-play in Destiny 2. One of the major components to cross-play was updating the text chat system to use the new Bungie accounts to allow players on console and PC to use it to communicate with each other. This required reworking the existing text chat commands to use Bungie names instead of platform names. To do this, I had to learn how the text chat system processed user input and how auto complete functioned for player and command names.
+      </div>
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px">
+        I also created three new text chat commands: report, block, and unblock. These commands were a bit special because we needed to send data from the text chat system to UI elements that would appear when using them. The unblock command was actually my own idea that I proposed to the team. I felt it would be a good addition because while you could block anyone from inside the game, there wasn't anyway to unblock someone without having to go to their account settings on the Bungie website.
+      </div>
+      <div class="ui two column grid">
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+        </div>
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+        </div>
+      </div>
+    </div> 
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 75%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="ui two column grid">
+      <div class="column" style="align-items: center; display: flex">
+        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+          Long after we had shipped cross-play, I added another new command called clear to give players the ability to clear their local text chat view. This was something my manager and I pushed for after seeing online feedback about how there was no way to get rid of any profanities in a player's text chat history without logging out of the game.
+        </div>
+      </div>
+      <div class="column" style="align-items: center; display: flex">
+        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="margin-right: 55px; margin-left: 55px;">
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       Along with my work on text chat, I had the opportunity to work on some other critical features. For example: many of the system messages you see when using text chat are from me! So whenever you see them, know that I am the one speaking directly to you...
+      </div>
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       ...okay maybe I'm not literally talking to you, but I did write those messages. Another contribution of mine was writing code to make sure that a player could always be blocked immediately even if a user's block list was full on our servers.
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px">
+        Much of my work on cross-play and text chat was also used for Marathon.
+      </div>
+      <div class="ui two column grid">
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+        </div>
+        <div class="column">
+          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+        </div>
+      </div>
+    </div> 
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<!-- activity tooltips -->
+<div id="activity-tooltip-section" class="ui container" style="width: 50%">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <img class="ui big centered bordered image" src="../images/destiny/destiny_tooltip_tharsis.png">
+    <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Text Chat</h1>
+  </div>
+</div>
+
+<!-- invasions -->
+<div id="invasions-section" class="ui container" style="width: 50%">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <img class="ui big centered bordered image" src="../images/destiny/destiny_invasion_marketing.jpg">
+    <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Invasions</h1>
+  </div>
+</div>
+
 <script type="text/javascript">
   $('.ui.raised.segment').visibility({
       once: true, // Only triggers the fade effect the first time it enters the screen
@@ -81,5 +191,23 @@ summary: AAA First Person Shooter MMORPG made by Bungie
         // Trigger the Semantic UI fade animation when the top of the element is visible
         $(this).transition('fade in', '1500ms');
       }
+    });
+  
+  $('#text-chat-button').on('click', function() {
+      $('html, body').animate({
+        scrollTop: $('#text-chat-section').offset().top
+      }, 1200); // Speed in milliseconds
+    });
+
+  $('#activity-tootltip-button').on('click', function() {
+      $('html, body').animate({
+        scrollTop: $('#activity-tootltip-section').offset().top
+      }, 1200); // Speed in milliseconds
+    });
+
+  $('#invasions-button').on('click', function() {
+      $('html, body').animate({
+        scrollTop: $('#invasions-section').offset().top
+      }, 1200); // Speed in milliseconds
     });
 </script>
