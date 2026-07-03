@@ -73,7 +73,9 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<hr style="height: 6px; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+<div style="padding-top: 25px; padding-bottom: 25px;">
+  <hr style="height: 6px; width: 80%; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+</div>
 
 <!-- text chat -->
 <div id="text-chat-section" class="ui container" style="width: 50%;">
@@ -169,7 +171,9 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<hr style="height: 6px; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+<div style="padding-top: 25px; padding-bottom: 25px;">
+  <hr style="height: 6px; width: 80%; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+</div>
 
 <!-- activity tooltips -->
 <div id="activity-tooltip-section" class="ui container" style="width: 50%;">
@@ -179,7 +183,9 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<hr style="height: 6px; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+<div style="padding-top: 25px; padding-bottom: 25px;">
+  <hr style="height: 6px; width: 80%; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+</div>
 
 <!-- invasions -->
 <div id="invasions-section" class="ui container" style="width: 50%;">
