@@ -213,7 +213,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 
   $('#activity-tooltip-button').on('click', function() {
       $('html, body').animate({
-        scrollTop: $('#activity-tootltip-section').offset().top
+        scrollTop: $('#activity-tooltip-section').offset().top
       }, 1200); // Speed in milliseconds
     });
 
