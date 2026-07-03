@@ -73,7 +73,6 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<!-- text chat -->
 <div id="text-chat-section" class="ui container" style="width: 50%">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_text_chat_tower.png">
@@ -167,7 +166,6 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<!-- activity tooltips -->
 <div id="activity-tooltip-section" class="ui container" style="width: 50%">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_tooltip_tharsis.png">
@@ -175,7 +173,6 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<!-- invasions -->
 <div id="invasions-section" class="ui container" style="width: 50%">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_invasion_marketing.jpg">
@@ -199,7 +196,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       }, 1200); // Speed in milliseconds
     });
 
-  $('#activity-tootltip-button').on('click', function() {
+  $('#activity-tooltip-button').on('click', function() {
       $('html, body').animate({
         scrollTop: $('#activity-tootltip-section').offset().top
       }, 1200); // Speed in milliseconds
