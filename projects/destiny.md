@@ -73,7 +73,10 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<div id="text-chat-section" class="ui container" style="width: 50%">
+<hr style="height: 6px; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+
+<!-- text chat -->
+<div id="text-chat-section" class="ui container" style="width: 50%;">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_text_chat_tower.png">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Text Chat</h1>
@@ -166,14 +169,20 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<div id="activity-tooltip-section" class="ui container" style="width: 50%">
+<hr style="height: 6px; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+
+<!-- activity tooltips -->
+<div id="activity-tooltip-section" class="ui container" style="width: 50%;">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_tooltip_tharsis.png">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Text Chat</h1>
   </div>
 </div>
 
-<div id="invasions-section" class="ui container" style="width: 50%">
+<hr style="height: 6px; background-color: #ffffff; padding-top: 25px; padding-bottom: 25px;">
+
+<!-- invasions -->
+<div id="invasions-section" class="ui container" style="width: 50%;">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_invasion_marketing.jpg">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Invasions</h1>
