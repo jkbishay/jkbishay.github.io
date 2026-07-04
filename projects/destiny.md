@@ -179,7 +179,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 <div id="activity-tooltip-section" class="ui container" style="width: 50%;">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_tooltip_tharsis.png">
-    <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Text Chat</h1>
+    <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Activity Tooltips</h1>
   </div>
 </div>
 
