@@ -216,6 +216,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
     <div style="padding-top: 10px"></div>
     <div class="column" style="margin-right: 55px; margin-left: 55px;">
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+        The setup for invasions had 2 invadable queues where one would rotate every 24 hours and the other would rotate every 15 minutes.
       </div>
     </div>
     <div style="padding-top: 10px"></div>
