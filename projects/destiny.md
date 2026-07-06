@@ -195,6 +195,24 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       For the Renegades expansion in Destiny 2, project leadership wanted to experiment with a new PvEvP game mode. The idea was to have one team of up to 3 players play through a typical PvE activity, but in the middle of this activity a 4th player could invade them to hunt them down in PvP gameplay.
+      </div>
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       I was tasked with driving the implementation of the technical side of invasions. My work involved updating activity systems for the PvEvP framework of the activity, configuring and updating matchmaking systems to support a unique matchmaking setup, and working directly with the design team to advise them on their content setups and identify what they needed from engineering.
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+
+
 <div class="ui container" style="width: 80%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <div style="padding-top: 10px"></div>
