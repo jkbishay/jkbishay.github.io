@@ -79,7 +79,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 
 <!-- text chat -->
 <div id="text-chat-section" class="ui container" style="width: 50%;">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9); padding-top: 10px">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_text_chat_tower.png">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Text Chat</h1>
   </div>
@@ -177,9 +177,54 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 
 <!-- activity tooltips -->
 <div id="activity-tooltip-section" class="ui container" style="width: 50%;">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9); padding-top: 10px">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_tooltip_tharsis.png">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Activity Tooltips</h1>
+  </div>
+</div>
+
+<div class="ui container" style="width: 75%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="ui two column grid">
+      <div class="column" style="align-items: center; display: flex">
+        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="margin-right: 55px; margin-left: 55px;">
+      </div>
+      <div class="column" style="align-items: center; display: flex">
+        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+          Our activities and UI engineering teams worked with design to create a tooltip that could be rendered in the 3D play space and used inside of our activities. However, it was limited to only displaying one string of text. This forced designers to make content setups where tooltip objects were constantly created and destroyed if they wanted to switch between different strings.
+        </div>
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+        I took on the task of learning the activity tooltip system in order to deliver the ability to add multiple strings for a single tooltip that could be swapped through script control. I ended up needing to rewrite most of the system in order to achieve this since it was not originally designed in a way to support more than one string. This also gave me the chance to optimize its performance and improve the error messaging for designers using these tooltips.
+      </div>
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+    </div>
+    <div style="padding-top: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+        The feedback I received from designers after finishing the rewrite of the system made me realize that there wasn't enough tooling around activity tooltips to help someone who wasn't an engineer debug them. This led me to take my work here one step further and build a dedicated debug view for activity tooltips to help designers better understand their visibility state.
+        <br/>
+        <br/>
+        Unfortunately, I am not able to publicly showcase this, but the debug view did include the list of all tooltips loaded in the map, the current setting of each tooltip, their current visibility status, the reason they were not visible, and the radius at which they would be visible to the player.
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
   </div>
 </div>
 
@@ -189,7 +234,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 
 <!-- invasions -->
 <div id="invasions-section" class="ui container" style="width: 50%;">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9); padding-top: 10px">
     <img class="ui big centered bordered image" src="../images/destiny/destiny_invasion_marketing.jpg">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Invasions</h1>
   </div>
