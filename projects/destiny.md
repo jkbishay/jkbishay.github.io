@@ -211,20 +211,24 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<div class="ui container" style="width: 60%; padding-top: 25px">
+
+
+<div class="ui container" style="width: 75%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <div style="padding-top: 10px"></div>
-    <div class="column" style="margin-right: 55px; margin-left: 55px;">
-      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
-       The setup for invasions had 2 invadable queues where one would rotate every 24 hours and the other would rotate every 15 minutes. This led to concerns from design about players who may try to dodge being invaded by waiting to select a queue until right before the rotation time. Engineering also still had some remaining worries about the 15-minute rotation being too short such that it would split the matchmaking population and put invaders at risk of not finding games. To resolve these fears, I wrote a new matchmaking feature in our engine that performs a smart queue selection for players entering matchmaking based on the current population of available games in each queue.
+    <div class="ui two column grid">
+      <div class="column" style="align-items: center; display: flex">
+        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+          On the activity side, I was responsible for making a new setting to allow for a PvE activity to automatically assign players to PvP teams. I also created a new gameplay system to support making certain enemy AI factions allied with specific player teams so that invaders would be friendly with enemy AI.
+        </div>
       </div>
-      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <div class="column" style="align-items: center; display: flex">
+        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="margin-right: 55px; margin-left: 55px;">
+      </div>
     </div>
     <div style="padding-bottom: 10px"></div>
   </div>
 </div>
-
-
 
 <div class="ui container" style="width: 80%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
