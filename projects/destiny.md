@@ -195,6 +195,24 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
+<div class="ui container" style="width: 80%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+        When invasions went live to the public with the launch of the Renegades expansion, we saw a very healthy success rate of matchmaking for invading players. We also saw almost all sessions on the PvE side were being matched onto by an invader. 
+        <br/>
+        <br/>
+        You can view a showcase of the feature from the live game here:
+      </div>
+      <div style="display: flex; justify-content: center">
+        <iframe width="900" height="506" src="https://www.youtube.com/embed/s1JojyBBGdc?si=6GfK1VAB0srLjgww" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="padding-bottom: 20px"></div>
+  </div>
+</div>
+
 <script type="text/javascript">
   $('.ui.raised.segment').visibility({
       once: true, // Only triggers the fade effect the first time it enters the screen
