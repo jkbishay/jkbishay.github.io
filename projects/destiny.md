@@ -1,6 +1,6 @@
 ---
 layout: project
-type: project_unfinished #hide this from appearing until it is ready
+type: project
 image: images/destiny/destiny_title_with_traveler.jpg
 backgroundImage: images/destiny/destiny_monument_of_triumph.jpg
 color: blue
@@ -92,7 +92,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
        I joined Bungie in the summer of 2021 to help finish the development of cross-play in Destiny 2. One of the major components to cross-play was updating the text chat system to use the new Bungie accounts to allow players on console and PC to use it to communicate with each other. This required reworking the existing text chat commands to use Bungie names instead of platform names. To do this, I had to learn how the text chat system processed user input and how auto complete functioned for player and command names.
       </div>
-      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_addfriend.png" style="padding-bottom: 20px">
     </div>
     <div style="padding-bottom: 10px"></div>
   </div>
@@ -107,10 +107,10 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       </div>
       <div class="ui two column grid">
         <div class="column">
-          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_commands.png" style="padding-bottom: 20px">
         </div>
         <div class="column">
-          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_unblock.png" style="padding-bottom: 20px">
         </div>
       </div>
     </div> 
@@ -128,7 +128,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
         </div>
       </div>
       <div class="column" style="align-items: center; display: flex">
-        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="margin-right: 55px; margin-left: 55px;">
+        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_clear.png" style="margin-right: 55px; margin-left: 55px;">
       </div>
     </div>
     <div style="padding-bottom: 10px"></div>
@@ -142,7 +142,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
        Along with my work on text chat, I had the opportunity to work on some other critical features. For example: many of the system messages you see when using text chat are from me! So whenever you see them, know that I am the one speaking directly to you...
       </div>
-      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_system_messages.png" style="padding-bottom: 20px">
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
        ...okay maybe I'm not literally talking to you, but I did write those messages. Another contribution of mine was writing code to make sure that a player could always be blocked immediately even if a user's block list was full on our servers.
       </div>
@@ -188,7 +188,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
     <div style="padding-top: 10px"></div>
     <div class="ui two column grid">
       <div class="column" style="align-items: center; display: flex">
-        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="margin-right: 55px; margin-left: 55px;">
+        <img class="ui large centered bordered image" src="../images/destiny/destiny_tooltip_weapon.png" style="margin-right: 55px; margin-left: 55px;">
       </div>
       <div class="column" style="align-items: center; display: flex">
         <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
@@ -207,7 +207,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
         I took on the task of learning the activity tooltip system in order to deliver the ability to add multiple strings for a single tooltip that could be swapped through script control. I ended up needing to rewrite most of the system in order to achieve this since it was not originally designed in a way to support more than one string. This also gave me the chance to optimize its performance and improve the error messaging for designers using these tooltips.
       </div>
-      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_tooltip_banner.png" style="padding-bottom: 20px">
     </div>
     <div style="padding-top: 10px"></div>
   </div>
@@ -247,7 +247,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
        For the Renegades expansion in Destiny 2, project leadership wanted to experiment with a new PvEvP game mode. The idea was to have one team of up to 3 players play through a typical PvE activity, but in the middle of this activity a 4th player could invade them to hunt them down in PvP gameplay.
       </div>
-      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_invasion_pve.png" style="padding-bottom: 20px">
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
        I was tasked with driving the implementation of the technical side of invasions. My work involved updating activity systems for the PvEvP framework of the activity, configuring and updating matchmaking systems to support a unique matchmaking setup, and working directly with the design team to advise them on their content setups and identify what they needed from engineering.
       </div>
@@ -263,7 +263,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
         The setup for invasions had 2 invadable queues where one would rotate every 24 hours and the other would rotate every 15 minutes. This led to concerns from design about players who may try to dodge being invaded by waiting to select a queue until right before the rotation time. Engineering also still had some remaining worries about the 15 minute rotation being too short such that it would split the matchmaking population and put invaders at risk of not finding games. To resolve these fears, I wrote a new matchmaking feature in our engine that performs a smart queue selection for players entering matchmaking based on the current population of available games in each queue.
       </div>
-      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_lawless_frontier_map.png" style="padding-bottom: 20px">
     </div>
     <div style="padding-top: 10px"></div>
   </div>
@@ -279,7 +279,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
         </div>
       </div>
       <div class="column" style="align-items: center; display: flex">
-        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="margin-right: 55px; margin-left: 55px;">
+        <img class="ui large centered bordered image" src="../images/destiny/destiny_invasion_pve2.png" style="margin-right: 55px; margin-left: 55px;">
       </div>
     </div>
     <div style="padding-bottom: 10px"></div>
