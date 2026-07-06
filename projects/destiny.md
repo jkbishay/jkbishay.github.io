@@ -79,8 +79,8 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 
 <!-- text chat -->
 <div id="text-chat-section" class="ui container" style="width: 50%;">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9); padding-top: 10px">
-    <img class="ui big centered bordered image" src="../images/destiny/destiny_text_chat_tower.png">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <img class="ui big centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-top: 10px">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Text Chat</h1>
   </div>
 </div>
@@ -177,8 +177,8 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 
 <!-- activity tooltips -->
 <div id="activity-tooltip-section" class="ui container" style="width: 50%;">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9); padding-top: 10px">
-    <img class="ui big centered bordered image" src="../images/destiny/destiny_tooltip_tharsis.png">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <img class="ui big centered bordered image" src="../images/destiny/destiny_tooltip_tharsis.png" style="padding-top: 10px">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Activity Tooltips</h1>
   </div>
 </div>
@@ -213,7 +213,7 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
-<div class="ui container" style="width: 60%; padding-top: 25px">
+<div class="ui container" style="width: 45%; padding-top: 25px">
   <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
     <div style="padding-top: 10px"></div>
     <div class="column" style="margin-right: 55px; margin-left: 55px;">
@@ -234,8 +234,8 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 
 <!-- invasions -->
 <div id="invasions-section" class="ui container" style="width: 50%;">
-  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9); padding-top: 10px">
-    <img class="ui big centered bordered image" src="../images/destiny/destiny_invasion_marketing.jpg">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <img class="ui big centered bordered image" src="../images/destiny/destiny_invasion_marketing.jpg" style="padding-top: 10px">
     <h1 class="ui center aligned header" style="font-size: 40px; color: whitesmoke">Invasions</h1>
   </div>
 </div>
