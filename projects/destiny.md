@@ -160,10 +160,10 @@ summary: AAA First Person Shooter MMORPG made by Bungie
       </div>
       <div class="ui two column grid">
         <div class="column">
-          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+          <img class="ui large centered bordered image" src="../images/destiny/marathon_text_chat_commands.png" style="padding-bottom: 20px">
         </div>
         <div class="column">
-          <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+          <img class="ui large centered bordered image" src="../images/destiny/marathon_text_chat_addfriend.png" style="padding-bottom: 20px">
         </div>
       </div>
     </div> 
