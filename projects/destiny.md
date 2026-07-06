@@ -195,6 +195,70 @@ summary: AAA First Person Shooter MMORPG made by Bungie
   </div>
 </div>
 
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       For the Renegades expansion in Destiny 2, project leadership wanted to experiment with a new PvEvP game mode. The idea was to have one team of up to 3 players play through a typical PvE activity, but in the middle of this activity a 4th player could invade them to hunt them down in PvP gameplay.
+      </div>
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       I was tasked with driving the implementation of the technical side of invasions. My work involved updating activity systems for the PvEvP framework of the activity, configuring and updating matchmaking systems to support a unique matchmaking setup, and working directly with the design team to advise them on their content setups and identify what they needed from engineering.
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 60%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column" style="margin-right: 55px; margin-left: 55px;">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center">
+       The setup for invasions had 2 invadable queues where one would rotate every 24 hours and the other would rotate every 15 minutes. This led to concerns from design about players who may try to dodge being invaded by waiting to select a queue until right before the rotation time. Engineering also still had some remaining worries about the 15-minute rotation being too short such that it would split the matchmaking population and put invaders at risk of not finding games. To resolve these fears, I wrote a new matchmaking feature in our engine that performs a smart queue selection for players entering matchmaking based on the current population of available games in each queue.
+      </div>
+      <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="padding-bottom: 20px">
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 75%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="ui two column grid">
+      <div class="column" style="align-items: center; display: flex">
+        <div style="display: flex; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+          On the activity side, I was responsible for making a new setting to allow for a PvE activity to automatically assign players to PvP teams. I also created a new gameplay system to support making certain enemy AI factions allied with specific player teams so that invaders would be friendly with enemy AI.
+        </div>
+      </div>
+      <div class="column" style="align-items: center; display: flex">
+        <img class="ui large centered bordered image" src="../images/destiny/destiny_text_chat_tower.png" style="margin-right: 55px; margin-left: 55px;">
+      </div>
+    </div>
+    <div style="padding-bottom: 10px"></div>
+  </div>
+</div>
+
+<div class="ui container" style="width: 80%; padding-top: 25px">
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div class="column">
+      <div style="display: flex; justify-content: center; padding-bottom: 10px; font-size: 20px; text-align: center; margin-right: 55px; margin-left: 55px;">
+        When invasions went live to the public with the launch of the Renegades expansion, we saw a very healthy success rate of matchmaking for invading players. We also saw almost all sessions on the PvE side were being matched onto by an invader. 
+        <br/>
+        <br/>
+        You can view a showcase of the feature from the live game here:
+      </div>
+      <div style="display: flex; justify-content: center">
+        <iframe width="900" height="506" src="https://www.youtube.com/embed/s1JojyBBGdc?si=6GfK1VAB0srLjgww" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+    <div style="padding-bottom: 20px"></div>
+  </div>
+</div>
+
 <script type="text/javascript">
   $('.ui.raised.segment').visibility({
       once: true, // Only triggers the fade effect the first time it enters the screen
