@@ -212,7 +212,10 @@ summary: AAA First Person Shooter MMORPG made by Bungie
 </div>
 
 <div class="ui container" style="width: 60%; padding-top: 25px">
-
+  <div class="ui raised segment" style="background-color: rgba(0, 0, 0, 0.9)">
+    <div style="padding-top: 10px"></div>
+    <div style="padding-top: 10px"></div>
+  </div>
 </div>
 
 <div class="ui container" style="width: 75%; padding-top: 25px">
